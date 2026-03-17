@@ -7,7 +7,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600&family=Overpass:wght@900&family=Instrument+Serif:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600&family=Overpass:wght@700;800;900&family=Instrument+Serif:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 
 <style>
 /* ════════════════════════════════════════════════════
@@ -267,6 +267,21 @@ a { color: inherit; text-decoration: none; }
   font-family: var(--serif); font-weight: 400;
   font-size: clamp(2rem, 4.2vw, 4.6rem);
   line-height: 1.02; margin-bottom: 2rem;
+}
+.thesis-inline-head .overpass-inline {
+  font-family: "Overpass", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+  display: inline-block;
+}
+.thesis-inline-head i {
+  font-family: "Instrument Serif", serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 0.95;
 }
 .thesis-copy p {
   font-size: clamp(.98rem, 1.5vw, 1.15rem);
@@ -789,7 +804,11 @@ footer {
         <span class="mg mg-tl" style="top:-2rem;left:-1rem;transform:rotate(-4deg);" aria-hidden="true">hit the ground running</span>
         <h2>A hands-on afternoon of<br>skill and career exploration.</h2>
         <p>The nature of work is changing fast. The Human Capital Quarterly forum features workshops and talks led by local training programs, community-based upskilling initiatives, professional organizations, and industry leaders with real workforce insight. The goal is simple: bring together a wider range of contributors to the National Capital Region's workforce to share ideas and to lead practical, hands-on sessions.</p>
-        <h2>From the moment you walk in,<br>the goal is simple:<br><i>help you move forward.</i></h2>
+        <h2 class="thesis-inline-head">
+          <span class="overpass-inline">From the moment you walk in,</span><br>
+          the goal is simple:<br>
+          <i>help you move forward.</i>
+        </h2>
         <p>This event complements the ongoing work of workforce, career-building, and upskilling programs across our region by creating a public forum that connecst them to you, the public, all in one place in the center of DC.</p>
         <p>Every quarter centers on a theme. This time, it's climate and energy. But the skills, ideas, and best practices that will be shared are relevant far beyond that topic. Most importantly, Human Capital Quarterly is about connection: connecting you with new ideas, new people, and new initiatives. Now more than ever, real human connection is what moves us forward.</p>
         <span class="mg mg-br" style="bottom:-3rem;right:0;transform:rotate(3deg);" aria-hidden="true">figuring it out together</span>
