@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Human Capital Quarterly — Spring Forum · April 14</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600&family=Overpass:wght@900&family=Instrument+Serif:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+
+<style>
+/* ════════════════════════════════════════════════════
+   TOKENS
+════════════════════════════════════════════════════ */
+:root {
+  --white:  #F9F9F8;
+  --carbon: #121212;
+  --red:    #E4002B;
+  --blue:   #41B6E6;
+
+  --sys:   'Overpass',        sans-serif;
+  --serif: 'Instrument Serif',serif;
+  --body:  'IBM Plex Sans',   sans-serif;
+  --mono:  'IBM Plex Mono',   monospace;
+  --hand:  'Caveat',          cursive;
+  --meta:  0.72rem;
+
+  /*
+    HERO FONT SIZE — single source of truth.
+    Used for BOTH blue Overpass rows AND red Instrument Serif rows.
+    Each grid row is exactly --hfs tall, so the interleaving is
+    mathematically exact at every viewport width.
+  */
+  --hfs: clamp(3.2rem, 15.5vw, 16rem);
+}
+
+/* ════════════════════════════════════════════════════
+   RESET / BASE
+════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--white); color: var(--carbon);
+  font-family: var(--body); font-weight: 300;
+  line-height: 1.6; overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+/* paper grain */
+body::after {
+  content: ''; position: fixed; inset: 0;
+  pointer-events: none; z-index: 9000;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.028'/%3E%3C/svg%3E");
+}
+::selection { background: var(--red); color: var(--white); }
+a { color: inherit; text-decoration: none; }
+
+/* ════════════════════════════════════════════════════
+   TICKER
+════════════════════════════════════════════════════ */
+.ticker-bar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 600;
+  background: var(--carbon); color: var(--white);
+  padding: 0.58rem 0; overflow: hidden;
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: 0.07em;
+}
+.ticker-track { display: flex; white-space: nowrap; animation: tick 65s linear infinite; }
+.ticker-track span { padding: 0 4rem; flex-shrink: 0; }
+@keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ════════════════════════════════════════════════════
+   NAV
+════════════════════════════════════════════════════ */
+.nav {
+  position: fixed; top: 2.05rem; left: 0; right: 0; z-index: 500;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0 5vw; pointer-events: none;
+}
+.nav-id {
+  pointer-events: all;
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: 0.09em;
+  background: var(--white); border: 1.5px solid var(--carbon);
+  padding: 0.44rem 0.85rem;
+}
+.nav-links { pointer-events: all; display: flex; }
+.nav-links a {
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: 0.07em;
+  background: var(--white); border: 1.5px solid var(--carbon);
+  border-left: none; padding: 0.44rem 0.85rem;
+  transition: background .15s, color .15s;
+}
+.nav-links a:first-child { border-left: 1.5px solid var(--carbon); }
+.nav-links a:hover { background: var(--carbon); color: var(--white); }
+.nav-links a.cta { background: var(--red); color: var(--white); border-color: var(--red); }
+.nav-links a.cta:hover { background: var(--carbon); border-color: var(--carbon); }
+@media (max-width: 620px) { .nav-links a:not(.cta) { display: none; } }
+
+/* ════════════════════════════════════════════════════
+   BUTTONS
+════════════════════════════════════════════════════ */
+.btn {
+  display: inline-block;
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: 0.1em;
+  padding: 0.85rem 2rem; border: 2px solid; cursor: pointer;
+  transition: background .15s, color .15s, border-color .15s;
+  white-space: nowrap;
+}
+.btn-red   { background: var(--red);    color: var(--white); border-color: var(--red); }
+.btn-red:hover  { background: var(--carbon); border-color: var(--carbon); }
+.btn-dark  { background: transparent;   color: var(--carbon); border-color: var(--carbon); }
+.btn-dark:hover { background: var(--carbon); color: var(--white); }
+.btn-white { background: var(--white);  color: var(--carbon); border-color: var(--white); }
+.btn-white:hover { background: transparent; color: var(--white); border-color: rgba(249,249,248,.45); }
+.btn-ghost { background: transparent;  color: var(--white); border-color: rgba(249,249,248,.38); }
+.btn-ghost:hover { border-color: var(--white); }
+
+/* ════════════════════════════════════════════════════
+   SECTION WRAPPER — spacing tokens
+════════════════════════════════════════════════════ */
+:root {
+  --sp-y: clamp(4rem, 9vw, 8rem);
+  --sp-x: clamp(1.5rem, 5.5vw, 6vw);
+}
+.sec { padding: var(--sp-y) var(--sp-x); }
+.sec + .sec { border-top: 2px solid var(--carbon); }
+.inner { max-width: 1340px; margin: 0 auto; }
+
+/* ════════════════════════════════════════════════════
+   HERO
+   ─────────────────────────────────────────────────
+   Three-row flex column: [top chrome] [center type] [bottom chrome]
+   Everything is in normal flow — no absolute positioning of
+   functional elements — so nothing can overlap at any viewport.
+
+   Marginalia notes remain absolute (decorative only, aria-hidden).
+════════════════════════════════════════════════════ */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-bottom: 2px solid var(--carbon);
+  margin-top: 2rem; /* clears ticker bar */
+  padding: clamp(1.5rem, 4vw, 3rem) var(--sp-x);
+}
+
+/* Top row: empty spacer that pushes type to center */
+.hero-top {
+  flex: 1;
+  min-height: 4rem; /* always leave room for nav */
+}
+
+/* Center type block — in flow, centered */
+.hero-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative; z-index: 2;
+  animation: heroIn 1s 0.1s both;
+  flex-shrink: 0;
+}
+@keyframes heroIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Bottom row: in flow, never overlaps */
+.hero-bottom {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  min-height: 4rem;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+  padding-top: clamp(1.5rem, 4vw, 3rem);
+}
+.hero-bl {
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: 0.07em; line-height: 2;
+  animation: cornerIn .8s .6s both;
+  flex-shrink: 0;
+}
+.hero-br {
+  display: flex; flex-direction: column; align-items: flex-end;
+  gap: 0.5rem;
+  animation: cornerIn .8s .8s both;
+  flex-shrink: 0;
+}
+@keyframes cornerIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Blue Overpass words */
+.hw {
+  font-family: var(--sys); font-weight: 900;
+  font-size: var(--hfs);
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: -0.04em;
+  color: var(--blue);
+  white-space: nowrap;
+  display: block;
+}
+
+/* Red italic — overlaps adjacent blue rows via negative margins */
+.hop {
+  font-family: var(--serif); font-style: italic; font-weight: 400;
+  font-size: calc(var(--hfs) * 0.52);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--red);
+  mix-blend-mode: multiply;
+  white-space: nowrap;
+  display: block;
+  margin-top:    calc(var(--hfs) * -0.28);
+  margin-bottom: calc(var(--hfs) * -0.28);
+}
+
+/*
+  Force the hero to always render in light-color-scheme context.
+  mix-blend-mode: multiply only works correctly against light backgrounds.
+  Without this, dark mode browser inversions break the overprint effect.
+*/
+.hero { color-scheme: only light; }
+
+@media (max-width: 600px) {
+  .hero-bl { font-size: 0.6rem; line-height: 1.75; }
+  .hero-br .btn { padding: 0.65rem 1.1rem; font-size: 0.6rem; }
+  /* On very small screens, stack bottom row vertically */
+  .hero-bottom { flex-direction: column; align-items: flex-start; gap: .8rem; }
+  .hero-br { align-items: flex-start; }
+}
+
+/* Logo placeholders — hero bottom right */
+.hero-logos {
+  display: flex; gap: 0.75rem; align-items: center; justify-content: flex-end;
+  margin-bottom: 0.5rem;
+}
+.logo-ph {
+  width: 80px; height: 28px;
+  border: 1px dashed rgba(18,18,18,.25);
+  background: transparent;
+}
+
+/* ════════════════════════════════════════════════════
+   A — ATTENTION: THESIS
+════════════════════════════════════════════════════ */
+.thesis-grid {
+  display: grid; grid-template-columns: 15rem 1fr;
+  gap: clamp(3rem, 5vw, 7rem); align-items: start;
+}
+.thesis-meta {
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: .07em; line-height: 2.2;
+  border-top: 2px solid var(--carbon); padding-top: 1.2rem;
+  position: sticky; top: 6rem;
+}
+.thesis-copy h2 {
+  font-family: var(--serif); font-weight: 400;
+  font-size: clamp(2rem, 4.2vw, 4.6rem);
+  line-height: 1.02; margin-bottom: 2rem;
+}
+.thesis-copy p {
+  font-size: clamp(.98rem, 1.5vw, 1.15rem);
+  max-width: 640px; margin-bottom: 1.5rem; line-height: 1.7;
+}
+.pull {
+  font-family: var(--serif); font-weight: 400;
+  font-size: clamp(1.2rem, 2.2vw, 2.1rem);
+  color: var(--carbon); line-height: 1.3;
+  margin: 2.5rem 0; max-width: 580px;
+  padding-left: 1.5rem;
+  border-left: 3px solid var(--red);
+}
+/* Motto variant — no quotation marks, no border, larger, centered weight */
+.pull-motto {
+  font-family: var(--serif); font-style: italic; font-weight: 400;
+  font-size: clamp(1.35rem, 2.6vw, 2.6rem);
+  color: var(--carbon); line-height: 1.2;
+  margin: 2.5rem 0; max-width: 620px;
+  opacity: 0.72;
+}
+.thesis-ctas { margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap; }
+
+/* Logo placeholders — thesis sidebar */
+.thesis-logos { margin-top: 1.2rem; display: flex; flex-direction: column; gap: 0.5rem; }
+.logo-ph-sm {
+  width: 100%; max-width: 120px; height: 22px;
+  border: 1px dashed rgba(18,18,18,.2);
+  background: transparent;
+}
+@media (max-width: 800px) {
+  .thesis-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .thesis-meta { position: static; border-top: none; padding-top: 0;
+                 border-bottom: 1px solid rgba(18,18,18,.12); padding-bottom: 1rem; }
+}
+
+/* ════════════════════════════════════════════════════
+   PUNCH — APR 14 STATEMENT
+════════════════════════════════════════════════════ */
+.punch {
+  background: var(--blue); color: var(--white);
+  padding: clamp(3.5rem, 9vh, 8rem) var(--sp-x);
+  text-align: center; overflow: hidden;
+}
+.punch-eye {
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: .15em; opacity: .75; margin-bottom: .8rem;
+}
+.punch-date {
+  font-family: var(--sys); font-weight: 900;
+  font-size: clamp(4rem, 18vw, 16rem);
+  line-height: .84; letter-spacing: -.05em; text-transform: uppercase;
+}
+.punch-loc {
+  font-family: var(--mono); font-size: clamp(.62rem, 1.1vw, .88rem);
+  text-transform: uppercase; letter-spacing: .12em;
+  margin-top: 1.8rem; opacity: .85; line-height: 2.2;
+}
+.punch-cta {
+  margin-top: 2.5rem; display: flex; gap: 1rem;
+  justify-content: center; flex-wrap: wrap;
+}
+
+/* ════════════════════════════════════════════════════
+   I — INTEREST: WHY ATTEND
+════════════════════════════════════════════════════ */
+.why-hdr {
+  display: grid; grid-template-columns: 1fr 1.4fr; gap: clamp(2.5rem, 5vw, 6rem);
+  align-items: end; margin-bottom: 3.5rem;
+}
+.why-hdr h2 {
+  font-family: var(--sys); font-weight: 900;
+  font-size: clamp(2.8rem, 7.5vw, 7rem);
+  text-transform: uppercase; color: var(--red); line-height: .88;
+}
+.why-hdr p { font-size: clamp(.95rem, 1.5vw, 1.12rem); max-width: 460px; line-height: 1.7; }
+.why-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  border: 1px solid var(--carbon);
+}
+.why-card {
+  padding: clamp(1.6rem, 3vw, 2.4rem) clamp(1.2rem, 2.2vw, 2rem);
+  border-right: 1px solid var(--carbon);
+  border-bottom: 1px solid var(--carbon);
+}
+.why-card:nth-child(3n)        { border-right: none; }
+.why-card:nth-last-child(-n+3) { border-bottom: none; }
+.why-num {
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: .09em;
+  color: var(--blue); margin-bottom: .8rem; display: block;
+}
+.why-card h4 {
+  font-family: var(--serif); font-weight: 400;
+  font-size: clamp(1rem, 1.7vw, 1.4rem);
+  margin-bottom: .5rem; line-height: 1.15;
+}
+.why-card p { font-size: .88rem; opacity: .7; line-height: 1.6; }
+@media (max-width: 800px) {
+  .why-hdr { grid-template-columns: 1fr; gap: 1.2rem; margin-bottom: 2.5rem; }
+  .why-grid { grid-template-columns: 1fr 1fr; }
+  .why-card:nth-child(3n)        { border-right: 1px solid var(--carbon); }
+  .why-card:nth-child(2n)        { border-right: none; }
+  .why-card:nth-last-child(-n+3) { border-bottom: 1px solid var(--carbon); }
+  .why-card:nth-last-child(-n+2) { border-bottom: none; }
+}
+@media (max-width: 460px) {
+  .why-grid { grid-template-columns: 1fr; }
+  .why-card { border-right: none !important; }
+  .why-card:last-child { border-bottom: none !important; }
+}
+
+/* ════════════════════════════════════════════════════
+   D — DESIRE: APRIL 14 FULL AGENDA
+════════════════════════════════════════════════════ */
+.agenda-bg { background: var(--carbon); color: var(--white); }
+
+.agenda-head {
+  display: grid; grid-template-columns: auto 1fr;
+  gap: clamp(2.5rem, 5vw, 6rem); align-items: end; margin-bottom: 4rem;
+}
+.agenda-date {
+  font-family: var(--sys); font-weight: 900;
+  font-size: clamp(3.5rem, 9vw, 9rem);
+  text-transform: uppercase; line-height: .84;
+  color: var(--blue); letter-spacing: -.04em;
+}
+.agenda-sub {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(1.05rem, 2.2vw, 1.8rem);
+  line-height: 1.4; opacity: .88; margin-bottom: .5rem;
+}
+.agenda-note {
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: .06em; opacity: .28; margin-top: .8rem;
+}
+
+.tl-block { margin-bottom: 3rem; }
+.tl-blabel {
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: .1em; color: var(--red);
+  border-bottom: 1px solid rgba(249,249,248,.1);
+  padding-bottom: .55rem; margin-bottom: 1.2rem;
+}
+.tl-row {
+  display: grid; grid-template-columns: 8.5rem 1fr;
+  gap: 0 2.5rem; padding: 1.3rem 0;
+  border-bottom: 1px solid rgba(249,249,248,.08);
+  align-items: start;
+}
+.tl-row:last-child { border-bottom: none; }
+.tl-time {
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: .05em;
+  color: var(--blue); padding-top: .12rem; line-height: 1.65;
+}
+.tl-body h4 {
+  font-family: var(--body); font-weight: 600; font-size: .92rem;
+  text-transform: uppercase; letter-spacing: .04em; margin-bottom: .35rem;
+}
+.tl-body p { font-size: .88rem; opacity: .62; line-height: 1.6; }
+.tl-tag {
+  display: inline-block; margin-top: .4rem; margin-right: .25rem;
+  font-family: var(--mono); font-size: calc(var(--meta) - .06rem);
+  text-transform: uppercase; letter-spacing: .05em;
+  border: 1px solid rgba(249,249,248,.15); padding: .11rem .38rem;
+  color: rgba(249,249,248,.32);
+}
+.tl-tag.hh { border-color: rgba(65,182,230,.4); color: var(--blue); }
+
+@media (max-width: 560px) {
+  .tl-row { grid-template-columns: 1fr; gap: .2rem; padding: 1rem 0; }
+  .tl-time { font-size: 0.63rem; opacity: .6; margin-bottom: .15rem; }
+  .agenda-head { grid-template-columns: 1fr; gap: 1.2rem; margin-bottom: 2.5rem; }
+  .agenda-date { font-size: clamp(3rem, 14vw, 6rem); }
+}
+
+/* ════════════════════════════════════════════════════
+   A — ACTION: REGISTRATION
+════════════════════════════════════════════════════ */
+.reg-grid {
+  display: grid; grid-template-columns: 1fr 1.15fr;
+  gap: clamp(3.5rem, 7vw, 8rem); align-items: start;
+}
+.reg-left h2 {
+  font-family: var(--sys); font-weight: 900;
+  font-size: clamp(2.8rem, 8.5vw, 8rem);
+  text-transform: uppercase; line-height: .88; margin-bottom: 1.8rem;
+}
+.reg-left p {
+  font-size: clamp(.97rem, 1.5vw, 1.12rem);
+  max-width: 400px; margin-bottom: 2rem; line-height: 1.7;
+}
+.reg-det {
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: .07em; line-height: 2.3;
+  border-top: 2px solid var(--carbon); padding-top: 1.2rem;
+}
+.form-row { margin-bottom: 1.1rem; }
+.form-2col {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; margin-bottom: 1.1rem;
+}
+.form-divider {
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: .1em;
+  opacity: .3; margin: 1.6rem 0 .8rem;
+  border-top: 1px solid rgba(18,18,18,.12); padding-top: 1.1rem;
+}
+label {
+  display: block; font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: .07em; margin-bottom: .38rem;
+}
+input, select {
+  display: block; width: 100%;
+  border: 1.5px solid var(--carbon); background: transparent;
+  padding: .9rem 1rem; font-family: var(--body); font-size: .97rem;
+  color: var(--carbon); outline: none;
+  -webkit-appearance: none; appearance: none;
+  border-radius: 0; transition: border-color .15s;
+}
+input:focus, select:focus { border-color: var(--red); }
+select {
+  background-image: url("data:image/svg+xml,%3Csvg width='11' height='7' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4.5 4.5L10 1' stroke='%23121212' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right .9rem center;
+  padding-right: 2.2rem; cursor: pointer;
+}
+.form-submit {
+  display: block; width: 100%;
+  background: var(--red); color: var(--white); border: 2px solid var(--red);
+  padding: 1.1rem; font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: .14em;
+  cursor: pointer; margin-top: 2rem;
+  transition: background .15s, border-color .15s;
+}
+.form-submit:hover { background: var(--carbon); border-color: var(--carbon); }
+.form-note {
+  font-family: var(--mono); font-size: calc(var(--meta) - .02rem);
+  opacity: .32; margin-top: .8rem; line-height: 1.8;
+  text-transform: uppercase; letter-spacing: .04em;
+}
+.thanks {
+  display: none; padding: 2.8rem 2.2rem;
+  border: 2px solid var(--red); text-align: center;
+}
+.thanks.on { display: block; }
+.thanks-hand { font-family: var(--hand); color: var(--red); font-size: 2.2rem; margin-bottom: .4rem; }
+.thanks h3 {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(1.3rem, 3vw, 2.2rem);
+  color: var(--red); margin-bottom: 1rem;
+}
+.thanks p { font-size: .95rem; margin-bottom: 1.6rem; line-height: 1.65; }
+.thanks-btns { display: flex; gap: .8rem; flex-wrap: wrap; justify-content: center; }
+
+/* Tally embed wrapper */
+.tally-wrap { width: 100%; }
+
+@media (max-width: 780px) {
+  .reg-grid { grid-template-columns: 1fr; gap: 3rem; }
+}
+
+/* ════════════════════════════════════════════════════
+   APR 10 — COMPACT SECONDARY STRIP
+════════════════════════════════════════════════════ */
+.prac-strip {
+  background: var(--carbon); color: var(--white);
+  padding: clamp(3rem, 7vw, 6rem) var(--sp-x);
+  border-top: 2px solid var(--blue);
+}
+.prac-in {
+  max-width: 1340px; margin: 0 auto;
+  display: grid; grid-template-columns: auto 1fr;
+  gap: clamp(3rem, 6vw, 7rem); align-items: center;
+}
+.prac-in h2 {
+  font-family: var(--sys); font-weight: 900;
+  font-size: clamp(2.2rem, 5.5vw, 5.5rem);
+  text-transform: uppercase; color: var(--blue); line-height: .87;
+}
+.prac-r { display: flex; flex-direction: column; gap: 1.2rem; }
+.prac-r > p {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(.98rem, 1.8vw, 1.45rem); line-height: 1.4; max-width: 640px;
+}
+.prac-list {
+  list-style: none; font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: .06em;
+  border-top: 1px solid rgba(249,249,248,.15); max-width: 520px;
+}
+.prac-list li {
+  display: flex; justify-content: space-between;
+  padding: .65rem 0; border-bottom: 1px solid rgba(249,249,248,.07);
+}
+.prac-list li span:first-child { opacity: .32; }
+@media (max-width: 600px) { .prac-in { grid-template-columns: 1fr; gap: 1.8rem; } }
+
+/* ════════════════════════════════════════════════════
+   COALITION
+════════════════════════════════════════════════════ */
+.coalition {
+  background: var(--blue); color: var(--white);
+  padding: clamp(2.5rem, 5.5vh, 5rem) var(--sp-x);
+}
+.coal-in {
+  max-width: 1340px; margin: 0 auto;
+  display: grid; grid-template-columns: auto 1fr;
+  gap: clamp(2.5rem, 6vw, 6rem); align-items: center;
+}
+.coal-label {
+  font-family: var(--sys); font-weight: 900;
+  font-size: clamp(1.2rem, 2.8vw, 2.8rem);
+  text-transform: uppercase; line-height: .9;
+}
+.coal-orgs { display: flex; flex-wrap: wrap; align-items: center; }
+.org { border-left: 1px solid rgba(249,249,248,.28); padding: .3rem 2.2rem; }
+.org:first-child { border-left: none; padding-left: 0; }
+.org-role {
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: .07em;
+  opacity: .6; display: block; margin-bottom: .15rem;
+}
+.org-name {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(.9rem, 1.7vw, 1.45rem); line-height: 1.15;
+}
+/* Featured partner — visually subordinate to the two presenting orgs */
+.org-featured-partner {
+  border-left: 1px solid rgba(249,249,248,.15);
+  opacity: 0.72;
+}
+.org-name-sm {
+  font-size: clamp(.8rem, 1.3vw, 1.1rem);
+}
+.org-desc {
+  font-family: var(--mono); font-size: calc(var(--meta) - .06rem);
+  text-transform: uppercase; letter-spacing: .05em;
+  opacity: .45; display: block; margin-top: .2rem;
+}
+/* Logo placeholder in coalition bar */
+.coal-logo-ph {
+  width: 72px; height: 22px;
+  border: 1px dashed rgba(249,249,248,.3);
+  margin-bottom: .45rem;
+}
+@media (max-width: 680px) {
+  .coal-in { grid-template-columns: 1fr; gap: 1.5rem; }
+  .coal-orgs { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .org { border-left: none; padding-left: 0; border-top: 1px solid rgba(249,249,248,.18); padding-top: 1rem; }
+  .org:first-child { border-top: none; padding-top: 0; }
+}
+
+/* ════════════════════════════════════════════════════
+   FOOTER
+════════════════════════════════════════════════════ */
+footer {
+  background: var(--carbon); color: var(--white);
+  padding: clamp(3rem, 7vw, 6rem) var(--sp-x) 2.2rem;
+}
+.ft {
+  max-width: 1340px; margin: 0 auto;
+  display: grid; grid-template-columns: 2fr 1fr 1fr;
+  gap: clamp(2.5rem, 5vw, 5rem);
+  padding-bottom: 2.2rem;
+  border-bottom: 1px solid rgba(249,249,248,.08); margin-bottom: 1.6rem;
+}
+.ft-wm {
+  font-family: var(--sys); font-weight: 900;
+  font-size: clamp(1.4rem, 3.2vw, 3rem);
+  text-transform: uppercase; color: var(--blue);
+  line-height: .88; letter-spacing: -.03em; margin-bottom: 1rem;
+}
+.ft-brand p { font-size: .86rem; opacity: .42; max-width: 270px; line-height: 1.75; }
+.ft-col h4 {
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: .09em;
+  border-bottom: 1px solid rgba(249,249,248,.1);
+  padding-bottom: .5rem; margin-bottom: 1rem;
+}
+.ft-col ul { list-style: none; }
+.ft-col ul li { margin-bottom: .6rem; }
+.ft-col ul li a { font-size: .86rem; opacity: .45; transition: opacity .15s; }
+.ft-col ul li a:hover { opacity: 1; }
+.ft-bot {
+  max-width: 1340px; margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 1rem;
+}
+.ft-bot p { font-family: var(--mono); font-size: var(--meta); text-transform: uppercase; letter-spacing: .05em; opacity: .24; }
+.ft-sig { font-family: var(--hand); color: var(--red); font-size: 1.6rem; }
+.ft-logos {
+  max-width: 1340px; margin: 0 auto;
+  display: flex; gap: 1.2rem; align-items: center;
+  padding-bottom: 1.6rem;
+  border-bottom: 1px solid rgba(249,249,248,.08);
+  margin-bottom: 1.6rem;
+}
+.ft-logo-ph {
+  width: 90px; height: 26px;
+  border: 1px dashed rgba(249,249,248,.18);
+}
+@media (max-width: 700px) { .ft { grid-template-columns: 1fr; gap: 2.2rem; } }
+
+/* ════════════════════════════════════════════════════
+   MARGINALIA — handwritten ephemeral notes
+   Used throughout the page for human energy.
+   Position them with inline style per instance.
+════════════════════════════════════════════════════ */
+.mg {
+  font-family: var(--hand);
+  font-size: clamp(1.1rem, 2vw, 1.9rem);
+  color: var(--red);
+  position: absolute;
+  pointer-events: none;
+  white-space: nowrap;
+  opacity: 0.82;
+  line-height: 1.2;
+}
+/* Larger hero-scale note */
+.mg-lg {
+  font-size: clamp(1.6rem, 2.8vw, 2.6rem);
+}
+/* Darker/carbon variant for light sections */
+.mg-dark { color: var(--carbon); opacity: 0.45; }
+/* Blue variant */
+.mg-blue { color: var(--blue); opacity: 0.9; }
+
+/* ════════════════════════════════════════════════════
+   SCROLL REVEAL
+════════════════════════════════════════════════════ */
+.reveal {
+  opacity: 0; transform: translateY(18px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+.reveal.in { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- ────────────────────────────────────────────────────
+     TICKER
+──────────────────────────────────────────────────── -->
+<div class="ticker-bar" aria-hidden="true">
+  <div class="ticker-track">
+    <span>HCQ SPRING 2026 &mdash; APR 14: SPRING FORUM &mdash; NOON&ndash;7:30 PM + HAPPY HOUR &mdash; MLK MEMORIAL LIBRARY, WASHINGTON D.C. &mdash; FREE &amp; OPEN TO ALL &mdash; PRESENTED BY DC PUBLIC LIBRARY &amp; LEVY &mdash; CLIMATE &amp; ENERGY ECONOMY &mdash; REGISTER AT HUMANCAPITAL.WITHLEVY.COM &mdash;&nbsp;</span>
+    <span>HCQ SPRING 2026 &mdash; APR 14: SPRING FORUM &mdash; NOON&ndash;7:30 PM + HAPPY HOUR &mdash; MLK MEMORIAL LIBRARY, WASHINGTON D.C. &mdash; FREE &amp; OPEN TO ALL &mdash; PRESENTED BY DC PUBLIC LIBRARY &amp; LEVY &mdash; CLIMATE &amp; ENERGY ECONOMY &mdash; REGISTER AT HUMANCAPITAL.WITHLEVY.COM &mdash;&nbsp;</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav" aria-label="Site navigation">
+  <a class="nav-id" href="#top">HCQ / SPRING &rsquo;26</a>
+  <div class="nav-links">
+    <a href="#agenda">Program</a>
+    <a href="#register" class="cta">Register Free</a>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════════════════════════
+     HERO — GRID OVERPRINT
+
+     5-row CSS grid. Rows 1,3,5 = blue Overpass (THE/SPRING/FORUM).
+     Rows 2,4 = red Instrument Serif italic (Human Capital / Quarterly).
+     Every row height = var(--hfs), so interleaving is exact.
+     mix-blend-mode: multiply on red spans creates true print overprint.
+════════════════════════════════════════════════════ -->
+<section class="hero" id="top" aria-label="Human Capital Quarterly — Spring Forum">
+
+  <!-- decorative marginalia — absolute, aria-hidden, never functional -->
+  <div class="mg mg-lg" style="position:absolute;top:17%;right:5%;transform:rotate(7deg);z-index:3;" aria-hidden="true">Washington, D.C.</div>
+
+  <!-- top spacer row pushes type to vertical center -->
+  <div class="hero-top" aria-hidden="true"></div>
+
+  <!-- center: overprint type stack -->
+  <div class="hero-stack" role="img" aria-label="The Spring Forum — Human Capital Quarterly">
+    <span class="hw" aria-hidden="true">THE</span>
+    <span class="hop" aria-hidden="true">Human Capital</span>
+    <span class="hw" aria-hidden="true">SPRING</span>
+    <span class="hop" aria-hidden="true">Quarterly</span>
+    <span class="hw" aria-hidden="true">FORUM</span>
+  </div>
+
+  <!-- bottom row: info left, CTAs right — always in flow, never overlaps -->
+  <div class="hero-bottom">
+    <div class="hero-bl" aria-hidden="true">
+      Spring 2026 &mdash; Washington, D.C.<br>
+      Martin Luther King Jr. Memorial Library<br>
+      Presented by DC Public Library &amp; Levy
+    </div>
+    <div class="hero-br">
+      <!-- Logo placeholders — replace with actual logo assets -->
+      </div>
+      <a href="#register" class="btn btn-red">Register Free &mdash; Apr 14</a>
+    </div>
+  </div>
+
+</section>
+
+<!-- ════════════════════════════════════════════════════
+     A — ATTENTION
+     The moment. Why this matters. Establish stakes.
+════════════════════════════════════════════════════ -->
+<section class="sec reveal">
+  <div class="inner">
+    <div class="thesis-grid">
+      <div class="thesis-meta">
+        DOC: HCQ-SPRING-2026<br>
+        LOC: WASHINGTON, D.C.<br>
+        <br>
+        PRESENTED BY:<br>
+        DC Public Library<br>
+        &amp; Levy<br>
+        <br>
+        FEATURING:<br>
+        The Upskilling Labs<br>
+        <br>
+        <!-- Logo placeholders removed — add real assets here when ready -->
+      </div>
+      <div class="thesis-copy" style="position:relative;">
+        <span class="mg mg-tl" style="top:-2.5rem;left:-1rem;transform:rotate(-4deg);" aria-hidden="true">from the moment you walk in</span>
+        <h2>The nature of work is changing—fast.</h2>
+        <p>Human Capital Quarterly brings together the people, tools, and conversations shaping the future of work in Washington.</p>
+        <p>The National Capital Region is full of opportunities to build new skills—training programs, certification courses, community-led upskilling, organizations working hard to help people move forward. Instead of asking you to navigate those resources on your own, this is a place where you can see what's available, meet the people behind it, and start taking practical steps forward.</p>
+        <p class="pull-motto">From the moment you walk in, the goal is simple: help you move forward.</p>
+        <p>A public gathering designed to help you get your bearings, build real capacity, and connect with people who are figuring it out alongside you.</p>
+        <span class="mg mg-br" style="bottom:-3rem;right:0;transform:rotate(3deg);" aria-hidden="true">figuring it out together</span>
+        <div class="thesis-ctas">
+          <a href="#register" class="btn btn-red">Register Free &mdash; Apr 14</a>
+          <a href="#agenda" class="btn btn-dark">See the Program</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════
+     PUNCH — April 14 date statement
+     Locks in the event in the reader's mind before
+     we make the case for attending.
+════════════════════════════════════════════════════ -->
+<section class="punch" aria-label="April 14 Spring Forum">
+  <p class="punch-eye">Spring Forum &mdash; Main Public Day &mdash; Free &amp; Open to All</p>
+  <div class="punch-date" aria-label="April 14">APRIL&nbsp;14</div>
+  <p class="punch-loc">
+    Martin Luther King Jr. Memorial Library &mdash; Washington, D.C.<br>
+    Noon to 7:30 PM &plus; Happy Hour
+  </p>
+  <div class="punch-cta">
+    <a href="#register" class="btn btn-white">Get Your Free Pass</a>
+    <a href="#agenda" class="btn btn-ghost">See Full Program &darr;</a>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════
+     I — INTEREST
+     Six concrete reasons to want to be there.
+════════════════════════════════════════════════════ -->
+<section class="sec reveal" id="why">
+  <div class="inner">
+    <div class="why-hdr" style="position:relative;">
+      <h2>Why<br>Attend</h2>
+      <div>
+        <p>Four times a year, in the nation's capital, we bring the whole network into one room. Leave with real skills, real connections, and real next steps—not just notes.</p>
+        <span class="mg" style="position:relative;display:inline-block;margin-top:1rem;transform:rotate(-2deg);font-size:clamp(1rem,1.8vw,1.7rem);">no info sessions. actual work.</span>
+      </div>
+      <span class="mg mg-dark" style="top:0;right:0;transform:rotate(4deg);font-size:clamp(0.9rem,1.4vw,1.3rem);" aria-hidden="true">four times a year</span>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <span class="why-num">01 &mdash; Real Pathways</span>
+        <h4>Leave with next steps</h4>
+        <p>Mentors, programs, and concrete actions you can take this week—not someday follow-up links.</p>
+      </div>
+      <div class="why-card">
+        <span class="why-num">02 &mdash; Free &amp; Open</span>
+        <h4>No barriers</h4>
+        <p>Free to attend. Open to everyone. Held at MLK Jr. Library—the city's trusted civic commons.</p>
+      </div>
+      <div class="why-card">
+        <span class="why-num">03 &mdash; Get Hands-On</span>
+        <h4>Build skills you can use today</h4>
+        <p>Practical sessions designed for immediate application. No lectures. Actual work on actual goals.</p>
+      </div>
+      <div class="why-card">
+        <span class="why-num">04 &mdash; Meet the Partners</span>
+        <h4>Shape the future</h4>
+        <p>Meet the organizations shaping the region's workforce development priorities and programs—and share where you think the future of work is headed.</p>
+      </div>
+      <div class="why-card">
+        <span class="why-num">05 &mdash; Climate &amp; Health Economy</span>
+        <h4>Map two industries</h4>
+        <p>Which climate, energy, and healthcare sectors are growing, what they're hiring for, and how our region's residents can enter those pathways now.</p>
+      </div>
+      <div class="why-card">
+        <span class="why-num">06 &mdash; Peer Support</span>
+        <h4>Build your network</h4>
+        <p>Meet others navigating the shifting economy, and build relationships that can help carry you forward.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════
+     D — DESIRE
+     Full program detail. The agenda IS the desire.
+     Every session is a concrete promise of value.
+════════════════════════════════════════════════════ -->
+<section class="sec agenda-bg reveal" id="agenda">
+  <div class="inner">
+    <div class="agenda-head" style="position:relative;">
+      <div class="agenda-date" aria-hidden="true">APR<br>14</div>
+      <div>
+        <p class="agenda-sub">Spring Forum &mdash; Climate &amp; Energy Economy<br>Noon to 7:30 PM &plus; Happy Hour</p>
+        <p class="agenda-note">MLK Memorial Library &mdash; Washington D.C.</p>
+      </div>
+      <span class="mg" style="top:0;right:0;transform:rotate(5deg);color:var(--blue);opacity:0.7;font-size:clamp(1.1rem,2vw,1.8rem);" aria-hidden="true">April 14, 2026</span>
+    </div>
+
+    <div style="border-top:1px solid rgba(18,18,18,.12);padding-top:3rem;margin-top:2rem;max-width:640px;">
+      <p style="font-family:var(--mono);font-size:var(--meta);text-transform:uppercase;letter-spacing:.09em;color:var(--blue);margin-bottom:1rem;">Program — Coming Soon</p>
+      <p style="font-size:clamp(.97rem,1.5vw,1.1rem);line-height:1.75;opacity:.7;">We're finalizing sessions now. Register to be first to know when the full program is confirmed—and to hold your spot for April 14.</p>
+      <div style="margin-top:2rem;">
+        <a href="#register" class="btn btn-red">Register Free &mdash; Apr 14</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ════════════════════════════════════════════════════
+     A — ACTION
+     Registration. The ask. After desire is established.
+════════════════════════════════════════════════════ -->
+<section class="sec reveal" id="register" style="border-top:2px solid var(--carbon);">
+  <div class="inner">
+    <div class="reg-grid">
+      <div class="reg-left" style="position:relative;">
+        <h2>GET<br>YOUR<br>PASS</h2>
+        <p>Free to attend. Register once and we'll confirm your spot for April 14, keep you updated as speakers are confirmed, and connect you to The Upskilling Labs if you want to keep building after the forum.</p>
+        <span class="mg" style="position:relative;display:block;margin-bottom:1.2rem;transform:rotate(-3deg);font-size:clamp(1rem,1.7vw,1.5rem);">it's free. just show up.</span>
+        <div class="reg-det">
+          SPRING FORUM &mdash; PUBLIC DAY<br>
+          APRIL 14, 2026<br>
+          NOON &ndash; 7:30 PM &plus; HAPPY HOUR<br>
+          MLK MEMORIAL LIBRARY<br>
+          901 G ST NW, WASHINGTON D.C.
+        </div>
+      </div>
+      <div class="tally-wrap">
+        <iframe data-tally-src="https://tally.so/embed/kdAv6M?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="471" frameborder="0" marginheight="0" marginwidth="0" title="Human Capital Quarterly Registration"></iframe>
+        <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COALITION -->
+<section class="coalition reveal">
+  <div class="coal-in">
+    <div class="coal-label">Presented<br>By</div>
+    <div class="coal-orgs">
+      <div class="org">
+        <!-- Logo placeholder — DC Public Library -->
+        <span class="org-role">Anchor Institution</span>
+        <div class="org-name">DC Public Library</div>
+      </div>
+      <div class="org">
+        <!-- Logo placeholder — Levy -->
+        <span class="org-role">Design &amp; Strategy</span>
+        <div class="org-name">Levy</div>
+      </div>
+      <div class="org org-featured-partner">
+        <span class="org-role">Featured Program Partner</span>
+        <div class="org-name org-name-sm">The Upskilling Labs</div>
+        <span class="org-desc">Anchor learning community &amp; Build Cycle host</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft">
+    <div class="ft-brand">
+      <div class="ft-wm">Human<br>Capital<br>Quarterly</div>
+      <p>A quarterly civic anchor for D.C.'s workforce and upskilling ecosystem. Recurring. Practical. For everyone who wants to build something real.</p>
+    </div>
+    <div class="ft-col">
+      <h4>April 14 Forum</h4>
+      <ul>
+        <li><a href="#why">Why Attend</a></li>
+        <li><a href="#agenda">Program</a></li>
+        <li><a href="#register">Register Free</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h4>Get Involved</h4>
+      <ul>
+        <li><a href="#register">Register Free &mdash; Apr 14</a></li>
+        <li><a href="/get-involved.html">Partner with Us</a></li>
+        <li><a href="/get-involved.html">Teach a Workshop</a></li>
+        <li><a href="/sessions.html" style="opacity:.22;">Practitioner Day &mdash; Apr 10</a></li>
+      </ul>
+    </div>
+  </div>
+  </div>
+  <div class="ft-bot">
+    <p>HCQ Spring 2026 &mdash; Washington, D.C. &mdash; humancapital.withlevy.com</p>
+    <span class="ft-sig">People are the real capital.</span>
+  </div>
+</footer>
+
+<script>
+/* ── Scroll reveal ── */
+const revealEls = document.querySelectorAll('.reveal');
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); revealObs.unobserve(e.target); }
+  });
+}, { threshold: 0.06 });
+revealEls.forEach(el => revealObs.observe(el));
+</script>
+</body>
+</html>

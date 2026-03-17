@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Human Capital Sessions — April 10 · Practitioner Day</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600&family=Overpass:wght@900&family=Instrument+Serif:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+
+<style>
+/*
+  SESSIONS PAGE
+  ─────────────
+  Practitioner convening — April 10, 2026.
+  Same brand system as the main HCQ site: identical tokens,
+  typefaces, spacing, and rule weights.
+  Palette remixed: red hero, alternating white/carbon/blue
+  section fields. All four brand colors in use as fields.
+*/
+
+/* ═══════════════════════════════════════════════
+   TOKENS — identical to main site
+═══════════════════════════════════════════════ */
+:root {
+  --white:  #F9F9F8;
+  --carbon: #121212;
+  --red:    #E4002B;
+  --blue:   #41B6E6;
+
+  --sys:   'Overpass',         sans-serif;
+  --serif: 'Instrument Serif', serif;
+  --body:  'IBM Plex Sans',    sans-serif;
+  --mono:  'IBM Plex Mono',    monospace;
+  --hand:  'Caveat',           cursive;
+  --meta:  0.72rem;
+
+  --hfs:  clamp(3rem, 13vw, 13.5rem);
+  --sp-y: clamp(4rem, 9vw, 8rem);
+  --sp-x: clamp(1.5rem, 5.5vw, 6vw);
+}
+
+/* ═══════════════════════════════════════════════
+   RESET / BASE
+   White paper ground. This page lives on paper.
+═══════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--white); color: var(--carbon);
+  font-family: var(--body); font-weight: 300;
+  line-height: 1.6; overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+/* slightly heavier paper grain than main site */
+body::after {
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9000;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+}
+/* selection: carbon on white, flipped from main site's red */
+::selection { background: var(--carbon); color: var(--white); }
+a { color: inherit; text-decoration: none; }
+
+/* ═══════════════════════════════════════════════
+   TICKER — red field, white type.
+   Ticker — fixed, top of page.
+   Different from main site's carbon ticker.
+═══════════════════════════════════════════════ */
+.ticker-bar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 600;
+  background: var(--red); color: var(--white);
+  padding: 0.58rem 0; overflow: hidden;
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: 0.1em;
+}
+.ticker-track { display: flex; white-space: nowrap; animation: tick 50s linear infinite; }
+.ticker-track span { padding: 0 4rem; flex-shrink: 0; }
+@keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ═══════════════════════════════════════════════
+   NAV
+   Sits on red hero — white-on-red pills.
+   CTA is carbon (inverted from hero field).
+═══════════════════════════════════════════════ */
+.nav {
+  position: fixed; top: 2.05rem; left: 0; right: 0; z-index: 500;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0 var(--sp-x); pointer-events: none;
+}
+.nav-id {
+  pointer-events: all;
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: 0.09em;
+  background: var(--red); color: var(--white);
+  border: 1.5px solid rgba(249,249,248,.45);
+  padding: 0.44rem 0.85rem;
+  transition: background .15s, border-color .15s;
+}
+.nav-id:hover { background: var(--carbon); border-color: var(--carbon); }
+.nav-links { pointer-events: all; display: flex; }
+.nav-links a {
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: 0.07em;
+  background: var(--red); color: var(--white);
+  border: 1.5px solid rgba(249,249,248,.45); border-left: none;
+  padding: 0.44rem 0.85rem;
+  transition: background .15s, border-color .15s;
+}
+.nav-links a:first-child { border-left: 1.5px solid rgba(249,249,248,.45); }
+.nav-links a:hover { background: var(--carbon); border-color: var(--carbon); }
+.nav-links a.cta { background: var(--carbon); border-color: var(--carbon); }
+.nav-links a.cta:hover { background: var(--white); color: var(--carbon); border-color: rgba(249,249,248,.3); }
+@media (max-width: 620px) { .nav-links a:not(.cta) { display: none; } }
+
+/* ═══════════════════════════════════════════════
+   BUTTONS
+═══════════════════════════════════════════════ */
+.btn {
+  display: inline-block;
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: 0.1em;
+  padding: 0.85rem 2rem; border: 2px solid; cursor: pointer;
+  transition: background .15s, color .15s, border-color .15s;
+  white-space: nowrap;
+}
+/* on red bg */
+.btn-wht   { background: var(--white);  color: var(--carbon); border-color: var(--white); }
+.btn-wht:hover   { background: transparent; color: var(--white); }
+.btn-ghost-wht { background: transparent; color: var(--white); border-color: rgba(249,249,248,.45); }
+.btn-ghost-wht:hover { background: rgba(249,249,248,.1); border-color: var(--white); }
+/* on white bg */
+.btn-red    { background: var(--red);    color: var(--white); border-color: var(--red); }
+.btn-red:hover    { background: var(--carbon); border-color: var(--carbon); }
+.btn-carbon { background: var(--carbon); color: var(--white); border-color: var(--carbon); }
+.btn-carbon:hover { background: var(--red);    border-color: var(--red); }
+.btn-outline { background: transparent; color: var(--carbon); border-color: var(--carbon); }
+.btn-outline:hover { background: var(--carbon); color: var(--white); }
+/* on carbon bg */
+.btn-wht-carbon { background: var(--white); color: var(--carbon); border-color: var(--white); }
+.btn-wht-carbon:hover { background: transparent; color: var(--white); }
+/* on blue bg */
+.btn-carbon-solid { background: var(--carbon); color: var(--white); border-color: var(--carbon); }
+.btn-carbon-solid:hover { background: var(--white); color: var(--carbon); border-color: var(--white); }
+.btn-ghost-blue { background: transparent; color: var(--white); border-color: rgba(249,249,248,.42); }
+.btn-ghost-blue:hover { border-color: var(--white); }
+
+/* ═══════════════════════════════════════════════
+   SECTION UTILITIES
+   Color fields.
+   The rule is always 3px — a physical weight.
+═══════════════════════════════════════════════ */
+.sec { padding: var(--sp-y) var(--sp-x); position: relative; }
+.inner { max-width: 1340px; margin: 0 auto; }
+
+/* Color fields */
+.f-white  { background: var(--white);  color: var(--carbon); }
+.f-red    { background: var(--red);    color: var(--white); }
+.f-carbon { background: var(--carbon); color: var(--white); }
+.f-blue   { background: var(--blue);   color: var(--white); }
+
+/* ═══════════════════════════════════════════════
+   MARGINALIA
+═══════════════════════════════════════════════ */
+.mg {
+  font-family: var(--hand);
+  font-size: clamp(1.1rem, 2vw, 1.85rem);
+  position: absolute; pointer-events: none;
+  white-space: nowrap; line-height: 1.2;
+}
+.mg-on-red   { color: rgba(249,249,248,.52); }
+.mg-on-white { color: var(--carbon); opacity: 0.3; }
+.mg-on-dark  { color: rgba(249,249,248,.25); }
+.mg-red      { color: var(--red); opacity: 0.72; }
+.mg-on-blue  { color: rgba(18,18,18,.3); }
+
+/* ═══════════════════════════════════════════════
+   HERO — FULL RED BROADSIDE
+   White Overpass knocked out of a solid red field.
+   Carbon italic interlaced via negative margins —
+   Carbon italic interlaces the white Overpass rows via negative margins.
+   mix-blend-mode: multiply deepens the carbon
+   against the red, producing a rich overprint.
+   color-scheme: only light preserves the effect.
+═══════════════════════════════════════════════ */
+.hero {
+  position: relative; min-height: 100svh;
+  display: flex; flex-direction: column; overflow: hidden;
+  background: var(--red); color: var(--white);
+  border-bottom: 2px solid var(--carbon);
+  margin-top: 2rem;
+  padding: clamp(1.5rem, 4vw, 3rem) var(--sp-x);
+  color-scheme: only light;
+}
+.hero-top { flex: 1; min-height: 4rem; }
+
+.hero-stack {
+  display: flex; flex-direction: column; align-items: center;
+  position: relative; z-index: 2;
+  animation: heroIn 1s .1s both;
+  flex-shrink: 0; text-align: center;
+}
+.hero-eyebrow {
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: .16em;
+  color: rgba(249,249,248,.62);
+  margin-bottom: clamp(.8rem, 2vw, 1.5rem);
+}
+
+/* White Overpass knocked out of red field */
+.hw {
+  font-family: var(--sys); font-weight: 900;
+  font-size: var(--hfs); line-height: 1;
+  text-transform: uppercase; letter-spacing: -.04em;
+  color: var(--white); white-space: nowrap; display: block;
+}
+
+/*
+  Carbon italic — interlaces the white Overpass rows.
+  Carbon on red with multiply = very deep, rich brown-black.
+  Like a second press pass of a different ink color.
+  This is the visual signature of the Sessions page.
+*/
+.hop {
+  font-family: var(--serif); font-style: italic; font-weight: 400;
+  font-size: calc(var(--hfs) * 0.5);
+  line-height: 1; letter-spacing: -.01em;
+  color: var(--carbon);
+  mix-blend-mode: multiply;
+  white-space: nowrap; display: block;
+  margin-top:    calc(var(--hfs) * -0.26);
+  margin-bottom: calc(var(--hfs) * -0.26);
+}
+
+.hero-sub {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(1rem, 1.9vw, 1.6rem); line-height: 1.45;
+  color: rgba(249,249,248,.6);
+  margin-top: clamp(1.8rem, 3.5vw, 3rem);
+  max-width: 48ch;
+}
+
+.hero-bottom {
+  flex: 1; display: flex; align-items: flex-end;
+  justify-content: space-between; gap: 1.5rem;
+  min-height: 4rem; flex-wrap: wrap; flex-shrink: 0;
+  padding-top: clamp(1.5rem, 4vw, 3rem);
+}
+.hero-bl {
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: 0.07em; line-height: 2;
+  animation: cornerIn .8s .6s both; flex-shrink: 0;
+  color: rgba(249,249,248,.52);
+}
+.hero-br {
+  display: flex; flex-direction: column; align-items: flex-end; gap: .5rem;
+  animation: cornerIn .8s .8s both; flex-shrink: 0;
+}
+
+@keyframes heroIn   { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
+@keyframes cornerIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:none; } }
+
+@media (max-width: 600px) {
+  .hero-bl { font-size: 0.58rem; line-height: 1.75; }
+  .hero-br .btn { padding: 0.65rem 1.1rem; font-size: 0.6rem; }
+  .hero-bottom { flex-direction: column; align-items: flex-start; gap: .8rem; }
+  .hero-br { align-items: flex-start; }
+}
+
+/* ═══════════════════════════════════════════════
+   ABOUT — WHITE FIELD
+   Two-column editorial on paper-white ground.
+   Carbon type, 3px rules, red pull-quote border.
+═══════════════════════════════════════════════ */
+.two-col {
+  display: grid; grid-template-columns: 15rem 1fr;
+  gap: clamp(3rem, 5vw, 7rem); align-items: start;
+}
+.col-label {
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: .07em; line-height: 2.2;
+  border-top: 2px solid var(--carbon); padding-top: 1.2rem;
+  position: sticky; top: 6rem;
+  color: rgba(18,18,18,.4);
+}
+/* label on red section */
+.col-label.on-red {
+  border-top-color: rgba(249,249,248,.4); color: rgba(249,249,248,.55);
+}
+/* label on carbon section */
+.col-label.on-dark {
+  border-top-color: rgba(249,249,248,.2); color: rgba(249,249,248,.38);
+}
+/* label on blue section */
+.col-label.on-blue {
+  border-top-color: rgba(249,249,248,.45); color: rgba(249,249,248,.55);
+}
+.col-body h2 {
+  font-family: var(--serif); font-weight: 400;
+  font-size: clamp(1.9rem, 4vw, 4.4rem);
+  line-height: 1.05; margin-bottom: 2rem;
+}
+.col-body.on-dark h2 { color: var(--white); }
+.col-body h3 {
+  font-family: var(--serif); font-weight: 400;
+  font-size: clamp(1.35rem, 2.6vw, 2.8rem);
+  line-height: 1.1; margin: 3.5rem 0 1.4rem;
+}
+.col-body p {
+  font-size: clamp(.97rem, 1.5vw, 1.13rem);
+  max-width: 640px; margin-bottom: 1.5rem; line-height: 1.72; opacity: .82;
+}
+.col-body.on-dark p { color: rgba(249,249,248,.82); opacity: 1; }
+.col-body p strong { font-weight: 600; opacity: 1; }
+
+/* Pull quote — red left border on white; white border on dark sections */
+.pull {
+  font-family: var(--serif); font-weight: 400;
+  font-size: clamp(1.15rem, 2.2vw, 2rem);
+  line-height: 1.3; margin: 2.5rem 0; max-width: 560px;
+  padding-left: 1.5rem; border-left: 3px solid var(--red);
+  color: var(--carbon);
+}
+.pull.on-red  { border-left-color: rgba(18,18,18,.35); color: rgba(249,249,248,.92); }
+.pull.on-dark { border-left-color: rgba(249,249,248,.4); color: rgba(249,249,248,.88); }
+.pull.on-blue { border-left-color: rgba(249,249,248,.5); color: rgba(249,249,248,.92); }
+
+.ctas { margin-top: 2.8rem; display: flex; gap: 1rem; flex-wrap: wrap; }
+
+@media (max-width: 800px) {
+  .two-col { grid-template-columns: 1fr; gap: 2rem; }
+  .col-label { position: static; border-top: none; padding-top: 0;
+    border-bottom: 1px solid rgba(18,18,18,.1); padding-bottom: 1rem; }
+  .col-label.on-red  { border-bottom-color: rgba(249,249,248,.2); }
+  .col-label.on-dark { border-bottom-color: rgba(249,249,248,.1); }
+}
+
+/* ═══════════════════════════════════════════════
+   DATE STAMP — CARBON FILL
+   The event date at maximum scale.
+   White type on deep carbon. Blue numeral accent.
+   Date at full scale — section landmark.
+═══════════════════════════════════════════════ */
+.datestamp {
+  padding: clamp(3.5rem, 9vh, 7rem) var(--sp-x);
+  text-align: center; position: relative; overflow: hidden;
+}
+.datestamp-eye {
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: .15em;
+  color: rgba(249,249,248,.35); margin-bottom: .6rem;
+}
+.datestamp-date {
+  font-family: var(--sys); font-weight: 900;
+  font-size: clamp(5rem, 22vw, 19rem);
+  line-height: .82; letter-spacing: -.05em; text-transform: uppercase;
+  color: var(--white);
+}
+.datestamp-date .accent { color: var(--blue); }
+.datestamp-sub {
+  font-family: var(--mono); font-size: clamp(.62rem, 1.1vw, .9rem);
+  text-transform: uppercase; letter-spacing: .14em;
+  margin-top: 1.8rem; color: rgba(249,249,248,.32); line-height: 2.4;
+}
+.datestamp-cta {
+  margin-top: 2.8rem; display: flex; gap: 1rem;
+  justify-content: center; flex-wrap: wrap;
+}
+
+/* ═══════════════════════════════════════════════
+   WHO BELONGS — RED FILL
+   White type knocked out of red.
+   Bold declaration block —
+   space-filling, no hedging. The "I AM A MAN" register.
+   Carbon ✦ markers on red.
+   2px carbon outer rule. Carbon internal dividers.
+═══════════════════════════════════════════════ */
+.who-hdr {
+  display: grid; grid-template-columns: 1fr 1.5fr;
+  gap: clamp(2.5rem, 5vw, 7rem); align-items: end; margin-bottom: 3.5rem;
+}
+.who-hdr h2 {
+  font-family: var(--sys); font-weight: 900;
+  font-size: clamp(2.8rem, 7.5vw, 7rem);
+  text-transform: uppercase; color: var(--white); line-height: .88;
+}
+.who-hdr p {
+  font-size: clamp(.95rem, 1.5vw, 1.1rem); max-width: 460px;
+  line-height: 1.72; color: rgba(249,249,248,.65);
+}
+.who-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border: 2px solid var(--carbon);
+}
+.who-cell {
+  padding: clamp(1.5rem, 2.6vw, 2.2rem) clamp(1.2rem, 2.2vw, 2rem);
+  border-right: 2px solid rgba(18,18,18,.2);
+  border-bottom: 2px solid rgba(18,18,18,.2);
+}
+.who-cell:nth-child(4n)        { border-right: none; }
+.who-cell:nth-last-child(-n+4) { border-bottom: none; }
+.who-mark {
+  font-family: var(--mono); font-size: var(--meta);
+  color: rgba(249,249,248,.5); display: block; margin-bottom: .55rem;
+}
+.who-cell h4 {
+  font-family: var(--sys); font-weight: 900;
+  font-size: clamp(.72rem, 1.25vw, .96rem);
+  line-height: 1.25; text-transform: uppercase; letter-spacing: .03em;
+  color: var(--white);
+}
+@media (max-width: 840px) {
+  .who-hdr { grid-template-columns: 1fr; gap: 1.2rem; margin-bottom: 2.5rem; }
+  .who-grid { grid-template-columns: 1fr 1fr; }
+  .who-cell:nth-child(4n)        { border-right: 2px solid rgba(18,18,18,.2); }
+  .who-cell:nth-child(2n)        { border-right: none; }
+  .who-cell:nth-last-child(-n+4) { border-bottom: 2px solid rgba(18,18,18,.2); }
+  .who-cell:nth-last-child(-n+2) { border-bottom: none; }
+}
+
+/* ═══════════════════════════════════════════════
+   AGENDA — WHITE FIELD WITH CARBON RULES
+   The program bill. White paper, carbon type.
+   Blue used only for time labels — restrained accent.
+   Red date lockup. Heavy carbon rules between sessions.
+═══════════════════════════════════════════════ */
+.agenda-head {
+  display: grid; grid-template-columns: auto 1fr;
+  gap: clamp(2.5rem, 5vw, 6rem); align-items: end; margin-bottom: 4.5rem;
+}
+.agenda-date {
+  font-family: var(--sys); font-weight: 900;
+  font-size: clamp(3.5rem, 9vw, 9rem);
+  text-transform: uppercase; line-height: .84;
+  color: var(--red); letter-spacing: -.04em;
+}
+.agenda-sub {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(1.05rem, 2.2vw, 1.8rem);
+  line-height: 1.4; opacity: .72; margin-bottom: .5rem;
+}
+.agenda-note {
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: .06em; opacity: .28; margin-top: .8rem;
+}
+
+.tl-block { margin-bottom: 0; }
+.tl-blabel {
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: .1em; color: var(--red);
+  border-bottom: 2px solid var(--carbon);
+  padding-bottom: .55rem; margin-bottom: 1.5rem;
+}
+.tl-row {
+  display: grid; grid-template-columns: 8.5rem 1fr;
+  gap: 0 2.5rem; padding: 1.6rem 0;
+  border-bottom: 1px solid rgba(18,18,18,.1);
+  align-items: start;
+}
+.tl-row:last-child { border-bottom: none; }
+.tl-time {
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: .05em;
+  color: var(--blue); padding-top: .12rem; line-height: 1.65;
+}
+.tl-body h4 {
+  font-family: var(--body); font-weight: 600; font-size: .92rem;
+  text-transform: uppercase; letter-spacing: .04em; margin-bottom: .22rem;
+}
+.tl-body .sub {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(.95rem, 1.6vw, 1.25rem);
+  opacity: .55; display: block; margin-bottom: .75rem; line-height: 1.3;
+}
+.tl-body p { font-size: .88rem; opacity: .62; line-height: 1.65; max-width: 600px; }
+.tl-body p + p { margin-top: .6rem; }
+.tl-list {
+  list-style: none; margin-top: .9rem;
+  font-size: .86rem; opacity: .58; line-height: 1.8; max-width: 480px;
+}
+.tl-list li { display: flex; gap: .65rem; padding: .18rem 0; }
+.tl-key {
+  font-family: var(--mono); font-size: calc(var(--meta) - .04rem);
+  text-transform: uppercase; letter-spacing: .07em;
+  color: var(--blue); flex-shrink: 0;
+}
+.tl-tag {
+  display: inline-block; margin-top: .5rem; margin-right: .3rem;
+  font-family: var(--mono); font-size: calc(var(--meta) - .08rem);
+  text-transform: uppercase; letter-spacing: .05em;
+  border: 1px solid rgba(18,18,18,.2); padding: .1rem .38rem;
+  color: rgba(18,18,18,.35);
+}
+@media (max-width: 560px) {
+  .tl-row { grid-template-columns: 1fr; gap: .2rem; padding: 1.2rem 0; }
+  .tl-time { font-size: .62rem; margin-bottom: .18rem; }
+  .agenda-head { grid-template-columns: 1fr; gap: 1.2rem; margin-bottom: 2.8rem; }
+  .agenda-date { font-size: clamp(3rem, 14vw, 6rem); }
+}
+
+/* ═══════════════════════════════════════════════
+   WHAT YOU'LL LEAVE WITH — CARBON FILL
+   Bottom-of-agenda summary.
+   Blue key labels. White italic values.
+   White-bordered summary grid on carbon.
+═══════════════════════════════════════════════ */
+.leave-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border: 2px solid rgba(249,249,248,.22);
+}
+.leave-cell {
+  padding: clamp(1.4rem, 2.5vw, 2rem) clamp(1.2rem, 2vw, 1.8rem);
+  border-right: 2px solid rgba(249,249,248,.12);
+}
+.leave-cell:last-child { border-right: none; }
+.leave-key {
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: .09em;
+  color: var(--blue); display: block; margin-bottom: .55rem;
+}
+.leave-val {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(.92rem, 1.6vw, 1.25rem); line-height: 1.35;
+  color: rgba(249,249,248,.78);
+}
+@media (max-width: 700px) {
+  .leave-grid { grid-template-columns: 1fr 1fr; }
+  .leave-cell:nth-child(2n) { border-right: none; }
+  .leave-cell:nth-child(n+3) { border-top: 2px solid rgba(249,249,248,.12); }
+}
+@media (max-width: 420px) {
+  .leave-grid { grid-template-columns: 1fr; }
+  .leave-cell { border-right: none; border-bottom: 1px solid rgba(249,249,248,.1); }
+  .leave-cell:last-child { border-bottom: none; }
+}
+
+/* ═══════════════════════════════════════════════
+   REGISTER — WHITE FIELD
+   Red declaration headline.
+   3px carbon rule above Tally embed.
+═══════════════════════════════════════════════ */
+.reg-in {
+  max-width: 1340px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1.1fr;
+  gap: clamp(4rem, 7vw, 9rem); align-items: start;
+}
+.reg-left h2 {
+  font-family: var(--sys); font-weight: 900;
+  font-size: clamp(2.8rem, 8.5vw, 7.5rem);
+  text-transform: uppercase; line-height: .88; margin-bottom: 1.8rem;
+  color: var(--red);
+}
+.reg-left p {
+  font-size: clamp(.97rem, 1.5vw, 1.1rem);
+  max-width: 420px; margin-bottom: 2rem; line-height: 1.72; opacity: .72;
+}
+.reg-det {
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: .07em; line-height: 2.3;
+  border-top: 2px solid var(--carbon); padding-top: 1.2rem;
+  opacity: .38;
+}
+.tally-wrap { width: 100%; }
+@media (max-width: 800px) { .reg-in { grid-template-columns: 1fr; gap: 3rem; } }
+
+/* ═══════════════════════════════════════════════
+   COALITION BAR — red fill, carbon rule top
+   Echoes the hero. Red bookend.
+   White type knocked out of red — like the hero.
+═══════════════════════════════════════════════ */
+.coalition {
+  background: var(--red); color: var(--white);
+  padding: clamp(2.5rem, 5.5vh, 5rem) var(--sp-x);
+  border-top: 2px solid var(--carbon);
+}
+.coal-in {
+  max-width: 1340px; margin: 0 auto;
+  display: grid; grid-template-columns: auto 1fr;
+  gap: clamp(2.5rem, 6vw, 6rem); align-items: center;
+}
+.coal-label {
+  font-family: var(--sys); font-weight: 900;
+  font-size: clamp(1.2rem, 2.8vw, 2.8rem);
+  text-transform: uppercase; line-height: .9; color: var(--white);
+}
+.coal-orgs { display: flex; flex-wrap: wrap; align-items: center; }
+.org { border-left: 1px solid rgba(249,249,248,.3); padding: .3rem 2.2rem; }
+.org:first-child { border-left: none; padding-left: 0; }
+.org-role {
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: .07em;
+  color: rgba(249,249,248,.55); display: block; margin-bottom: .15rem;
+}
+.org-name {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(.9rem, 1.7vw, 1.45rem); line-height: 1.15;
+}
+.org-featured-partner {
+  border-left: 1px solid rgba(249,249,248,.15);
+  opacity: 0.72;
+}
+.org-name-sm {
+  font-size: clamp(.8rem, 1.3vw, 1.1rem);
+}
+.org-desc {
+  font-family: var(--mono); font-size: calc(var(--meta) - .06rem);
+  text-transform: uppercase; letter-spacing: .05em;
+  opacity: .45; display: block; margin-top: .2rem;
+}
+.coal-logo-ph {
+  width: 72px; height: 22px;
+  border: 1px dashed rgba(249,249,248,.3);
+  margin-bottom: .45rem;
+}
+@media (max-width: 680px) {
+  .coal-in { grid-template-columns: 1fr; gap: 1.5rem; }
+  .coal-orgs { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .org { border-left: none; padding-left: 0; border-top: 1px solid rgba(249,249,248,.25); padding-top: 1rem; }
+  .org:first-child { border-top: none; padding-top: 0; }
+}
+
+/* ═══════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════ */
+footer {
+  background: var(--carbon); color: var(--white);
+  padding: clamp(3rem, 7vw, 6rem) var(--sp-x) 2.2rem;
+  border-top: 1px solid rgba(249,249,248,.07);
+}
+.ft {
+  max-width: 1340px; margin: 0 auto;
+  display: grid; grid-template-columns: 2fr 1fr 1fr;
+  gap: clamp(2.5rem, 5vw, 5rem);
+  padding-bottom: 2.2rem;
+  border-bottom: 1px solid rgba(249,249,248,.07); margin-bottom: 1.6rem;
+}
+.ft-wm {
+  font-family: var(--sys); font-weight: 900;
+  font-size: clamp(1.4rem, 3.2vw, 3rem);
+  text-transform: uppercase; color: var(--white);
+  line-height: .88; letter-spacing: -.03em; margin-bottom: 1rem;
+}
+.ft-brand p { font-size: .86rem; opacity: .35; max-width: 270px; line-height: 1.75; }
+.ft-logos {
+  display: flex; gap: 1rem; align-items: center;
+  margin-top: 1.2rem;
+}
+.ft-logo-ph {
+  width: 80px; height: 24px;
+  border: 1px dashed rgba(249,249,248,.18);
+}
+.ft-col h4 {
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: .09em; opacity: .38;
+  border-bottom: 1px solid rgba(249,249,248,.08);
+  padding-bottom: .5rem; margin-bottom: 1rem;
+}
+.ft-col ul { list-style: none; }
+.ft-col ul li { margin-bottom: .6rem; }
+.ft-col ul li a { font-size: .86rem; opacity: .35; transition: opacity .15s; }
+.ft-col ul li a:hover { opacity: 1; }
+.ft-bot {
+  max-width: 1340px; margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 1rem;
+}
+.ft-bot p { font-family: var(--mono); font-size: var(--meta); text-transform: uppercase; letter-spacing: .05em; opacity: .18; }
+@media (max-width: 700px) { .ft { grid-template-columns: 1fr; gap: 2.2rem; } }
+
+/* ═══════════════════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════════════════ */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.in { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker-bar" aria-hidden="true">
+  <div class="ticker-track">
+    <span>HUMAN CAPITAL SESSIONS &mdash; FRIDAY APRIL 10 &mdash; 1–4 PM &mdash; MLK LIBRARY ROOMS 401-A &amp; G &mdash; PRACTITIONERS ONLY &mdash; ENGAGING YOUR PUBLIC &mdash; PART OF HUMAN CAPITAL QUARTERLY &mdash;&nbsp;</span>
+    <span>HUMAN CAPITAL SESSIONS &mdash; FRIDAY APRIL 10 &mdash; 1–4 PM &mdash; MLK LIBRARY ROOMS 401-A &amp; G &mdash; PRACTITIONERS ONLY &mdash; ENGAGING YOUR PUBLIC &mdash; PART OF HUMAN CAPITAL QUARTERLY &mdash;&nbsp;</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav" aria-label="Site navigation">
+  <a class="nav-id" href="/index.html">&larr; HCQ Spring &rsquo;26</a>
+  <div class="nav-links">
+    <a href="#agenda">Program</a>
+    <a href="#who">Who</a>
+    <a href="#register" class="cta">Reserve Your Spot</a>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════
+     HERO — FULL RED BROADSIDE
+     White knocked out. Carbon italic interlaced.
+     Red field, white type knocked out.
+═══════════════════════════════════════════════ -->
+<section class="hero" id="top" aria-label="Human Capital Sessions — April 10">
+
+  <div class="mg mg-on-red" style="top:17%;right:var(--sp-x);transform:rotate(6deg);font-size:clamp(1.2rem,2.2vw,2rem);" aria-hidden="true">for the doers</div>
+
+  <div class="hero-top" aria-hidden="true"></div>
+
+  <div class="hero-stack">
+    <p class="hero-eyebrow">The Practitioner Convening &mdash; Human Capital Quarterly</p>
+    <span class="hw" aria-hidden="true">HUMAN</span>
+    <span class="hop" aria-hidden="true">Practitioner Sessions</span>
+    <span class="hw" aria-hidden="true">CAPITAL</span>
+    <p class="hero-sub">A working session for the people doing the real work of building human capital in DC.</p>
+  </div>
+
+  <div class="hero-bottom">
+    <div class="hero-bl" aria-hidden="true">
+      Friday, April 10, 2026 &mdash; 1:00–4:00 PM<br>
+      MLK Memorial Library &mdash; Rooms 401-A &amp; G<br>
+      Closed door &mdash; Practitioners only
+    </div>
+    <div class="hero-br">
+      <a href="#register" class="btn btn-wht">Reserve Your Spot</a>
+      <a href="/index.html" class="btn btn-ghost-wht" style="font-size:.6rem;padding:.62rem 1.2rem;">Public Forum &mdash; Apr 14</a>
+    </div>
+  </div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     ABOUT — white paper, carbon type
+═══════════════════════════════════════════════ -->
+<section class="sec f-white reveal">
+  <div class="inner">
+    <div class="two-col">
+      <div class="col-label">About This Event</div>
+      <div class="col-body" style="position:relative;">
+        <span class="mg mg-red" style="top:-2.8rem;left:-1rem;transform:rotate(-4deg);font-size:clamp(1rem,1.8vw,1.6rem);" aria-hidden="true">closed door, real work</span>
+        <h2>We're building something.<br>Come help us figure it out.</h2>
+        <p>You know the challenge. You've felt it.</p>
+        <p>You're doing real, meaningful work—and still, the people who need it most don't always find it. Awareness is hard. Engagement is harder. And no single organization is going to crack that alone.</p>
+        <p class="pull">What if the ecosystem got in the same room?</p>
+        <p>A consistent, central gathering where DC's workforce, education, tech, and community organizations work on the shared problem of reaching and engaging the people they all serve—together.</p>
+        <p>And right behind it: a public-facing forum where residents walk in and directly experience that work. Not brochures. Not program overviews. <strong>Real skills. Real connections. Real value—right then and there.</strong></p>
+        <p>That's Human Capital Quarterly. Four times a year at MLK Library. A practitioner session and a public forum, back to back, getting sharper every quarter. <em>We're piloting it this April. We're inviting you to help shape it.</em></p>
+        <div class="ctas">
+          <a href="#register" class="btn btn-red">Reserve Your Spot &mdash; Apr 10</a>
+          <a href="#agenda" class="btn btn-outline">See the Program</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     DATE STAMP — red fill, white type reversed out.
+     Maximum scale. The concert hall bill.
+═══════════════════════════════════════════════ -->
+<section class="datestamp f-carbon reveal" style="border-top:2px solid var(--carbon);">
+  <div class="mg mg-on-dark" style="position:absolute;top:12%;left:var(--sp-x);transform:rotate(-5deg);font-size:clamp(1rem,1.8vw,1.6rem);" aria-hidden="true">practitioners only</div>
+  <p class="datestamp-eye">Human Capital Sessions &mdash; Closed Door &mdash; Washington, D.C.</p>
+  <div class="datestamp-date"><span class="accent">APR</span>&nbsp;10</div>
+  <p class="datestamp-sub">
+    Martin Luther King Jr. Memorial Library &mdash; Rooms 401-A &amp; G<br>
+    Friday, 1:00–4:00 PM
+  </p>
+  <div class="datestamp-cta">
+    <a href="#register" class="btn btn-wht-carbon">Reserve Your Spot</a>
+    <a href="#agenda" class="btn btn-ghost-blue">See the Program</a>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     THE THEME — white paper
+═══════════════════════════════════════════════ -->
+<section class="sec f-white reveal" style="border-top:2px solid var(--carbon);">
+  <div class="inner">
+    <div class="two-col">
+      <div class="col-label">The Theme<br><br>Spring 2026</div>
+      <div class="col-body" style="position:relative;">
+        <h2>This one's for us.</h2>
+        <p>The Human Capital Sessions is a closed-door working session for the program leaders, agency staff, community organizers, and practitioners doing the real work of building human capital in the National Capital Region.</p>
+        <p><strong>The theme: Engaging Your Public.</strong></p>
+        <p>How do you reach the people who would benefit most from what you do? How do you cut through noise when the economy feels uncertain? How do you turn awareness into action—and keep people coming back?</p>
+        <p class="pull">These aren't problems any of us have fully solved. But we're all working on them.</p>
+        <p>And we're betting that getting the right people in the same room—across sectors, across silos—surfaces approaches none of us would find alone.</p>
+        <h3>This builds on what you're already doing. Not over it.</h3>
+        <p>If you run a Community of Practice, participate in the DC Digital Navigators network, or lead peer learning in your field—Human Capital Sessions is designed to complement that work, not compete with it.</p>
+        <p>What HCQ adds is the cross-institutional layer. The tech meetup and the workforce program have been serving the same residents in different rooms. <strong>This is where that changes.</strong></p>
+        <span class="mg mg-on-white" style="bottom:-2.5rem;right:0;transform:rotate(2deg);font-size:clamp(.95rem,1.6vw,1.4rem);" aria-hidden="true">coordination is a skill too</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     WHO BELONGS — RED FILL, bold declaration.
+     ALL-CAPS Overpass in cells. White type on red.
+     Carbon outer rule.
+═══════════════════════════════════════════════ -->
+<section class="sec f-red reveal" id="who" style="border-top:2px solid var(--carbon);">
+  <div class="inner">
+    <div class="who-hdr">
+      <h2>WHO<br>BELONGS<br>HERE</h2>
+      <p>If the public is part of your mission—you belong in this room. We're building across sectors, not within them.</p>
+    </div>
+    <div class="who-grid">
+      <div class="who-cell"><span class="who-mark">&#10022;</span><h4>Workforce Development</h4></div>
+      <div class="who-cell"><span class="who-mark">&#10022;</span><h4>Adult Education</h4></div>
+      <div class="who-cell"><span class="who-mark">&#10022;</span><h4>Civic Technology</h4></div>
+      <div class="who-cell"><span class="who-mark">&#10022;</span><h4>Community Organizations</h4></div>
+      <div class="who-cell"><span class="who-mark">&#10022;</span><h4>Public Agencies</h4></div>
+      <div class="who-cell"><span class="who-mark">&#10022;</span><h4>Employers &amp; Hiring Partners</h4></div>
+      <div class="who-cell"><span class="who-mark">&#10022;</span><h4>Libraries &amp; Public Institutions</h4></div>
+      <div class="who-cell"><span class="who-mark">&#10022;</span><h4>Anyone building pathways for DC residents</h4></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     AGENDA — white paper, carbon rules.
+     The program bill. Red date. Blue times.
+═══════════════════════════════════════════════ -->
+<section class="sec f-white reveal" id="agenda" style="border-top:2px solid var(--carbon);">
+  <div class="inner">
+    <div class="agenda-head" style="position:relative;">
+      <div class="agenda-date">APR<br>10</div>
+      <div>
+        <p class="agenda-sub">Human Capital Sessions: Engaging Your Public<br>Closed door &mdash; Working session &mdash; Not a conference</p>
+        <p class="agenda-note">MLK Memorial Library &mdash; Rooms 401-A &amp; 401-G &mdash; 1:00–4:00 PM</p>
+      </div>
+      <div class="mg mg-red" style="position:absolute;top:0;right:0;transform:rotate(4deg);font-size:clamp(1rem,1.8vw,1.7rem);" aria-hidden="true">one minute, one slide</div>
+    </div>
+
+    <div class="tl-block">
+      <div class="tl-blabel">Your Friday, Mapped Out</div>
+
+      <div class="tl-row">
+        <div class="tl-time">1:00 PM</div>
+        <div class="tl-body">
+          <h4>The State of Human Capital in the Capital</h4>
+          <span class="sub">Opening Briefing</span>
+          <p>A short, shared grounding to start together. What residents are asking for. How the local economy is shifting. What the landscape looks like heading into Q2. Everyone starts from the same picture.</p>
+          <span class="tl-tag">Opening</span>
+        </div>
+      </div>
+
+      <div class="tl-row">
+        <div class="tl-time">1:15 PM</div>
+        <div class="tl-body">
+          <h4>"How I Solved This"</h4>
+          <span class="sub">Lightning Rounds</span>
+          <p>Fast, practical knowledge-sharing. You're invited—never required—to take one minute and share a real engagement challenge you faced and what you did about it. No polish necessary. Just something honest and useful.</p>
+          <p>If you'd like to share, bring one slide:</p>
+          <ul class="tl-list">
+            <li><span class="tl-key">Problem</span><span>One sentence on what you were up against</span></li>
+            <li><span class="tl-key">Solution</span><span>Two or three sentences on what you tried</span></li>
+            <li><span class="tl-key">Contact</span><span>Your name and how to reach you</span></li>
+          </ul>
+          <span class="tl-tag">Participatory</span>
+        </div>
+      </div>
+
+      <div class="tl-row">
+        <div class="tl-time">2:15 PM</div>
+        <div class="tl-body">
+          <h4>Working the Problem Together</h4>
+          <span class="sub">Peer Consulting</span>
+          <p>Small groups. A shared case. Real challenges, across organizations that don't usually sit in the same room. Leave with at least one approach you hadn't considered—and at least one person you want to stay in touch with.</p>
+          <span class="tl-tag">Small Groups</span>
+        </div>
+      </div>
+
+      <div class="tl-row">
+        <div class="tl-time">3:00 PM</div>
+        <div class="tl-body">
+          <h4>Planning Toward July</h4>
+          <span class="sub">Quarterly Commitments</span>
+          <p>What will you experiment with next quarter? What's worth doing together that none of us can do alone? This is where the conversation becomes commitments—and where April becomes July.</p>
+          <span class="tl-tag">Action-Oriented</span>
+        </div>
+      </div>
+
+      <div class="tl-row">
+        <div class="tl-time">4:00 PM</div>
+        <div class="tl-body">
+          <h4>Close</h4>
+          <span class="sub">Then: come back Tuesday for April 14</span>
+          <p>Session ends. Stay to compare notes informally, or return Tuesday for the public forum. You've helped build something. Come see it in action.</p>
+          <span class="tl-tag">End of Day</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- What you'll leave with — carbon fill, bottom of the bill summary -->
+<section class="sec f-carbon reveal" style="border-top:2px solid var(--carbon);padding-top:clamp(2.5rem,5vw,4.5rem);padding-bottom:clamp(2.5rem,5vw,4.5rem);">
+  <div class="inner">
+    <div class="leave-grid">
+      <div class="leave-cell">
+        <span class="leave-key">You'll leave with</span>
+        <div class="leave-val">A clearer articulation of your value to the public</div>
+      </div>
+      <div class="leave-cell">
+        <span class="leave-key">And</span>
+        <div class="leave-val">Refined messaging you can use the next day</div>
+      </div>
+      <div class="leave-cell">
+        <span class="leave-key">Plus</span>
+        <div class="leave-val">New cross-institutional relationships</div>
+      </div>
+      <div class="leave-cell">
+        <span class="leave-key">And</span>
+        <div class="leave-val">1–2 collaborative experiments to run before July</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     APR 14 BRIDGE — blue fill, open and forward
+═══════════════════════════════════════════════ -->
+<section class="sec f-blue reveal" style="border-top:2px solid var(--blue);position:relative;overflow:hidden;">
+  <div class="inner">
+    <div class="two-col">
+      <div class="col-label on-blue">April 14<br>Public Forum</div>
+      <div class="col-body on-dark">
+        <h2>Then the public arrives.</h2>
+        <p>On April 14, DC Public Library and Levy pilot the first Human Capital Quarterly Public Forum—a live, hands-on afternoon at MLK Library where residents explore in-demand skills, connect with organizations like yours, and engage with the work happening across the ecosystem.</p>
+        <p class="pull on-blue">Not a resource fair. An experience.</p>
+        <p>You're welcome at April 10 whether or not you're part of April 14. But if you want to see what we're building—or bring your organization into the July forum—<strong>this is the right place to start.</strong></p>
+        <div class="ctas">
+          <a href="/index.html" class="btn btn-carbon-solid">See the Apr 14 Public Forum</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mg mg-on-blue" style="position:absolute;bottom:2rem;right:var(--sp-x);transform:rotate(-4deg);font-size:clamp(1rem,1.8vw,1.6rem);" aria-hidden="true">two days, one ecosystem</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     REGISTER — white paper, red declaration
+═══════════════════════════════════════════════ -->
+<section class="sec f-white reveal" id="register" style="border-top:2px solid var(--red);position:relative;overflow:hidden;">
+  <div class="mg mg-on-white" style="position:absolute;top:var(--sp-y);right:var(--sp-x);transform:rotate(5deg);font-size:clamp(.95rem,1.7vw,1.5rem);" aria-hidden="true">space is intentionally small</div>
+  <div class="reg-in">
+    <div class="reg-left" style="position:relative;">
+      <h2>THIS IS<br>THE FIRST<br>ONE.</h2>
+      <p>Let's build it together. Space is intentionally small—we want the room to work. Register to hold your place and we'll follow up with pre-session context ahead of April 10.</p>
+      <span class="mg mg-red" style="position:relative;display:block;margin-bottom:1.5rem;transform:rotate(-2deg);font-size:clamp(1rem,1.7vw,1.5rem);" aria-hidden="true">let's build it together</span>
+      <div class="reg-det">
+        HUMAN CAPITAL SESSIONS<br>
+        FRIDAY, APRIL 10, 2026<br>
+        1:00 PM &ndash; 4:00 PM<br>
+        MLK MEMORIAL LIBRARY<br>
+        ROOMS 401-A &amp; 401-G<br>
+        &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;<br>
+        CLOSED DOOR &mdash; PRACTITIONERS ONLY<br>
+        PRESENTED BY DC PUBLIC LIBRARY &amp; LEVY
+      </div>
+    </div>
+    <div class="tally-wrap">
+      <iframe data-tally-src="https://tally.so/embed/ODPWap?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="923" frameborder="0" marginheight="0" marginwidth="0" title="Practitioner Sessions Registration"></iframe>
+      <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
+    </div>
+  </div>
+</section>
+
+<!-- COALITION -->
+<section class="coalition reveal">
+  <div class="coal-in">
+    <div class="coal-label">A Pilot<br>Project of</div>
+    <div class="coal-orgs">
+      <div class="org">
+        <div class="coal-logo-ph" aria-hidden="true" title="DC Public Library logo"></div>
+        <span class="org-role">Anchor Institution</span>
+        <div class="org-name">DC Public Library</div>
+      </div>
+      <div class="org">
+        <div class="coal-logo-ph" aria-hidden="true" title="Levy logo"></div>
+        <span class="org-role">Design &amp; Strategy</span>
+        <div class="org-name">Levy</div>
+      </div>
+      <div class="org org-featured-partner">
+        <span class="org-role">Featured Program Partner</span>
+        <div class="org-name org-name-sm">The Upskilling Labs</div>
+        <span class="org-desc">Anchor learning community &amp; Build Cycle host</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft">
+    <div class="ft-brand">
+      <div class="ft-wm">Human<br>Capital<br>Quarterly</div>
+      <p>Human Capital Sessions is the practitioner convening of Human Capital Quarterly. A pilot project of DC Public Library and Levy. Washington, D.C. &mdash; Est. Spring 2026.</p>
+      <!-- Logo placeholders -->
+      <div class="ft-logos" aria-hidden="true">
+        <div class="ft-logo-ph" title="DC Public Library logo"></div>
+        <div class="ft-logo-ph" title="Levy logo"></div>
+      </div>
+    </div>
+    <div class="ft-col">
+      <h4>April 10 Program</h4>
+      <ul>
+        <li><a href="#agenda">Full Agenda</a></li>
+        <li><a href="#agenda">Opening Briefing</a></li>
+        <li><a href="#agenda">Lightning Rounds</a></li>
+        <li><a href="#agenda">Peer Consulting</a></li>
+        <li><a href="#agenda">Quarterly Commitments</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h4>The Bigger Picture</h4>
+      <ul>
+        <li><a href="/index.html">Public Forum &mdash; Apr 14</a></li>
+        <li><a href="#who">Who Belongs Here</a></li>
+        <li><a href="#register">Reserve Your Spot</a></li>
+        <li><a href="/get-involved.html">Partner with Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-bot">
+    <p>HCQ Spring 2026 &mdash; Sessions: April 10 &mdash; Public Forum: April 14 &mdash; humancapital.withlevy.com/sessions</p>
+    <span style="font-family:var(--hand);color:var(--red);font-size:1.6rem;">First one. Let's build it.</span>
+  </div>
+</footer>
+
+<script>
+const revealEls = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+}, { threshold: 0.06 });
+revealEls.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
