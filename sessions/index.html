@@ -72,6 +72,11 @@ body::after {
 /* selection: carbon on white, flipped from main site's red */
 ::selection { background: var(--carbon); color: var(--white); }
 a { color: inherit; text-decoration: none; }
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
 
 /* ═══════════════════════════════════════════════
    TICKER — red field, white type.
@@ -416,7 +421,7 @@ a { color: inherit; text-decoration: none; }
   font-family: var(--mono); font-size: var(--meta);
   color: rgba(249,249,248,.5); display: block; margin-bottom: .55rem;
 }
-.who-cell h4 {
+.who-cell h3 {
   font-family: var(--sys); font-weight: 900;
   font-size: clamp(.72rem, 1.25vw, .96rem);
   line-height: 1.25; text-transform: uppercase; letter-spacing: .03em;
@@ -476,7 +481,7 @@ a { color: inherit; text-decoration: none; }
   text-transform: uppercase; letter-spacing: .05em;
   color: var(--red); padding-top: .12rem; line-height: 1.65;
 }
-.tl-body h4 {
+.tl-body h3 {
   font-family: var(--body); font-weight: 600; font-size: .92rem;
   text-transform: uppercase; letter-spacing: .04em; margin-bottom: .22rem;
 }
@@ -712,6 +717,8 @@ footer {
      White knocked out. Carbon italic interlaced.
      Red field, white type knocked out.
 ═══════════════════════════════════════════════ -->
+<main>
+<h1 class="sr-only">Human Capital Sessions — April 10</h1>
 <section class="hero" id="top" aria-label="Human Capital Sessions — April 10">
 
   <div class="mg mg-on-red" style="top:17%;right:var(--sp-x);transform:rotate(6deg);font-size:clamp(1.2rem,2.2vw,2rem);" aria-hidden="true">Real people are<br>the real capital<br>of the capital!</div>
@@ -778,14 +785,14 @@ footer {
       <p>If you're building for our region's workforce: this builds on what you're already doing. Not over it. If you run a Community of Practice, participate in the DC Digital Navigators network, or lead peer learning in your field, Human Capital Sessions is designed to complement that work, not compete with it.</p>
     </div>
     <div class="who-grid">
-      <div class="who-cell"><span class="who-mark">&#10022;</span><h4>Workforce Development</h4></div>
-      <div class="who-cell"><span class="who-mark">&#10022;</span><h4>Adult Education</h4></div>
-      <div class="who-cell"><span class="who-mark">&#10022;</span><h4>Civic Technology</h4></div>
-      <div class="who-cell"><span class="who-mark">&#10022;</span><h4>Community Organizations</h4></div>
-      <div class="who-cell"><span class="who-mark">&#10022;</span><h4>Public Agencies</h4></div>
-      <div class="who-cell"><span class="who-mark">&#10022;</span><h4>Employers &amp; Hiring Partners</h4></div>
-      <div class="who-cell"><span class="who-mark">&#10022;</span><h4>Libraries &amp; Public Institutions</h4></div>
-      <div class="who-cell"><span class="who-mark">&#10022;</span><h4>Anyone building pathways for DC residents</h4></div>
+      <div class="who-cell"><span class="who-mark">&#10022;</span><h3>Workforce Development</h3></div>
+      <div class="who-cell"><span class="who-mark">&#10022;</span><h3>Adult Education</h3></div>
+      <div class="who-cell"><span class="who-mark">&#10022;</span><h3>Civic Technology</h3></div>
+      <div class="who-cell"><span class="who-mark">&#10022;</span><h3>Community Organizations</h3></div>
+      <div class="who-cell"><span class="who-mark">&#10022;</span><h3>Public Agencies</h3></div>
+      <div class="who-cell"><span class="who-mark">&#10022;</span><h3>Employers &amp; Hiring Partners</h3></div>
+      <div class="who-cell"><span class="who-mark">&#10022;</span><h3>Libraries &amp; Public Institutions</h3></div>
+      <div class="who-cell"><span class="who-mark">&#10022;</span><h3>Anyone building pathways for DC residents</h3></div>
     </div>
   </div>
 </section>
@@ -820,7 +827,7 @@ footer {
       <div class="tl-row">
         <div class="tl-time">1:00 PM</div>
         <div class="tl-body">
-          <h4>The State of Human Capital in the Capital</h4>
+          <h3>The State of Human Capital in the Capital</h3>
           <span class="sub">Opening Briefing</span>
           <p>A short, shared grounding to start together. What residents are asking for. How the local economy is shifting. What the landscape looks like heading into Q2. Everyone starts from the same picture.</p>
           <span class="tl-tag">Opening</span>
@@ -830,7 +837,7 @@ footer {
       <div class="tl-row">
         <div class="tl-time">1:15 PM</div>
         <div class="tl-body">
-          <h4>"How I Solved This"</h4>
+          <h3>"How I Solved This"</h3>
           <span class="sub">Lightning Rounds</span>
           <p>Fast, practical knowledge-sharing. You're invited—never required—to take one minute and share a real engagement challenge you faced and what you did about it. No polish necessary. Just something honest and useful.</p>
           <p>If you'd like to share, bring one slide:</p>
@@ -846,7 +853,7 @@ footer {
       <div class="tl-row">
         <div class="tl-time">2:15 PM</div>
         <div class="tl-body">
-          <h4>Working the Problem Together</h4>
+          <h3>Working the Problem Together</h3>
           <span class="sub">Peer Consulting</span>
           <p>Small groups. A shared case. Real challenges, across organizations that don't usually sit in the same room. Leave with at least one approach you hadn't considered—and at least one person you want to stay in touch with.</p>
           <span class="tl-tag">Small Groups</span>
@@ -856,7 +863,7 @@ footer {
       <div class="tl-row">
         <div class="tl-time">3:00 PM</div>
         <div class="tl-body">
-          <h4>Planning Toward July</h4>
+          <h3>Planning Toward July</h3>
           <span class="sub">Quarterly Commitments</span>
           <p>What will you experiment with next quarter? What's worth doing together that none of us can do alone? This is where the conversation becomes commitments—and where April becomes July.</p>
           <span class="tl-tag">Action-Oriented</span>
@@ -866,7 +873,7 @@ footer {
       <div class="tl-row">
         <div class="tl-time">4:00 PM</div>
         <div class="tl-body">
-          <h4>Close</h4>
+          <h3>Close</h3>
           <span class="sub">Then: come back Tuesday for April 14</span>
           <p>Session ends. Stay to compare notes informally, or return Tuesday for the public forum. You've helped build something. Come see it in action.</p>
           <span class="tl-tag">End of Day</span>
@@ -970,6 +977,7 @@ footer {
     </div>
   </div>
 </section>
+</main>
 
 <!-- FOOTER -->
 <footer>
