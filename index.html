@@ -112,7 +112,10 @@ a { color: inherit; text-decoration: none; }
 .nav-links a:hover { background: var(--carbon); color: var(--white); }
 .nav-links a.cta { background: var(--red); color: var(--white); border-color: var(--red); }
 .nav-links a.cta:hover { background: var(--carbon); border-color: var(--carbon); }
-@media (max-width: 620px) { .nav-links a:not(.cta) { display: none; } }
+@media (max-width: 620px) {
+  .nav-links a:not(.cta) { display: none; }
+  .nav-links a.cta { padding: 0.75rem 1.2rem; font-size: .75rem; }
+}
 
 /* ════════════════════════════════════════════════════
    BUTTONS
@@ -348,7 +351,7 @@ a { color: inherit; text-decoration: none; }
 }
 .punch-date {
   font-family: var(--sys); font-weight: 900;
-  font-size: clamp(4rem, 18vw, 16rem);
+  font-size: clamp(2.5rem, 13vw, 16rem);
   line-height: .84; letter-spacing: -.05em; text-transform: uppercase;
 }
 .punch-loc {
@@ -554,9 +557,18 @@ select {
 
 /* Tally embed wrapper */
 .tally-wrap { width: 100%; }
+.form-section-label {
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: .09em;
+  border-bottom: 2px solid var(--carbon);
+  padding-bottom: .55rem; margin-bottom: 1.5rem;
+}
 
 @media (max-width: 780px) {
   .reg-grid { grid-template-columns: 1fr; gap: 3rem; }
+}
+@media (max-width: 480px) {
+  .form-2col { grid-template-columns: 1fr; }
 }
 
 /* ════════════════════════════════════════════════════
@@ -950,6 +962,7 @@ footer {
         </div>
       </div>
       <div class="tally-wrap">
+        <h3 class="form-section-label">Register Here</h3>
         <iframe data-tally-src="https://tally.so/embed/kdAv6M?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="471" frameborder="0" marginheight="0" marginwidth="0" title="Human Capital Quarterly Registration"></iframe>
         <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
       </div>

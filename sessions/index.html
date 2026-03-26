@@ -127,7 +127,10 @@ a { color: inherit; text-decoration: none; }
 .nav-links a:hover { background: var(--carbon); border-color: var(--carbon); }
 .nav-links a.cta { background: var(--carbon); border-color: var(--carbon); }
 .nav-links a.cta:hover { background: var(--white); color: var(--carbon); border-color: rgba(249,249,248,.3); }
-@media (max-width: 620px) { .nav-links a:not(.cta) { display: none; } }
+@media (max-width: 620px) {
+  .nav-links a:not(.cta) { display: none; }
+  .nav-links a.cta { padding: 0.75rem 1.2rem; font-size: .75rem; }
+}
 
 /* ═══════════════════════════════════════════════
    BUTTONS
@@ -435,6 +438,11 @@ a { color: inherit; text-decoration: none; }
   .who-cell:nth-last-child(-n+4) { border-bottom: 2px solid rgba(18,18,18,.2); }
   .who-cell:nth-last-child(-n+2) { border-bottom: none; }
 }
+@media (max-width: 460px) {
+  .who-grid { grid-template-columns: 1fr; }
+  .who-cell { border-right: none !important; }
+  .who-cell:last-child { border-bottom: none !important; }
+}
 
 /* ═══════════════════════════════════════════════
    AGENDA — WHITE FIELD WITH CARBON RULES
@@ -579,6 +587,12 @@ a { color: inherit; text-decoration: none; }
   opacity: .65;
 }
 .tally-wrap { width: 100%; }
+.form-section-label {
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: .09em;
+  border-bottom: 2px solid var(--carbon);
+  padding-bottom: .55rem; margin-bottom: 1.5rem;
+}
 @media (max-width: 800px) { .reg-in { grid-template-columns: 1fr; gap: 3rem; } }
 
 /* ═══════════════════════════════════════════════
@@ -948,6 +962,7 @@ footer {
       </div>
     </div>
     <div class="tally-wrap">
+      <h3 class="form-section-label">Register Here</h3>
       <iframe data-tally-src="https://tally.so/embed/ODPWap?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="923" frameborder="0" marginheight="0" marginwidth="0" title="Practitioner Sessions Registration"></iframe>
       <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
     </div>
