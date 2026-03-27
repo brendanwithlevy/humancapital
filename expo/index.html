@@ -275,34 +275,36 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ═══════════════════════════════════════════════
-   REGISTER — WHITE FIELD
+   REGISTER — WHITE FIELD, SINGLE COLUMN
 ═══════════════════════════════════════════════ */
-.reg-in {
-  max-width: 1340px; margin: 0 auto;
-  display: grid; grid-template-columns: 1fr 1.1fr;
-  gap: clamp(4rem, 7vw, 9rem); align-items: start;
+.reg-in { max-width: 1340px; margin: 0 auto; }
+.reg-header {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  gap: clamp(2rem, 4vw, 4rem); flex-wrap: wrap;
+  padding-bottom: clamp(2rem, 4vw, 3rem);
+  border-bottom: 2px solid var(--carbon);
+  margin-bottom: clamp(2rem, 4vw, 3rem);
 }
-.reg-left h2 {
-  font-family: var(--sys); font-weight: 900;
-  font-size: clamp(2.8rem, 8.5vw, 7.5rem);
-  text-transform: uppercase; line-height: .88; margin-bottom: 1.8rem;
-  color: var(--red);
+.reg-header-left h2 {
+  font-family: var(--serif); font-weight: 400;
+  font-size: clamp(1.9rem, 4vw, 4rem);
+  line-height: 1.05; margin-bottom: .75rem;
 }
-.reg-left p {
+.reg-header-left p {
   font-size: clamp(.97rem, 1.5vw, 1.1rem);
-  max-width: 420px; margin-bottom: 1.8rem; line-height: 1.72; opacity: .72;
+  line-height: 1.72; opacity: .72; max-width: 44ch;
 }
+.reg-header-right { text-align: right; flex-shrink: 0; }
 .reg-deadline {
   font-family: var(--mono); font-size: var(--meta);
   text-transform: uppercase; letter-spacing: .09em;
   color: var(--red); border: 1.5px solid var(--red);
   padding: .55rem 1rem;
-  display: inline-block; margin-bottom: 2rem;
+  display: inline-block; margin-bottom: 1rem;
 }
 .reg-det {
   font-family: var(--mono); font-size: var(--meta);
   text-transform: uppercase; letter-spacing: .07em; line-height: 2.3;
-  border-top: 2px solid var(--carbon); padding-top: 1.2rem;
   opacity: .65;
 }
 .tally-wrap { width: 100%; }
@@ -315,7 +317,10 @@ a { color: inherit; text-decoration: none; }
   flex-wrap: wrap; gap: .5rem;
 }
 .form-label span { opacity: .55; }
-@media (max-width: 800px) { .reg-in { grid-template-columns: 1fr; gap: 3rem; } }
+@media (max-width: 680px) {
+  .reg-header { flex-direction: column; align-items: flex-start; }
+  .reg-header-right { text-align: left; }
+}
 
 /* ═══════════════════════════════════════════════
    COALITION BAR — carbon, white type
@@ -509,19 +514,17 @@ footer {
 ═══════════════════════════════════════════════ -->
 <section class="sec f-white reveal" id="reserve" style="border-top:3px solid var(--red);">
   <div class="reg-in">
-    <div class="reg-left" style="position:relative;">
-      <h2>RESERVE<br>YOUR<br>TABLE</h2>
-      <span class="reg-deadline">Form closes April 7 &mdash; 5:00 PM</span>
-      <p>Slots are limited and go first come, first served. Fill out the form to hold your place at the Spring Forum on April 14.</p>
-      <span class="mg mg-red" style="position:relative;display:block;margin-bottom:1.5rem;transform:rotate(-2deg);font-size:clamp(1rem,1.7vw,1.5rem);" aria-hidden="true">make yourself findable</span>
-      <div class="reg-det">
-        SPRING FORUM &mdash; PUBLIC DAY<br>
-        TUESDAY, APRIL 14, 2026<br>
-        NOON &ndash; 8:00 PM &plus; HAPPY HOUR<br>
-        MLK JR. MEMORIAL LIBRARY<br>
-        901 G ST. NW, WASHINGTON, DC 20001<br>
-        &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;<br>
-        PRESENTED BY DC PUBLIC LIBRARY &amp; LEVY
+    <div class="reg-header">
+      <div class="reg-header-left">
+        <h2>Reserve Your Table</h2>
+        <p>Slots are limited and go first come, first served.</p>
+      </div>
+      <div class="reg-header-right">
+        <span class="reg-deadline">Form closes April 7 &mdash; 5:00 PM</span>
+        <div class="reg-det">
+          SPRING FORUM &mdash; TUESDAY, APRIL 14, 2026<br>
+          MLK JR. MEMORIAL LIBRARY &mdash; 901 G ST. NW, WASHINGTON, DC 20001
+        </div>
       </div>
     </div>
     <div class="tally-wrap">
