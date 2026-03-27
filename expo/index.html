@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reserve a Table — Human Capital Quarterly · Spring Forum · April 14</title>
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://humancapital.withlevy.com/expo/">
+<meta property="og:title" content="Reserve a Table — Human Capital Quarterly · Spring Forum · April 14">
+<meta property="og:description" content="Table at the Spring Forum on April 14 and put your organization in front of residents ready to take next steps. Spaces limited — form closes April 7.">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600&family=Overpass:wght@900&family=Instrument+Serif:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════════════════
+   TOKENS — identical to main site
+═══════════════════════════════════════════════ */
+:root {
+  --white:  #F9F9F8;
+  --carbon: #121212;
+  --red:    #E4002B;
+  --blue:   #41B6E6;
+
+  --sys:   'Overpass',         sans-serif;
+  --serif: 'Instrument Serif', serif;
+  --body:  'IBM Plex Sans',    sans-serif;
+  --mono:  'IBM Plex Mono',    monospace;
+  --hand:  'Caveat',           cursive;
+  --meta:  0.72rem;
+
+  --hfs:  clamp(3rem, 13vw, 13.5rem);
+  --sp-y: clamp(4rem, 9vw, 8rem);
+  --sp-x: clamp(1.5rem, 5.5vw, 6vw);
+  --ticker-h: 2.35rem;
+}
+
+/* ═══════════════════════════════════════════════
+   RESET / BASE
+═══════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--white); color: var(--carbon);
+  font-family: var(--body); font-weight: 300;
+  line-height: 1.6; overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+body::after {
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9000;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+}
+::selection { background: var(--red); color: var(--white); }
+a { color: inherit; text-decoration: none; }
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
+/* ═══════════════════════════════════════════════
+   TICKER — carbon field, white type
+═══════════════════════════════════════════════ */
+.ticker-bar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 600;
+  background: var(--carbon); color: var(--white);
+  padding: 0.58rem 0; overflow: hidden;
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: 0.1em;
+}
+.ticker-track { display: flex; white-space: nowrap; animation: tick 55s linear infinite; }
+.ticker-track span { padding: 0 4rem; flex-shrink: 0; }
+@keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ═══════════════════════════════════════════════
+   NAV — floats on carbon hero
+   Carbon pills with white/semi-transparent border.
+   Red CTA contrasts with the dark field.
+═══════════════════════════════════════════════ */
+.nav {
+  position: fixed; top: var(--ticker-h); left: 0; right: 0; z-index: 500;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0 var(--sp-x); pointer-events: none;
+}
+.nav-id {
+  pointer-events: all;
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: 0.09em;
+  background: var(--carbon); color: var(--white);
+  border: 1.5px solid rgba(249,249,248,.28);
+  padding: 0.44rem 0.85rem;
+  transition: background .15s, border-color .15s;
+}
+.nav-id:hover { background: var(--red); border-color: var(--red); }
+.nav-links { pointer-events: all; display: flex; }
+.nav-links a {
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: 0.07em;
+  background: var(--carbon); color: var(--white);
+  border: 1.5px solid rgba(249,249,248,.28); border-left: none;
+  padding: 0.44rem 0.85rem;
+  transition: background .15s, color .15s, border-color .15s;
+}
+.nav-links a:first-child { border-left: 1.5px solid rgba(249,249,248,.28); }
+.nav-links a:hover { background: var(--white); color: var(--carbon); border-color: var(--white); }
+.nav-links a.cta { background: var(--red); color: var(--white); border-color: var(--red); }
+.nav-links a.cta:hover { background: var(--carbon); border-color: rgba(249,249,248,.28); }
+@media (max-width: 620px) { .nav-links a:not(.cta) { display: none; } }
+
+/* ═══════════════════════════════════════════════
+   BUTTONS
+═══════════════════════════════════════════════ */
+.btn {
+  display: inline-block;
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: 0.1em;
+  padding: 0.85rem 2rem; border: 2px solid; cursor: pointer;
+  transition: background .15s, color .15s, border-color .15s;
+  white-space: nowrap;
+}
+/* on dark/carbon bg */
+.btn-wht-carbon { background: var(--white); color: var(--carbon); border-color: var(--white); }
+.btn-wht-carbon:hover { background: transparent; color: var(--white); }
+.btn-ghost-dark { background: transparent; color: rgba(249,249,248,.55); border-color: rgba(249,249,248,.22); }
+.btn-ghost-dark:hover { border-color: var(--white); color: var(--white); }
+/* on white bg */
+.btn-red { background: var(--red); color: var(--white); border-color: var(--red); }
+.btn-red:hover { background: var(--carbon); border-color: var(--carbon); }
+.btn-outline { background: transparent; color: var(--carbon); border-color: var(--carbon); }
+.btn-outline:hover { background: var(--carbon); color: var(--white); }
+
+/* ═══════════════════════════════════════════════
+   SECTION UTILITIES
+═══════════════════════════════════════════════ */
+.sec { padding: var(--sp-y) var(--sp-x); position: relative; }
+.inner { max-width: 1340px; margin: 0 auto; }
+.f-white  { background: var(--white);  color: var(--carbon); }
+.f-carbon { background: var(--carbon); color: var(--white); }
+
+/* ═══════════════════════════════════════════════
+   MARGINALIA
+═══════════════════════════════════════════════ */
+.mg {
+  font-family: var(--hand);
+  font-size: clamp(1.1rem, 2vw, 1.85rem);
+  position: absolute; pointer-events: none;
+  white-space: nowrap; line-height: 1.2;
+}
+.mg-on-dark  { color: rgba(249,249,248,.2); }
+.mg-on-white { color: var(--carbon); opacity: 0.28; }
+.mg-red      { color: var(--red); opacity: 0.72; }
+
+/* ═══════════════════════════════════════════════
+   HERO — CARBON FIELD
+   White Overpass knocked out of deep carbon.
+   Red italic Instrument Serif interlaced.
+   Ticker is also carbon — a continuous dark entry.
+═══════════════════════════════════════════════ */
+.hero {
+  position: relative; min-height: 100svh;
+  display: flex; flex-direction: column; overflow: hidden;
+  background: var(--carbon); color: var(--white);
+  border-bottom: 2px solid rgba(249,249,248,.1);
+  margin-top: var(--ticker-h);
+  padding: clamp(1.5rem, 4vw, 3rem) var(--sp-x);
+}
+.hero-top { flex: 1; min-height: 4rem; }
+.hero-stack {
+  display: flex; flex-direction: column; align-items: center;
+  position: relative; z-index: 2;
+  animation: heroIn 1s .1s both;
+  flex-shrink: 0; text-align: center;
+}
+.hero-eyebrow {
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: .16em;
+  color: rgba(249,249,248,.45);
+  margin-bottom: clamp(.8rem, 2vw, 1.5rem);
+}
+/* White Overpass knocked out of carbon */
+.hw {
+  font-family: var(--sys); font-weight: 900;
+  font-size: var(--hfs); line-height: 1;
+  text-transform: uppercase; letter-spacing: -.04em;
+  color: var(--white); white-space: nowrap; display: block;
+}
+/* Red italic — interlaced between white rows */
+.hop {
+  font-family: var(--serif); font-style: italic; font-weight: 400;
+  font-size: calc(var(--hfs) * 0.5);
+  line-height: 1; letter-spacing: -.01em;
+  color: var(--red);
+  white-space: nowrap; display: block;
+  margin-top:    calc(var(--hfs) * -0.26);
+  margin-bottom: calc(var(--hfs) * -0.26);
+}
+.hero-sub {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(1rem, 1.9vw, 1.6rem); line-height: 1.45;
+  color: rgba(249,249,248,.65);
+  margin-top: clamp(1.8rem, 3.5vw, 3rem);
+  max-width: 48ch;
+}
+.hero-bottom {
+  flex: 1; display: flex; align-items: flex-end;
+  justify-content: space-between; gap: 1.5rem;
+  min-height: 4rem; flex-wrap: wrap; flex-shrink: 0;
+  padding-top: clamp(1.5rem, 4vw, 3rem);
+}
+.hero-bl {
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: 0.07em; line-height: 2;
+  animation: cornerIn .8s .6s both; flex-shrink: 0;
+  color: rgba(249,249,248,.4);
+}
+.hero-br {
+  display: flex; flex-direction: column; align-items: flex-end; gap: .5rem;
+  animation: cornerIn .8s .8s both; flex-shrink: 0;
+}
+.hero-deadline {
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: .09em;
+  color: var(--red); padding: .3rem .7rem;
+  border: 1px solid rgba(228,0,43,.4);
+  display: inline-block;
+}
+@keyframes heroIn   { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
+@keyframes cornerIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:none; } }
+@media (max-width: 600px) {
+  .hero-bl { font-size: 0.58rem; line-height: 1.75; }
+  .hero-br .btn { padding: 0.65rem 1.1rem; font-size: 0.6rem; }
+  .hero-deadline { font-size: 0.6rem; }
+  .hero-bottom { flex-direction: column; align-items: flex-start; gap: .8rem; }
+  .hero-br { align-items: flex-start; }
+}
+
+/* ═══════════════════════════════════════════════
+   TWO-COLUMN LAYOUT
+═══════════════════════════════════════════════ */
+.two-col {
+  display: grid; grid-template-columns: 15rem 1fr;
+  gap: clamp(3rem, 5vw, 7rem); align-items: start;
+}
+.col-label {
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: .07em; line-height: 2.2;
+  border-top: 2px solid var(--carbon); padding-top: 1.2rem;
+  position: sticky; top: 6rem;
+  color: rgba(18,18,18,.65);
+}
+.col-label.on-dark {
+  border-top-color: rgba(249,249,248,.2); color: rgba(249,249,248,.65);
+}
+.col-body h2 {
+  font-family: var(--serif); font-weight: 400;
+  font-size: clamp(1.9rem, 4vw, 4.4rem);
+  line-height: 1.05; margin-bottom: 2rem;
+}
+.col-body.on-dark h2 { color: var(--white); }
+.col-body p {
+  font-size: clamp(.97rem, 1.5vw, 1.13rem);
+  max-width: 640px; margin-bottom: 1.5rem; line-height: 1.72; opacity: .82;
+}
+.col-body.on-dark p { color: rgba(249,249,248,.82); opacity: 1; }
+.ctas { margin-top: 2.8rem; display: flex; gap: 1rem; flex-wrap: wrap; }
+@media (max-width: 800px) {
+  .two-col { grid-template-columns: 1fr; gap: 2rem; }
+  .col-label { position: static; border-top: none; padding-top: 0;
+    border-bottom: 1px solid rgba(18,18,18,.1); padding-bottom: 1rem; }
+  .col-label.on-dark { border-bottom-color: rgba(249,249,248,.1); border-top: none; }
+}
+
+/* ═══════════════════════════════════════════════
+   REGISTER — WHITE FIELD
+═══════════════════════════════════════════════ */
+.reg-in {
+  max-width: 1340px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1.1fr;
+  gap: clamp(4rem, 7vw, 9rem); align-items: start;
+}
+.reg-left h2 {
+  font-family: var(--sys); font-weight: 900;
+  font-size: clamp(2.8rem, 8.5vw, 7.5rem);
+  text-transform: uppercase; line-height: .88; margin-bottom: 1.8rem;
+  color: var(--red);
+}
+.reg-left p {
+  font-size: clamp(.97rem, 1.5vw, 1.1rem);
+  max-width: 420px; margin-bottom: 1.8rem; line-height: 1.72; opacity: .72;
+}
+.reg-deadline {
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: .09em;
+  color: var(--red); border: 1.5px solid var(--red);
+  padding: .55rem 1rem;
+  display: inline-block; margin-bottom: 2rem;
+}
+.reg-det {
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: .07em; line-height: 2.3;
+  border-top: 2px solid var(--carbon); padding-top: 1.2rem;
+  opacity: .65;
+}
+.tally-wrap { width: 100%; }
+.form-label {
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: .07em;
+  border-bottom: 1.5px solid var(--carbon);
+  padding-bottom: .5rem; margin-bottom: 1.2rem;
+  display: flex; justify-content: space-between; align-items: baseline;
+  flex-wrap: wrap; gap: .5rem;
+}
+.form-label span { opacity: .55; }
+@media (max-width: 800px) { .reg-in { grid-template-columns: 1fr; gap: 3rem; } }
+
+/* ═══════════════════════════════════════════════
+   COALITION BAR — carbon, white type
+═══════════════════════════════════════════════ */
+.coalition {
+  background: var(--carbon); color: var(--white);
+  padding: clamp(2.5rem, 5.5vh, 5rem) var(--sp-x);
+  border-top: 2px solid rgba(249,249,248,.08);
+}
+.coal-in {
+  max-width: 1340px; margin: 0 auto;
+  display: grid; grid-template-columns: auto 1fr;
+  gap: clamp(2.5rem, 6vw, 6rem); align-items: center;
+}
+.coal-label {
+  font-family: var(--sys); font-weight: 900;
+  font-size: clamp(1.2rem, 2.8vw, 2.8rem);
+  text-transform: uppercase; line-height: .9; color: var(--white);
+}
+.coal-orgs { display: flex; flex-wrap: wrap; align-items: center; }
+.org { border-left: 1px solid rgba(249,249,248,.18); padding: .3rem 2.2rem; }
+.org:first-child { border-left: none; padding-left: 0; }
+.org-role {
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: .07em;
+  color: rgba(249,249,248,.55); display: block; margin-bottom: .15rem;
+}
+.org-name {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(.9rem, 1.7vw, 1.45rem); line-height: 1.15;
+}
+@media (max-width: 680px) {
+  .coal-in { grid-template-columns: 1fr; gap: 1.5rem; }
+  .coal-orgs { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .org { border-left: none; padding-left: 0; border-top: 1px solid rgba(249,249,248,.12); padding-top: 1rem; }
+  .org:first-child { border-top: none; padding-top: 0; }
+}
+
+/* ═══════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════ */
+footer {
+  background: var(--carbon); color: var(--white);
+  padding: clamp(3rem, 7vw, 6rem) var(--sp-x) 2.2rem;
+  border-top: 1px solid rgba(249,249,248,.07);
+}
+.ft {
+  max-width: 1340px; margin: 0 auto;
+  display: grid; grid-template-columns: 2fr 1fr 1fr;
+  gap: clamp(2.5rem, 5vw, 5rem);
+  padding-bottom: 2.2rem;
+  border-bottom: 1px solid rgba(249,249,248,.07); margin-bottom: 1.6rem;
+}
+.ft-wm {
+  font-family: var(--sys); font-weight: 900;
+  font-size: clamp(1.4rem, 3.2vw, 3rem);
+  text-transform: uppercase; color: var(--white);
+  line-height: .88; letter-spacing: -.03em; margin-bottom: 1rem;
+}
+.ft-brand p { font-size: .86rem; opacity: .65; max-width: 270px; line-height: 1.75; }
+.ft-col h4 {
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: .09em; opacity: .65;
+  border-bottom: 1px solid rgba(249,249,248,.08);
+  padding-bottom: .5rem; margin-bottom: 1rem;
+}
+.ft-col ul { list-style: none; }
+.ft-col ul li { margin-bottom: .6rem; }
+.ft-col ul li a { font-size: .86rem; opacity: .65; transition: opacity .15s; }
+.ft-col ul li a:hover { opacity: 1; }
+.ft-bot {
+  max-width: 1340px; margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 1rem;
+}
+.ft-bot p { font-family: var(--mono); font-size: var(--meta); text-transform: uppercase; letter-spacing: .05em; opacity: .55; }
+@media (max-width: 700px) { .ft { grid-template-columns: 1fr; gap: 2.2rem; } }
+
+/* ═══════════════════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════════════════ */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.in { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker-bar" aria-hidden="true">
+  <div class="ticker-track">
+    <span>RESERVE A TABLE &mdash; HUMAN CAPITAL QUARTERLY &mdash; SPRING FORUM &mdash; APRIL 14 &mdash; MLK LIBRARY &mdash; WASHINGTON DC &mdash; SPACES LIMITED &mdash; FORM CLOSES APRIL 7 &mdash;&nbsp;</span>
+    <span>RESERVE A TABLE &mdash; HUMAN CAPITAL QUARTERLY &mdash; SPRING FORUM &mdash; APRIL 14 &mdash; MLK LIBRARY &mdash; WASHINGTON DC &mdash; SPACES LIMITED &mdash; FORM CLOSES APRIL 7 &mdash;&nbsp;</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav" aria-label="Site navigation">
+  <a class="nav-id" href="/">&larr; HCQ Spring &rsquo;26</a>
+  <div class="nav-links">
+    <a href="#reserve" class="cta">Reserve a Table</a>
+  </div>
+</nav>
+
+<main>
+<h1 class="sr-only">Reserve an Expo Table &mdash; Human Capital Quarterly Spring Forum</h1>
+
+<!-- ═══════════════════════════════════════════════
+     HERO — CARBON FIELD
+     White Overpass + red italic on deep carbon.
+     Ticker is also carbon — a seamless dark entry.
+═══════════════════════════════════════════════ -->
+<section class="hero" id="top" aria-label="Reserve an Expo Table">
+
+  <div class="mg mg-on-dark" style="top:18%;right:var(--sp-x);transform:rotate(5deg);font-size:clamp(1.1rem,2vw,1.9rem);" aria-hidden="true">help the right<br>people find you</div>
+
+  <div class="hero-top" aria-hidden="true"></div>
+
+  <div class="hero-stack">
+    <p class="hero-eyebrow">Expo Tabling &mdash; Human Capital Quarterly &mdash; Spring Forum</p>
+    <span class="hw" aria-hidden="true">RESERVE</span>
+    <span class="hop" aria-hidden="true">a table at the forum</span>
+    <span class="hw" aria-hidden="true">A TABLE</span>
+    <p class="hero-sub">Put your organization in front of residents who are ready to take next steps.</p>
+  </div>
+
+  <div class="hero-bottom">
+    <div class="hero-bl" aria-hidden="true">
+      Tuesday, April 14, 2026<br>
+      MLK Jr. Memorial Library<br>
+      901 G St. NW, Washington, DC 20001
+    </div>
+    <div class="hero-br">
+      <span class="hero-deadline">Form closes April 7 &mdash; 5:00 PM</span>
+      <a href="#reserve" class="btn btn-wht-carbon">Reserve Your Table</a>
+      <a href="/" class="btn btn-ghost-dark" style="font-size:.6rem;padding:.62rem 1.2rem;">Public Forum &mdash; Apr 14</a>
+    </div>
+  </div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     ABOUT — WHITE FIELD
+     Two-column editorial on paper-white ground.
+═══════════════════════════════════════════════ -->
+<section class="sec f-white reveal" style="border-top:2px solid var(--carbon);">
+  <div class="inner">
+    <div class="two-col">
+      <div class="col-label">About This Opportunity</div>
+      <div class="col-body" style="position:relative;">
+        <h2>Help the right people find you.</h2>
+        <p>Human Capital Quarterly brings residents into direct contact with the organizations helping them move forward in the capital region.</p>
+        <p>If your organization offers opportunities, guidance, tools, training, or support, this is your chance to show up in a setting built for relevance, trust, and real connection.</p>
+        <div style="margin-top:1.5rem;font-family:var(--mono);font-size:var(--meta);text-transform:uppercase;letter-spacing:.07em;line-height:2.4;border-top:2px solid var(--carbon);padding-top:1.2rem;opacity:.65;">
+          Tuesday, April 14, 2026<br>
+          MLK Jr. Memorial Library<br>
+          901 G St. NW, Washington, DC 20001
+        </div>
+        <div class="ctas">
+          <a href="#reserve" class="btn btn-red">Reserve Your Table</a>
+        </div>
+        <span class="mg mg-on-white" style="bottom:-1rem;right:0;transform:rotate(-3deg);font-size:clamp(1rem,1.8vw,1.7rem);" aria-hidden="true">first come, first served</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     VALUE PROP — CARBON FIELD
+     Bold declaration. White type on carbon.
+═══════════════════════════════════════════════ -->
+<section class="sec f-carbon reveal" style="border-top:2px solid rgba(249,249,248,.1);">
+  <div class="inner">
+    <div class="two-col">
+      <div class="col-label on-dark">Why Table</div>
+      <div class="col-body on-dark">
+        <h2>Show people what you make possible.</h2>
+        <p>When you table at Human Capital Quarterly, your work becomes easier to see, understand, and act on.</p>
+        <p>You are not just showing up. You are helping residents discover resources, recognize new possibilities, and take clearer next steps in a changing economy.</p>
+        <div class="ctas">
+          <a href="#reserve" class="btn btn-wht-carbon">Reserve Your Table</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mg mg-on-dark" style="bottom:var(--sp-y);right:var(--sp-x);transform:rotate(-4deg);font-size:clamp(1rem,1.8vw,1.6rem);" aria-hidden="true">show up where it counts</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     RESERVE — WHITE FIELD, RED BORDER
+     The ask. Tally form. Deadline front and center.
+═══════════════════════════════════════════════ -->
+<section class="sec f-white reveal" id="reserve" style="border-top:3px solid var(--red);">
+  <div class="reg-in">
+    <div class="reg-left" style="position:relative;">
+      <h2>RESERVE<br>YOUR<br>TABLE</h2>
+      <span class="reg-deadline">Form closes April 7 &mdash; 5:00 PM</span>
+      <p>Slots are limited and go first come, first served. Fill out the form to hold your place at the Spring Forum on April 14.</p>
+      <span class="mg mg-red" style="position:relative;display:block;margin-bottom:1.5rem;transform:rotate(-2deg);font-size:clamp(1rem,1.7vw,1.5rem);" aria-hidden="true">make yourself findable</span>
+      <div class="reg-det">
+        SPRING FORUM &mdash; PUBLIC DAY<br>
+        TUESDAY, APRIL 14, 2026<br>
+        NOON &ndash; 8:00 PM &plus; HAPPY HOUR<br>
+        MLK JR. MEMORIAL LIBRARY<br>
+        901 G ST. NW, WASHINGTON, DC 20001<br>
+        &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;<br>
+        PRESENTED BY DC PUBLIC LIBRARY &amp; LEVY
+      </div>
+    </div>
+    <div class="tally-wrap">
+      <p class="form-label">Tabling Reservation Form<span>Spring Forum &mdash; April 14, 2026</span></p>
+      <iframe data-tally-src="https://tally.so/embed/xX21yv?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="2722" frameborder="0" marginheight="0" marginwidth="0" title="HCQ Public Forum: Tabling Reservation"></iframe>
+      <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
+    </div>
+  </div>
+</section>
+
+<!-- COALITION -->
+<section class="coalition reveal">
+  <div class="coal-in">
+    <div class="coal-label">Presented<br>By</div>
+    <div class="coal-orgs">
+      <div class="org">
+        <span class="org-role">Anchor Institution</span>
+        <div class="org-name">DC Public Library</div>
+      </div>
+      <div class="org">
+        <span class="org-role">Design &amp; Strategy</span>
+        <div class="org-name">Levy</div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft">
+    <div class="ft-brand">
+      <div class="ft-wm">Human<br>Capital<br>Quarterly</div>
+      <p>A quarterly civic anchor for D.C.'s workforce and upskilling ecosystem. Recurring. Practical. For everyone who wants to build something real.</p>
+    </div>
+    <div class="ft-col">
+      <h4>Tabling</h4>
+      <ul>
+        <li><a href="#top">About This Opportunity</a></li>
+        <li><a href="#reserve">Reserve Your Table</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h4>The Event</h4>
+      <ul>
+        <li><a href="/">Public Forum &mdash; Apr 14</a></li>
+        <li><a href="/sessions/">Practitioner Day &mdash; Apr 10</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-bot">
+    <p>HCQ Spring 2026 &mdash; Public Forum: April 14 &mdash; humancapital.withlevy.com/expo</p>
+    <span style="font-family:var(--hand);color:var(--red);font-size:1.6rem;">People are the real capital.</span>
+  </div>
+</footer>
+
+<script>
+const revealEls = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+}, { threshold: 0.06 });
+revealEls.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
