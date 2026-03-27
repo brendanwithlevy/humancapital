@@ -33,7 +33,7 @@
   --hand:  'Caveat',           cursive;
   --meta:  0.72rem;
 
-  --hfs:  clamp(3rem, 13vw, 13.5rem);
+  --hfs:  clamp(2.5rem, min(22vw, 22svh), 22rem);
   --sp-y: clamp(4rem, 9vw, 8rem);
   --sp-x: clamp(1.5rem, 5.5vw, 6vw);
   --ticker-h: 2.35rem;
@@ -90,7 +90,7 @@ a { color: inherit; text-decoration: none; }
   pointer-events: all;
   font-family: var(--mono); font-size: var(--meta);
   text-transform: uppercase; letter-spacing: 0.09em;
-  background: var(--blue); color: var(--carbon);
+  background: transparent; color: var(--carbon);
   border: 1.5px solid rgba(18,18,18,.22);
   padding: 0.44rem 0.85rem;
   transition: background .15s, color .15s, border-color .15s;
@@ -169,7 +169,7 @@ a { color: inherit; text-decoration: none; }
    Ticker is also carbon — a continuous dark entry.
 ═══════════════════════════════════════════════ */
 .hero {
-  position: relative; min-height: 100svh;
+  position: relative; min-height: calc(100svh - var(--ticker-h));
   display: flex; flex-direction: column; overflow: hidden;
   background: var(--blue); color: var(--carbon);
   border-bottom: 2px solid rgba(18,18,18,.15);
@@ -223,14 +223,15 @@ a { color: inherit; text-decoration: none; }
 }
 /* Overlay — Instrument Serif, carbon, multiply overprint */
 .hero-req {
-  position: absolute; inset: 0;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%);
+  display: flex; flex-direction: row; justify-content: space-between; align-items: center;
   font-family: var(--serif); font-weight: 400;
-  font-size: calc(var(--hfs) * 0.65);
+  font-size: calc(var(--hfs) * 0.55);
   line-height: 1; letter-spacing: -.01em;
   color: var(--carbon);
   mix-blend-mode: multiply;
   white-space: nowrap;
+  pointer-events: none;
 }
 .hero-sub {
   font-family: var(--serif); font-style: italic;
@@ -480,7 +481,10 @@ footer {
   <div class="hero-stack">
     <div class="hcq-wrap">
       <span class="hcq-back" aria-hidden="true"><span>CLAIM</span><span>YOUR</span><span>TABLE</span></span>
-      <span class="hero-req"><span>Build Awareness,</span><span>Show Your Value.</span></span>
+    </div>
+    <div class="hero-req" aria-hidden="true">
+      <span>Build Awareness,</span>
+      <span>Show Your Value.</span>
     </div>
   </div>
 
