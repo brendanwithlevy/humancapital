@@ -67,7 +67,7 @@ a { color: inherit; text-decoration: none; }
 ═══════════════════════════════════════════════ */
 .ticker-bar {
   position: fixed; top: 0; left: 0; right: 0; z-index: 600;
-  background: var(--blue); color: var(--carbon);
+  background: var(--carbon); color: var(--white);
   padding: 0.58rem 0; overflow: hidden;
   font-family: var(--mono); font-size: var(--meta);
   text-transform: uppercase; letter-spacing: 0.1em;
@@ -107,8 +107,8 @@ a { color: inherit; text-decoration: none; }
 }
 .nav-links a:first-child { border-left: 1.5px solid rgba(18,18,18,.22); }
 .nav-links a:hover { background: var(--white); color: var(--carbon); border-color: var(--white); }
-.nav-links a.cta { background: var(--carbon); color: var(--white); border-color: var(--carbon); }
-.nav-links a.cta:hover { background: var(--white); color: var(--carbon); border-color: rgba(18,18,18,.22); }
+.nav-links a.cta { background: var(--red); color: var(--white); border-color: var(--red); }
+.nav-links a.cta:hover { background: var(--carbon); color: var(--white); border-color: var(--carbon); }
 @media (max-width: 620px) { .nav-links a:not(.cta) { display: none; } }
 
 /* ═══════════════════════════════════════════════
@@ -135,6 +135,9 @@ a { color: inherit; text-decoration: none; }
 /* on carbon/dark bg */
 .btn-wht-carbon { background: var(--white); color: var(--carbon); border-color: var(--white); }
 .btn-wht-carbon:hover { background: transparent; color: var(--white); }
+/* red accent — works on any bg */
+.btn-red { background: var(--red); color: var(--white); border-color: var(--red); }
+.btn-red:hover { background: var(--carbon); color: var(--white); border-color: var(--carbon); }
 
 /* ═══════════════════════════════════════════════
    SECTION UTILITIES
@@ -446,14 +449,13 @@ footer {
 ═══════════════════════════════════════════════ -->
 <section class="hero" id="top" aria-label="Request an Expo Table">
 
-  <div class="mg mg-on-dark" style="top:18%;right:var(--sp-x);transform:rotate(5deg);font-size:clamp(1.1rem,2vw,1.9rem);" aria-hidden="true">help the right<br>people find you</div>
+  <div class="mg mg-red" style="top:18%;right:var(--sp-x);transform:rotate(5deg);font-size:clamp(1.1rem,2vw,1.9rem);" aria-hidden="true">help the right<br>people find you</div>
 
   <div class="hero-top" aria-hidden="true"></div>
 
   <div class="hero-stack">
     <p class="hero-eyebrow">Expo Tabling &mdash; Human Capital Quarterly &mdash; Spring Forum</p>
     <span class="hw" aria-hidden="true">REQUEST</span>
-    <span class="hop" aria-hidden="true">a table at the forum</span>
     <span class="hw" aria-hidden="true">A TABLE</span>
     <p class="hero-sub">Put your organization in front of residents who are ready to take next steps.</p>
   </div>
@@ -466,7 +468,7 @@ footer {
     </div>
     <div class="hero-br">
       <span class="hero-deadline">Form closes April 7 &mdash; 5:00 PM</span>
-      <a href="#reserve" class="btn btn-wht-carbon">Request a Table</a>
+      <a href="#reserve" class="btn btn-red">Request a Table</a>
       <a href="/" class="btn btn-ghost-blue" style="font-size:.6rem;padding:.62rem 1.2rem;">Public Forum &mdash; Apr 14</a>
     </div>
   </div>
@@ -491,7 +493,7 @@ footer {
           901 G St. NW, Washington, DC 20001
         </div>
         <div class="ctas">
-          <a href="#reserve" class="btn btn-blue">Request a Table</a>
+          <a href="#reserve" class="btn btn-red">Request a Table</a>
         </div>
         <span class="mg mg-on-white" style="bottom:-1rem;right:0;transform:rotate(-3deg);font-size:clamp(1rem,1.8vw,1.7rem);" aria-hidden="true">first come, first served</span>
       </div>
@@ -503,21 +505,21 @@ footer {
      VALUE PROP — CARBON FIELD
      Bold declaration. White type on carbon.
 ═══════════════════════════════════════════════ -->
-<section class="sec f-blue reveal" style="border-top:2px solid rgba(18,18,18,.12);">
+<section class="sec f-carbon reveal" style="border-top:2px solid rgba(249,249,248,.1);">
   <div class="inner">
     <div class="two-col">
-      <div class="col-label on-blue">Why Table</div>
-      <div class="col-body on-blue">
+      <div class="col-label on-dark">Why Table</div>
+      <div class="col-body on-dark">
         <h2>Show people what you make possible.</h2>
         <p>When you table at Human Capital Quarterly, your work becomes easier to see, understand, and act on.</p>
         <p>You are not just showing up. You are helping residents discover resources, recognize new possibilities, and take clearer next steps in a changing economy.</p>
         <div class="ctas">
-          <a href="#reserve" class="btn btn-carbon-solid">Request a Table</a>
+          <a href="#reserve" class="btn btn-red">Request a Table</a>
         </div>
       </div>
     </div>
   </div>
-  <div class="mg mg-on-blue" style="bottom:var(--sp-y);right:var(--sp-x);transform:rotate(-4deg);font-size:clamp(1rem,1.8vw,1.6rem);" aria-hidden="true">show up where it counts</div>
+  <div class="mg mg-on-dark" style="bottom:var(--sp-y);right:var(--sp-x);transform:rotate(-4deg);font-size:clamp(1rem,1.8vw,1.6rem);" aria-hidden="true">show up where it counts</div>
 </section>
 
 <!-- ═══════════════════════════════════════════════
