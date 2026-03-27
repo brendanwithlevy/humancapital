@@ -54,7 +54,7 @@ body::after {
   content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9000;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
 }
-::selection { background: var(--red); color: var(--white); }
+::selection { background: var(--blue); color: var(--carbon); }
 a { color: inherit; text-decoration: none; }
 .sr-only {
   position: absolute; width: 1px; height: 1px;
@@ -67,7 +67,7 @@ a { color: inherit; text-decoration: none; }
 ═══════════════════════════════════════════════ */
 .ticker-bar {
   position: fixed; top: 0; left: 0; right: 0; z-index: 600;
-  background: var(--carbon); color: var(--white);
+  background: var(--blue); color: var(--carbon);
   padding: 0.58rem 0; overflow: hidden;
   font-family: var(--mono); font-size: var(--meta);
   text-transform: uppercase; letter-spacing: 0.1em;
@@ -90,25 +90,25 @@ a { color: inherit; text-decoration: none; }
   pointer-events: all;
   font-family: var(--mono); font-size: var(--meta);
   text-transform: uppercase; letter-spacing: 0.09em;
-  background: var(--carbon); color: var(--white);
-  border: 1.5px solid rgba(249,249,248,.28);
+  background: var(--blue); color: var(--carbon);
+  border: 1.5px solid rgba(18,18,18,.22);
   padding: 0.44rem 0.85rem;
-  transition: background .15s, border-color .15s;
+  transition: background .15s, color .15s, border-color .15s;
 }
-.nav-id:hover { background: var(--red); border-color: var(--red); }
+.nav-id:hover { background: var(--carbon); color: var(--white); border-color: var(--carbon); }
 .nav-links { pointer-events: all; display: flex; }
 .nav-links a {
   font-family: var(--mono); font-size: var(--meta);
   text-transform: uppercase; letter-spacing: 0.07em;
-  background: var(--carbon); color: var(--white);
-  border: 1.5px solid rgba(249,249,248,.28); border-left: none;
+  background: var(--blue); color: var(--carbon);
+  border: 1.5px solid rgba(18,18,18,.22); border-left: none;
   padding: 0.44rem 0.85rem;
   transition: background .15s, color .15s, border-color .15s;
 }
-.nav-links a:first-child { border-left: 1.5px solid rgba(249,249,248,.28); }
+.nav-links a:first-child { border-left: 1.5px solid rgba(18,18,18,.22); }
 .nav-links a:hover { background: var(--white); color: var(--carbon); border-color: var(--white); }
-.nav-links a.cta { background: var(--red); color: var(--white); border-color: var(--red); }
-.nav-links a.cta:hover { background: var(--carbon); border-color: rgba(249,249,248,.28); }
+.nav-links a.cta { background: var(--carbon); color: var(--white); border-color: var(--carbon); }
+.nav-links a.cta:hover { background: var(--white); color: var(--carbon); border-color: rgba(18,18,18,.22); }
 @media (max-width: 620px) { .nav-links a:not(.cta) { display: none; } }
 
 /* ═══════════════════════════════════════════════
@@ -122,16 +122,19 @@ a { color: inherit; text-decoration: none; }
   transition: background .15s, color .15s, border-color .15s;
   white-space: nowrap;
 }
-/* on dark/carbon bg */
-.btn-wht-carbon { background: var(--white); color: var(--carbon); border-color: var(--white); }
-.btn-wht-carbon:hover { background: transparent; color: var(--white); }
-.btn-ghost-dark { background: transparent; color: rgba(249,249,248,.55); border-color: rgba(249,249,248,.22); }
-.btn-ghost-dark:hover { border-color: var(--white); color: var(--white); }
 /* on white bg */
-.btn-red { background: var(--red); color: var(--white); border-color: var(--red); }
-.btn-red:hover { background: var(--carbon); border-color: var(--carbon); }
+.btn-blue { background: var(--blue); color: var(--carbon); border-color: var(--blue); }
+.btn-blue:hover { background: var(--carbon); color: var(--white); border-color: var(--carbon); }
 .btn-outline { background: transparent; color: var(--carbon); border-color: var(--carbon); }
 .btn-outline:hover { background: var(--carbon); color: var(--white); }
+/* on blue bg */
+.btn-carbon-solid { background: var(--carbon); color: var(--white); border-color: var(--carbon); }
+.btn-carbon-solid:hover { background: var(--white); color: var(--carbon); border-color: var(--white); }
+.btn-ghost-blue { background: transparent; color: var(--carbon); border-color: rgba(18,18,18,.38); }
+.btn-ghost-blue:hover { border-color: var(--carbon); color: var(--carbon); }
+/* on carbon/dark bg */
+.btn-wht-carbon { background: var(--white); color: var(--carbon); border-color: var(--white); }
+.btn-wht-carbon:hover { background: transparent; color: var(--white); }
 
 /* ═══════════════════════════════════════════════
    SECTION UTILITIES
@@ -139,6 +142,7 @@ a { color: inherit; text-decoration: none; }
 .sec { padding: var(--sp-y) var(--sp-x); position: relative; }
 .inner { max-width: 1340px; margin: 0 auto; }
 .f-white  { background: var(--white);  color: var(--carbon); }
+.f-blue   { background: var(--blue);   color: var(--carbon); }
 .f-carbon { background: var(--carbon); color: var(--white); }
 
 /* ═══════════════════════════════════════════════
@@ -152,6 +156,7 @@ a { color: inherit; text-decoration: none; }
 }
 .mg-on-dark  { color: rgba(249,249,248,.2); }
 .mg-on-white { color: var(--carbon); opacity: 0.28; }
+.mg-on-blue  { color: rgba(18,18,18,.28); }
 .mg-red      { color: var(--red); opacity: 0.72; }
 
 /* ═══════════════════════════════════════════════
@@ -163,10 +168,11 @@ a { color: inherit; text-decoration: none; }
 .hero {
   position: relative; min-height: 100svh;
   display: flex; flex-direction: column; overflow: hidden;
-  background: var(--carbon); color: var(--white);
-  border-bottom: 2px solid rgba(249,249,248,.1);
+  background: var(--blue); color: var(--carbon);
+  border-bottom: 2px solid rgba(18,18,18,.15);
   margin-top: var(--ticker-h);
   padding: clamp(1.5rem, 4vw, 3rem) var(--sp-x);
+  color-scheme: only light;
 }
 .hero-top { flex: 1; min-height: 4rem; }
 .hero-stack {
@@ -178,22 +184,23 @@ a { color: inherit; text-decoration: none; }
 .hero-eyebrow {
   font-family: var(--mono); font-size: var(--meta);
   text-transform: uppercase; letter-spacing: .16em;
-  color: rgba(249,249,248,.45);
+  color: rgba(18,18,18,.7);
   margin-bottom: clamp(.8rem, 2vw, 1.5rem);
 }
-/* White Overpass knocked out of carbon */
+/* Carbon Overpass knocked out of blue — primary plate */
 .hw {
   font-family: var(--sys); font-weight: 900;
   font-size: var(--hfs); line-height: 1;
   text-transform: uppercase; letter-spacing: -.04em;
-  color: var(--white); white-space: nowrap; display: block;
+  color: var(--carbon); white-space: nowrap; display: block;
 }
-/* Red italic — interlaced between white rows */
+/* Carbon italic multiply — second plate overprint on blue → deep blue-black */
 .hop {
   font-family: var(--serif); font-style: italic; font-weight: 400;
   font-size: calc(var(--hfs) * 0.5);
   line-height: 1; letter-spacing: -.01em;
-  color: var(--red);
+  color: var(--carbon);
+  mix-blend-mode: multiply;
   white-space: nowrap; display: block;
   margin-top:    calc(var(--hfs) * -0.26);
   margin-bottom: calc(var(--hfs) * -0.26);
@@ -201,7 +208,7 @@ a { color: inherit; text-decoration: none; }
 .hero-sub {
   font-family: var(--serif); font-style: italic;
   font-size: clamp(1rem, 1.9vw, 1.6rem); line-height: 1.45;
-  color: rgba(249,249,248,.65);
+  color: rgba(18,18,18,.75);
   margin-top: clamp(1.8rem, 3.5vw, 3rem);
   max-width: 48ch;
 }
@@ -215,7 +222,7 @@ a { color: inherit; text-decoration: none; }
   font-family: var(--mono); font-size: var(--meta);
   text-transform: uppercase; letter-spacing: 0.07em; line-height: 2;
   animation: cornerIn .8s .6s both; flex-shrink: 0;
-  color: rgba(249,249,248,.4);
+  color: rgba(18,18,18,.65);
 }
 .hero-br {
   display: flex; flex-direction: column; align-items: flex-end; gap: .5rem;
@@ -224,8 +231,8 @@ a { color: inherit; text-decoration: none; }
 .hero-deadline {
   font-family: var(--mono); font-size: var(--meta);
   text-transform: uppercase; letter-spacing: .09em;
-  color: var(--red); padding: .3rem .7rem;
-  border: 1px solid rgba(228,0,43,.4);
+  color: var(--carbon); padding: .3rem .7rem;
+  border: 1px solid rgba(18,18,18,.35);
   display: inline-block;
 }
 @keyframes heroIn   { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
@@ -248,12 +255,15 @@ a { color: inherit; text-decoration: none; }
 .col-label {
   font-family: var(--mono); font-size: var(--meta);
   text-transform: uppercase; letter-spacing: .07em; line-height: 2.2;
-  border-top: 2px solid var(--carbon); padding-top: 1.2rem;
+  border-top: 2px solid var(--blue); padding-top: 1.2rem;
   position: sticky; top: 6rem;
   color: rgba(18,18,18,.65);
 }
 .col-label.on-dark {
   border-top-color: rgba(249,249,248,.2); color: rgba(249,249,248,.65);
+}
+.col-label.on-blue {
+  border-top-color: rgba(18,18,18,.2); color: rgba(18,18,18,.65);
 }
 .col-body h2 {
   font-family: var(--serif); font-weight: 400;
@@ -261,11 +271,13 @@ a { color: inherit; text-decoration: none; }
   line-height: 1.05; margin-bottom: 2rem;
 }
 .col-body.on-dark h2 { color: var(--white); }
+.col-body.on-blue h2 { color: var(--carbon); }
 .col-body p {
   font-size: clamp(.97rem, 1.5vw, 1.13rem);
   max-width: 640px; margin-bottom: 1.5rem; line-height: 1.72; opacity: .82;
 }
 .col-body.on-dark p { color: rgba(249,249,248,.82); opacity: 1; }
+.col-body.on-blue p { color: rgba(18,18,18,.82); opacity: 1; }
 .ctas { margin-top: 2.8rem; display: flex; gap: 1rem; flex-wrap: wrap; }
 @media (max-width: 800px) {
   .two-col { grid-template-columns: 1fr; gap: 2rem; }
@@ -282,7 +294,7 @@ a { color: inherit; text-decoration: none; }
   display: flex; justify-content: space-between; align-items: flex-end;
   gap: clamp(2rem, 4vw, 4rem); flex-wrap: wrap;
   padding-bottom: clamp(2rem, 4vw, 3rem);
-  border-bottom: 2px solid var(--carbon);
+  border-bottom: 2px solid var(--blue);
   margin-bottom: clamp(2rem, 4vw, 3rem);
 }
 .reg-header-left h2 {
@@ -311,7 +323,7 @@ a { color: inherit; text-decoration: none; }
 .form-label {
   font-family: var(--mono); font-size: var(--meta);
   text-transform: uppercase; letter-spacing: .07em;
-  border-bottom: 1.5px solid var(--carbon);
+  border-bottom: 1.5px solid var(--blue);
   padding-bottom: .5rem; margin-bottom: 1.2rem;
   display: flex; justify-content: space-between; align-items: baseline;
   flex-wrap: wrap; gap: .5rem;
@@ -455,7 +467,7 @@ footer {
     <div class="hero-br">
       <span class="hero-deadline">Form closes April 7 &mdash; 5:00 PM</span>
       <a href="#reserve" class="btn btn-wht-carbon">Request a Table</a>
-      <a href="/" class="btn btn-ghost-dark" style="font-size:.6rem;padding:.62rem 1.2rem;">Public Forum &mdash; Apr 14</a>
+      <a href="/" class="btn btn-ghost-blue" style="font-size:.6rem;padding:.62rem 1.2rem;">Public Forum &mdash; Apr 14</a>
     </div>
   </div>
 
@@ -465,7 +477,7 @@ footer {
      ABOUT — WHITE FIELD
      Two-column editorial on paper-white ground.
 ═══════════════════════════════════════════════ -->
-<section class="sec f-white reveal" style="border-top:2px solid var(--carbon);">
+<section class="sec f-white reveal" style="border-top:2px solid var(--blue);">
   <div class="inner">
     <div class="two-col">
       <div class="col-label">About This Opportunity</div>
@@ -473,13 +485,13 @@ footer {
         <h2>Help the right people find you.</h2>
         <p>Human Capital Quarterly brings residents into direct contact with the organizations helping them move forward in the capital region.</p>
         <p>If your organization offers opportunities, guidance, tools, training, or support, this is your chance to show up in a setting built for relevance, trust, and real connection.</p>
-        <div style="margin-top:1.5rem;font-family:var(--mono);font-size:var(--meta);text-transform:uppercase;letter-spacing:.07em;line-height:2.4;border-top:2px solid var(--carbon);padding-top:1.2rem;opacity:.65;">
+        <div style="margin-top:1.5rem;font-family:var(--mono);font-size:var(--meta);text-transform:uppercase;letter-spacing:.07em;line-height:2.4;border-top:2px solid var(--blue);padding-top:1.2rem;opacity:.65;">
           Tuesday, April 14, 2026<br>
           MLK Jr. Memorial Library<br>
           901 G St. NW, Washington, DC 20001
         </div>
         <div class="ctas">
-          <a href="#reserve" class="btn btn-red">Request a Table</a>
+          <a href="#reserve" class="btn btn-blue">Request a Table</a>
         </div>
         <span class="mg mg-on-white" style="bottom:-1rem;right:0;transform:rotate(-3deg);font-size:clamp(1rem,1.8vw,1.7rem);" aria-hidden="true">first come, first served</span>
       </div>
@@ -491,28 +503,28 @@ footer {
      VALUE PROP — CARBON FIELD
      Bold declaration. White type on carbon.
 ═══════════════════════════════════════════════ -->
-<section class="sec f-carbon reveal" style="border-top:2px solid rgba(249,249,248,.1);">
+<section class="sec f-blue reveal" style="border-top:2px solid rgba(18,18,18,.12);">
   <div class="inner">
     <div class="two-col">
-      <div class="col-label on-dark">Why Table</div>
-      <div class="col-body on-dark">
+      <div class="col-label on-blue">Why Table</div>
+      <div class="col-body on-blue">
         <h2>Show people what you make possible.</h2>
         <p>When you table at Human Capital Quarterly, your work becomes easier to see, understand, and act on.</p>
         <p>You are not just showing up. You are helping residents discover resources, recognize new possibilities, and take clearer next steps in a changing economy.</p>
         <div class="ctas">
-          <a href="#reserve" class="btn btn-wht-carbon">Request a Table</a>
+          <a href="#reserve" class="btn btn-carbon-solid">Request a Table</a>
         </div>
       </div>
     </div>
   </div>
-  <div class="mg mg-on-dark" style="bottom:var(--sp-y);right:var(--sp-x);transform:rotate(-4deg);font-size:clamp(1rem,1.8vw,1.6rem);" aria-hidden="true">show up where it counts</div>
+  <div class="mg mg-on-blue" style="bottom:var(--sp-y);right:var(--sp-x);transform:rotate(-4deg);font-size:clamp(1rem,1.8vw,1.6rem);" aria-hidden="true">show up where it counts</div>
 </section>
 
 <!-- ═══════════════════════════════════════════════
      RESERVE — WHITE FIELD, RED BORDER
      The ask. Tally form. Deadline front and center.
 ═══════════════════════════════════════════════ -->
-<section class="sec f-white reveal" id="reserve" style="border-top:3px solid var(--red);">
+<section class="sec f-white reveal" id="reserve" style="border-top:3px solid var(--blue);">
   <div class="reg-in">
     <div class="reg-header">
       <div class="reg-header-left">
