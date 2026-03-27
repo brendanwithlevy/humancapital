@@ -215,19 +215,19 @@ a { color: inherit; text-decoration: none; }
 }
 .hcq-back {
   font-family: var(--sys); font-weight: 900;
-  font-size: clamp(7rem, 32vw, 32rem);
+  font-size: var(--hfs);
   line-height: 1; letter-spacing: -.04em; text-transform: uppercase;
   color: var(--white);
-  white-space: nowrap; display: block;
+  display: flex; flex-direction: column; align-items: center;
   pointer-events: none; user-select: none;
 }
-/* "Request a table" — Instrument Serif, carbon, multiply overprint */
+/* Overlay — Instrument Serif, carbon, multiply overprint */
 .hero-req {
   position: absolute; inset: 0;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   font-family: var(--serif); font-weight: 400;
-  font-size: clamp(2rem, 7.5vw, 8rem);
-  line-height: 1; letter-spacing: -.01em; text-transform: uppercase;
+  font-size: calc(var(--hfs) * 0.52);
+  line-height: 1; letter-spacing: -.01em;
   color: var(--carbon);
   mix-blend-mode: multiply;
   white-space: nowrap;
@@ -480,8 +480,8 @@ footer {
   <div class="hero-stack">
     <p class="hero-eyebrow">Expo Tabling &mdash; Human Capital Quarterly &mdash; Spring Forum</p>
     <div class="hcq-wrap">
-      <span class="hcq-back" aria-hidden="true">HCQ</span>
-      <span class="hero-req"><span>Request</span><span>a table</span></span>
+      <span class="hcq-back" aria-hidden="true"><span>HOST</span><span>A TABLE</span></span>
+      <span class="hero-req"><span>Meet your public</span><span>face-to-face</span></span>
     </div>
     <p class="hero-sub">Help your organization get front of residents who are ready to take next steps.</p>
   </div>
