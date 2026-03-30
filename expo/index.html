@@ -473,10 +473,34 @@ footer {
   pointer-events: all;
   transform: none;
 }
+
+/* ── Skip link ── */
+.skip-link {
+  position: absolute; top: -100%; left: 1rem; z-index: 9999;
+  padding: .6rem 1.2rem;
+  background: var(--carbon); color: var(--white);
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: .08em;
+  text-decoration: none; transition: top .15s;
+}
+.skip-link:focus { top: 1rem; }
+
+/* ── Focus visible ── */
+:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 3px;
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track { animation-play-state: paused; }
+}
 </style>
 </head>
 <body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
 
+<header>
 <!-- TICKER -->
 <div class="ticker-bar" aria-hidden="true">
   <div class="ticker-track">
@@ -491,8 +515,9 @@ footer {
 <nav class="nav" aria-label="Site navigation">
   <a class="nav-id" href="/">&larr; HCQ Spring &rsquo;26</a>
 </nav>
+</header>
 
-<main>
+<main id="main-content">
 <h1 class="sr-only">Request an Expo Table &mdash; Human Capital Quarterly Spring Forum</h1>
 
 <!-- ═══════════════════════════════════════════════
