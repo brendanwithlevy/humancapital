@@ -690,10 +690,34 @@ footer {
 ═══════════════════════════════════════════════ */
 .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
 .reveal.in { opacity: 1; transform: none; }
+
+/* ── Skip link ── */
+.skip-link {
+  position: absolute; top: -100%; left: 1rem; z-index: 9999;
+  padding: .6rem 1.2rem;
+  background: var(--carbon); color: var(--white);
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: .08em;
+  text-decoration: none; transition: top .15s;
+}
+.skip-link:focus { top: 1rem; }
+
+/* ── Focus visible ── */
+:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 3px;
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track { animation-play-state: paused; }
+}
 </style>
 </head>
 <body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
 
+<header>
 <!-- TICKER -->
 <div class="ticker-bar" aria-hidden="true">
   <div class="ticker-track">
@@ -711,13 +735,14 @@ footer {
     <a href="#register" class="cta">Reserve Your Spot</a>
   </div>
 </nav>
+</header>
 
 <!-- ═══════════════════════════════════════════════
      HERO — FULL RED BROADSIDE
      White knocked out. Carbon italic interlaced.
      Red field, white type knocked out.
 ═══════════════════════════════════════════════ -->
-<main>
+<main id="main-content">
 <h1 class="sr-only">Human Capital Sessions — April 10</h1>
 <section class="hero" id="top" aria-label="Human Capital Sessions — April 10">
 
