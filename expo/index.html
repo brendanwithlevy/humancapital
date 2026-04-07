@@ -399,6 +399,12 @@ a { color: inherit; text-decoration: none; }
 .coal-orgs { display: flex; flex-wrap: wrap; align-items: center; }
 .org { border-left: 1px solid rgba(249,249,248,.18); padding: .3rem 2.2rem; }
 .org:first-child { border-left: none; padding-left: 0; }
+.coal-logo-ph {
+  display: block;
+  height: 22px; width: auto;
+  margin-bottom: .45rem;
+  opacity: .85;
+}
 .org-role {
   font-family: var(--mono); font-size: var(--meta);
   text-transform: uppercase; letter-spacing: .07em;
@@ -643,10 +649,12 @@ footer {
     <div class="coal-label">Presented<br>By</div>
     <div class="coal-orgs">
       <div class="org">
+        <img class="coal-logo-ph" src="/logos/dcpl-knockout.png" alt="DC Public Library">
         <span class="org-role">Anchor Institution</span>
         <div class="org-name">DC Public Library</div>
       </div>
       <div class="org">
+        <img class="coal-logo-ph" src="/logos/levy-knockout.png" alt="Levy">
         <span class="org-role">Design &amp; Strategy</span>
         <div class="org-name">Levy</div>
       </div>

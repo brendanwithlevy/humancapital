@@ -267,9 +267,8 @@ a { color: inherit; text-decoration: none; }
   margin-bottom: 0.5rem;
 }
 .logo-ph {
-  width: 80px; height: 28px;
-  border: 1px dashed rgba(18,18,18,.25);
-  background: transparent;
+  height: 28px; width: auto;
+  opacity: .85;
 }
 
 /* ════════════════════════════════════════════════════
@@ -656,11 +655,12 @@ select {
   text-transform: uppercase; letter-spacing: .05em;
   opacity: 1; display: block; margin-top: .2rem;
 }
-/* Logo placeholder in coalition bar */
+/* Logo in coalition bar */
 .coal-logo-ph {
-  width: 72px; height: 22px;
-  border: 1px dashed rgba(18,18,18,.3);
+  display: block;
+  height: 22px; width: auto;
   margin-bottom: .45rem;
+  opacity: .85;
 }
 @media (max-width: 680px) {
   .coal-in { grid-template-columns: 1fr; gap: 1.5rem; }
@@ -715,8 +715,8 @@ footer {
   margin-bottom: 1.6rem;
 }
 .ft-logo-ph {
-  width: 90px; height: 26px;
-  border: 1px dashed rgba(249,249,248,.18);
+  height: 26px; width: auto;
+  opacity: .75;
 }
 @media (max-width: 700px) { .ft { grid-template-columns: 1fr; gap: 2.2rem; } }
 
@@ -846,7 +846,10 @@ input:focus-visible, select:focus-visible {
       Presented by DC Public Library &amp; Levy
     </div>
     <div class="hero-br">
-      <!-- Logo placeholders — replace with actual logo assets -->
+      <div class="hero-logos">
+        <img class="logo-ph" src="/logos/dcpl-knockout.png" alt="DC Public Library">
+        <img class="logo-ph" src="/logos/levy-knockout.png" alt="Levy">
+      </div>
       </div>
       <a href="#register" class="btn btn-red">Register Free &mdash; Apr 14</a>
     </div>
@@ -1118,12 +1121,12 @@ input:focus-visible, select:focus-visible {
     <div class="coal-label">Presented<br>By</div>
     <div class="coal-orgs">
       <div class="org">
-        <!-- Logo placeholder — DC Public Library -->
+        <img class="coal-logo-ph" src="/logos/dcpl-knockout.png" alt="DC Public Library">
         <span class="org-role">Anchor Institution</span>
         <div class="org-name">DC Public Library</div>
       </div>
       <div class="org">
-        <!-- Logo placeholder — Levy -->
+        <img class="coal-logo-ph" src="/logos/levy-knockout.png" alt="Levy">
         <span class="org-role">Design &amp; Strategy</span>
         <div class="org-name">Levy</div>
       </div>
@@ -1143,6 +1146,10 @@ input:focus-visible, select:focus-visible {
     <div class="ft-brand">
       <div class="ft-wm">Human<br>Capital<br>Quarterly</div>
       <p>A quarterly civic anchor for D.C.'s workforce and upskilling ecosystem. Recurring. Practical. For everyone who wants to build something real.</p>
+      <div class="ft-logos">
+        <img class="ft-logo-ph" src="/logos/dcpl-knockout.png" alt="DC Public Library">
+        <img class="ft-logo-ph" src="/logos/levy-knockout.png" alt="Levy">
+      </div>
     </div>
     <div class="ft-col">
       <h2>April 14 Forum</h2>
