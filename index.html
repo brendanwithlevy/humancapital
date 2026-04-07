@@ -658,9 +658,10 @@ select {
 /* Logo in coalition bar */
 .coal-logo-ph {
   display: block;
-  height: 22px; width: auto;
-  margin-bottom: .45rem;
-  opacity: .85;
+  height: 40px; width: auto;
+  margin-bottom: .6rem;
+  filter: invert(1);
+  opacity: .9;
 }
 @media (max-width: 680px) {
   .coal-in { grid-template-columns: 1fr; gap: 1.5rem; }
@@ -707,17 +708,6 @@ footer {
 }
 .ft-bot p { font-family: var(--mono); font-size: var(--meta); text-transform: uppercase; letter-spacing: .05em; }
 .ft-sig { font-family: var(--hand); color: var(--red); font-size: 1.6rem; }
-.ft-logos {
-  max-width: 1340px; margin: 0 auto;
-  display: flex; gap: 1.2rem; align-items: center;
-  padding-bottom: 1.6rem;
-  border-bottom: 1px solid rgba(249,249,248,.08);
-  margin-bottom: 1.6rem;
-}
-.ft-logo-ph {
-  height: 26px; width: auto;
-  opacity: .75;
-}
 @media (max-width: 700px) { .ft { grid-template-columns: 1fr; gap: 2.2rem; } }
 
 /* ════════════════════════════════════════════════════
@@ -1146,10 +1136,6 @@ input:focus-visible, select:focus-visible {
     <div class="ft-brand">
       <div class="ft-wm">Human<br>Capital<br>Quarterly</div>
       <p>A quarterly civic anchor for D.C.'s workforce and upskilling ecosystem. Recurring. Practical. For everyone who wants to build something real.</p>
-      <div class="ft-logos">
-        <img class="ft-logo-ph" src="/logos/dcpl-knockout.png" alt="DC Public Library">
-        <img class="ft-logo-ph" src="/logos/levy-knockout.png" alt="Levy">
-      </div>
     </div>
     <div class="ft-col">
       <h2>April 14 Forum</h2>
