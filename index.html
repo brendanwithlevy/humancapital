@@ -133,7 +133,7 @@ a { color: inherit; text-decoration: none; }
 .btn-dark:hover { background: var(--carbon); color: var(--white); }
 .btn-white { background: var(--white);  color: var(--carbon); border-color: var(--white); }
 .btn-white:hover { background: transparent; color: var(--white); border-color: rgba(249,249,248,.45); }
-.btn-ghost { background: transparent;  color: var(--white); border-color: rgba(249,249,248,.38); }
+.btn-ghost { background: transparent;  color: var(--white); border-color: rgba(249,249,248,.52); }
 .btn-ghost:hover { border-color: var(--white); }
 
 /* ════════════════════════════════════════════════════
@@ -348,7 +348,7 @@ a { color: inherit; text-decoration: none; }
 }
 .punch-eye {
   font-family: var(--mono); font-size: var(--meta);
-  text-transform: uppercase; letter-spacing: .15em; opacity: .75; margin-bottom: 1.2rem;
+  text-transform: uppercase; letter-spacing: .15em; opacity: .85; margin-bottom: 1.2rem;
 }
 .punch-date {
   font-family: var(--sys); font-weight: 900;
@@ -399,7 +399,7 @@ a { color: inherit; text-decoration: none; }
   font-size: clamp(1rem, 1.7vw, 1.4rem);
   margin-bottom: .5rem; line-height: 1.15;
 }
-.why-card p { font-size: .88rem; opacity: .7; line-height: 1.6; }
+.why-card p { font-size: .88rem; opacity: .78; line-height: 1.6; }
 @media (max-width: 800px) {
   .why-hdr { grid-template-columns: 1fr; gap: 1.2rem; margin-bottom: 2.5rem; }
   .why-grid { grid-template-columns: 1fr 1fr; }
@@ -683,7 +683,7 @@ footer {
   text-transform: uppercase; color: var(--blue);
   line-height: .88; letter-spacing: -.03em; margin-bottom: 1rem;
 }
-.ft-brand p { font-size: .86rem; opacity: .75; max-width: 270px; line-height: 1.75; }
+.ft-brand p { font-size: .86rem; opacity: .85; max-width: 270px; line-height: 1.75; }
 .ft-col h2 {
   font-family: var(--mono); font-size: var(--meta);
   text-transform: uppercase; letter-spacing: .09em;
@@ -692,14 +692,14 @@ footer {
 }
 .ft-col ul { list-style: none; }
 .ft-col ul li { margin-bottom: .6rem; }
-.ft-col ul li a { font-size: .86rem; opacity: .75; transition: opacity .15s; }
+.ft-col ul li a { font-size: .86rem; opacity: .85; transition: opacity .15s; }
 .ft-col ul li a:hover { opacity: 1; }
 .ft-bot {
   max-width: 1340px; margin: 0 auto;
   display: flex; justify-content: space-between; align-items: center;
   flex-wrap: wrap; gap: 1rem;
 }
-.ft-bot p { font-family: var(--mono); font-size: var(--meta); text-transform: uppercase; letter-spacing: .05em; opacity: .55; }
+.ft-bot p { font-family: var(--mono); font-size: var(--meta); text-transform: uppercase; letter-spacing: .05em; opacity: .72; }
 .ft-sig { font-family: var(--hand); color: var(--red); font-size: 1.6rem; }
 .ft-logos {
   max-width: 1340px; margin: 0 auto;
@@ -734,7 +734,7 @@ footer {
   font-size: clamp(1.6rem, 2.8vw, 2.6rem);
 }
 /* Darker/carbon variant for light sections */
-.mg-dark { color: var(--carbon); opacity: 0.45; }
+.mg-dark { color: var(--carbon); opacity: 0.52; }
 /* Blue variant */
 .mg-blue { color: var(--blue); opacity: 0.9; }
 
@@ -771,6 +771,8 @@ input:focus-visible, select:focus-visible {
 /* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
   .ticker-track { animation-play-state: paused; }
+  .reveal { transition: none; opacity: 1; transform: none; }
+  .hero-stack, .hero-bl, .hero-br, .hero-bottom { animation: none; }
 }
 </style>
 </head>
@@ -894,7 +896,7 @@ input:focus-visible, select:focus-visible {
   </p>
   <div class="punch-cta">
     <a href="#register" class="btn btn-dark">Register Free</a>
-    <a href="#agenda" class="btn btn-dark">See Full Program &darr;</a>
+    <a href="#agenda" class="btn btn-dark">See Full Program <span aria-hidden="true">&darr;</span></a>
   </div>
 </section>
 
@@ -1094,7 +1096,7 @@ input:focus-visible, select:focus-visible {
       </div>
       <div class="tally-wrap">
         <p class="form-label">Registration Form<span>Free &mdash; Spring Forum &mdash; April 14, 2026</span></p>
-        <iframe data-tally-src="https://tally.so/embed/kdAv6M?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="471" frameborder="0" marginheight="0" marginwidth="0" title="Human Capital Quarterly Registration"></iframe>
+        <iframe data-tally-src="https://tally.so/embed/kdAv6M?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="471" title="Human Capital Quarterly Registration" style="border:0"></iframe>
         <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
       </div>
     </div>
@@ -1150,7 +1152,6 @@ input:focus-visible, select:focus-visible {
         <li><a href="/get-involved.html">Teach a Workshop</a></li>
       </ul>
     </div>
-  </div>
   </div>
   <div class="ft-bot">
     <p>HCQ Spring 2026 &mdash; Washington, D.C. &mdash; humancapital.withlevy.com</p>
