@@ -630,7 +630,7 @@ select {
   font-size: clamp(1.2rem, 2.8vw, 2.8rem);
   text-transform: uppercase; line-height: .9;
 }
-.coal-orgs { display: flex; flex-wrap: wrap; align-items: center; }
+.coal-orgs { display: flex; flex-wrap: wrap; align-items: flex-start; }
 .org { border-left: 1px solid rgba(18,18,18,.2); padding: .3rem 2.2rem; }
 .org:first-child { border-left: none; padding-left: 0; }
 .org-role {
@@ -646,6 +646,7 @@ select {
 .org-featured-partner {
   border-left: 1px solid rgba(18,18,18,.12);
   opacity: 0.72;
+  padding-top: calc(44px + .6rem);
 }
 .org-name-sm {
   font-size: clamp(.8rem, 1.3vw, 1.1rem);
@@ -658,7 +659,8 @@ select {
 /* Logo in coalition bar */
 .coal-logo-ph {
   display: block;
-  height: 40px; width: auto;
+  height: auto; max-height: 44px;
+  width: auto; max-width: 110px;
   margin-bottom: .6rem;
   filter: invert(1);
   opacity: .9;
