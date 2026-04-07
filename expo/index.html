@@ -298,7 +298,7 @@ a { color: inherit; text-decoration: none; }
   color: rgba(18,18,18,.78);
 }
 .col-label.on-dark {
-  border-top-color: rgba(249,249,248,.2); color: rgba(249,249,248,.78);
+  border-top-color: rgba(249,249,248,.2); color: var(--white);
 }
 .col-label.on-blue {
   border-top-color: rgba(18,18,18,.2); color: rgba(18,18,18,.78);
@@ -314,7 +314,7 @@ a { color: inherit; text-decoration: none; }
   font-size: clamp(.97rem, 1.5vw, 1.13rem);
   max-width: 640px; margin-bottom: 1.5rem; line-height: 1.72; opacity: .88;
 }
-.col-body.on-dark p { color: rgba(249,249,248,.88); opacity: 1; }
+.col-body.on-dark p { color: var(--white); opacity: 1; }
 .col-body.on-blue p { color: rgba(18,18,18,.88); opacity: 1; }
 .ctas { margin-top: 2.8rem; display: flex; gap: 1rem; flex-wrap: wrap; }
 @media (max-width: 800px) {
@@ -396,7 +396,7 @@ a { color: inherit; text-decoration: none; }
 .org-role {
   font-family: var(--mono); font-size: var(--meta);
   text-transform: uppercase; letter-spacing: .07em;
-  color: rgba(249,249,248,.72); display: block; margin-bottom: .15rem;
+  color: var(--white); display: block; margin-bottom: .15rem;
 }
 .org-name {
   font-family: var(--serif); font-style: italic;
@@ -430,7 +430,7 @@ footer {
   text-transform: uppercase; color: var(--blue);
   line-height: .88; letter-spacing: -.03em; margin-bottom: 1rem;
 }
-.ft-brand p { font-size: .86rem; opacity: .85; max-width: 270px; line-height: 1.75; }
+.ft-brand p { font-size: .86rem; max-width: 270px; line-height: 1.75; }
 .ft-col h2 {
   font-family: var(--mono); font-size: var(--meta);
   text-transform: uppercase; letter-spacing: .09em;
@@ -439,14 +439,14 @@ footer {
 }
 .ft-col ul { list-style: none; }
 .ft-col ul li { margin-bottom: .6rem; }
-.ft-col ul li a { font-size: .86rem; opacity: .85; transition: opacity .15s; }
+.ft-col ul li a { font-size: .86rem; transition: opacity .15s; }
 .ft-col ul li a:hover { opacity: 1; }
 .ft-bot {
   max-width: 1340px; margin: 0 auto;
   display: flex; justify-content: space-between; align-items: center;
   flex-wrap: wrap; gap: 1rem;
 }
-.ft-bot p { font-family: var(--mono); font-size: var(--meta); text-transform: uppercase; letter-spacing: .05em; opacity: .72; }
+.ft-bot p { font-family: var(--mono); font-size: var(--meta); text-transform: uppercase; letter-spacing: .05em; }
 @media (max-width: 700px) { .ft { grid-template-columns: 1fr; gap: 2.2rem; } }
 
 /* ═══════════════════════════════════════════════
