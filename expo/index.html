@@ -31,7 +31,7 @@
   --body:  'IBM Plex Sans',    sans-serif;
   --mono:  'IBM Plex Mono',    monospace;
   --hand:  'Caveat',           cursive;
-  --meta:  0.72rem;
+  --meta:  0.75rem;
 
   --hfs:  clamp(2rem, min(28vw, 21svh), 28rem);
   --sp-y: clamp(4rem, 9vw, 8rem);
@@ -94,6 +94,7 @@ a { color: inherit; text-decoration: none; }
   border: 1.5px solid rgba(18,18,18,.38);
   padding: 0.44rem 0.85rem;
   transition: background .15s, color .15s, border-color .15s;
+  min-height: 44px; display: inline-flex; align-items: center;
 }
 .nav-id:hover { background: var(--carbon); color: var(--white); border-color: var(--carbon); }
 .nav-links { pointer-events: all; display: flex; }
@@ -104,6 +105,7 @@ a { color: inherit; text-decoration: none; }
   border: 1.5px solid rgba(18,18,18,.38); border-left: none;
   padding: 0.44rem 0.85rem;
   transition: background .15s, color .15s, border-color .15s;
+  min-height: 44px; display: inline-flex; align-items: center;
 }
 .nav-links a:first-child { border-left: 1.5px solid rgba(18,18,18,.38); }
 .nav-links a:hover { background: var(--white); color: var(--carbon); border-color: var(--white); }
@@ -276,9 +278,9 @@ a { color: inherit; text-decoration: none; }
 @keyframes heroIn   { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
 @keyframes cornerIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:none; } }
 @media (max-width: 600px) {
-  .hero-bl { font-size: 0.58rem; line-height: 1.75; }
-  .hero-br .btn { padding: 0.65rem 1.1rem; font-size: 0.68rem; }
-  .hero-deadline { font-size: 0.6rem; }
+  .hero-bl { font-size: 0.75rem; line-height: 1.75; }
+  .hero-br .btn { padding: 0.75rem 1.4rem; font-size: 0.75rem; }
+  .hero-deadline { font-size: 0.75rem; }
   .hero-bottom { flex-direction: column; align-items: flex-start; gap: .8rem; }
   .hero-br { align-items: flex-start; }
 }
@@ -439,7 +441,7 @@ footer {
 }
 .ft-col ul { list-style: none; }
 .ft-col ul li { margin-bottom: .6rem; }
-.ft-col ul li a { font-size: .86rem; transition: opacity .15s; }
+.ft-col ul li a { font-size: .86rem; transition: opacity .15s; padding: .3rem 0; display: inline-block; }
 .ft-col ul li a:hover { opacity: 1; }
 .ft-bot {
   max-width: 1340px; margin: 0 auto;
@@ -489,6 +491,9 @@ footer {
   outline: 2px solid var(--red);
   outline-offset: 3px;
 }
+
+/* ── Hide marginalia on small screens to prevent overlap ── */
+@media (max-width: 600px) { .mg { display: none; } }
 
 /* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {

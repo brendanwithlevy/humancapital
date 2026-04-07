@@ -35,8 +35,8 @@
   --body:  'IBM Plex Sans',   sans-serif;
   --mono:  'IBM Plex Mono',   monospace;
   --hand:  'Caveat',          cursive;
-  --meta:  0.72rem;
-  /* ticker height = (padding 0.58rem × 2) + (font 0.72rem × line-height 1.6) */
+  --meta:  0.75rem;
+  /* ticker height = (padding 0.58rem × 2) + (font 0.75rem × line-height 1.6) */
   --ticker-h: 2.35rem;
 
   /*
@@ -101,6 +101,7 @@ a { color: inherit; text-decoration: none; }
   text-transform: uppercase; letter-spacing: 0.09em;
   background: var(--white); border: 1.5px solid var(--carbon);
   padding: 0.44rem 0.85rem;
+  min-height: 44px; display: inline-flex; align-items: center;
 }
 .nav-links { pointer-events: all; display: flex; }
 .nav-links a {
@@ -109,6 +110,7 @@ a { color: inherit; text-decoration: none; }
   background: var(--white); border: 1.5px solid var(--carbon);
   border-left: none; padding: 0.44rem 0.85rem;
   transition: background .15s, color .15s;
+  min-height: 44px; display: inline-flex; align-items: center;
 }
 .nav-links a:first-child { border-left: 1.5px solid var(--carbon); }
 .nav-links a:hover { background: var(--carbon); color: var(--white); }
@@ -252,8 +254,8 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 600px) {
   :root { --hfs: clamp(3.2rem, 21vw, 16rem); }
   .hero { padding-inline: 0.75rem; }
-  .hero-bl { font-size: 0.6rem; line-height: 1.75; }
-  .hero-br .btn { padding: 0.65rem 1.1rem; font-size: 0.6rem; }
+  .hero-bl { font-size: 0.75rem; line-height: 1.75; }
+  .hero-br .btn { padding: 0.75rem 1.4rem; font-size: 0.75rem; }
   /* On very small screens, stack bottom row vertically */
   .hero-bottom { flex-direction: column; align-items: flex-start; gap: .8rem; }
   .hero-br { align-items: flex-start; }
@@ -474,7 +476,7 @@ a { color: inherit; text-decoration: none; }
 
 @media (max-width: 560px) {
   .tl-row { grid-template-columns: 1fr; gap: .2rem; padding: 1rem 0; }
-  .tl-time { font-size: 0.63rem; margin-bottom: .15rem; }
+  .tl-time { font-size: 0.75rem; margin-bottom: .15rem; }
   .agenda-head { grid-template-columns: 1fr; gap: 1.2rem; margin-bottom: 2.5rem; }
   .agenda-date { font-size: clamp(3rem, 14vw, 6rem); }
 }
@@ -517,7 +519,7 @@ label {
 input, select {
   display: block; width: 100%;
   border: 1.5px solid var(--carbon); background: transparent;
-  padding: .9rem 1rem; font-family: var(--body); font-size: .97rem;
+  padding: .9rem 1rem; font-family: var(--body); font-size: 1rem;
   color: var(--carbon);
   -webkit-appearance: none; appearance: none;
   border-radius: 0; transition: border-color .15s;
@@ -572,6 +574,9 @@ select {
 @media (max-width: 780px) {
   .reg-grid { grid-template-columns: 1fr; gap: 3rem; }
 }
+@media (max-width: 480px) {
+  .form-2col { grid-template-columns: 1fr; }
+}
 
 /* ════════════════════════════════════════════════════
    APR 10 — COMPACT SECONDARY STRIP
@@ -604,6 +609,7 @@ select {
 .prac-list li {
   display: flex; justify-content: space-between;
   padding: .65rem 0; border-bottom: 1px solid rgba(249,249,248,.07);
+  min-height: 44px; align-items: center;
 }
 .prac-list li span:first-child { opacity: 1; }
 @media (max-width: 600px) { .prac-in { grid-template-columns: 1fr; gap: 1.8rem; } }
@@ -692,7 +698,7 @@ footer {
 }
 .ft-col ul { list-style: none; }
 .ft-col ul li { margin-bottom: .6rem; }
-.ft-col ul li a { font-size: .86rem; transition: opacity .15s; }
+.ft-col ul li a { font-size: .86rem; transition: opacity .15s; padding: .3rem 0; display: inline-block; }
 .ft-col ul li a:hover { opacity: 1; }
 .ft-bot {
   max-width: 1340px; margin: 0 auto;
@@ -767,6 +773,9 @@ input:focus-visible, select:focus-visible {
   outline: 2px solid var(--red);
   outline-offset: 0;
 }
+
+/* ── Hide marginalia on small screens to prevent overlap ── */
+@media (max-width: 600px) { .mg { display: none; } }
 
 /* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
