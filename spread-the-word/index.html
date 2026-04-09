@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Request a Table — Human Capital Quarterly · Spring Forum · April 14</title>
+<title>Spread the Word — Human Capital Quarterly · Spring Forum · April 14</title>
 <!-- Open Graph -->
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://humancapital.withlevy.com/expo/">
-<meta property="og:title" content="Request a Table — Human Capital Quarterly · Spring Forum · April 14">
-<meta property="og:description" content="Table at the Spring Forum on April 14 and put your organization in front of residents ready to take next steps. Spaces limited — form closes April 7.">
+<meta property="og:url" content="https://humancapital.withlevy.com/spread-the-word/">
+<meta property="og:title" content="Spread the Word — Human Capital Quarterly · Spring Forum · April 14">
+<meta property="og:description" content="Help grow the Human Capital movement in Washington, D.C. Share the Spring Forum with your network and help more residents discover what's possible.">
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 
@@ -54,7 +54,7 @@ body::after {
   content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9000;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
 }
-::selection { background: var(--blue); color: var(--carbon); }
+::selection { background: var(--red); color: var(--white); }
 a { color: inherit; text-decoration: none; }
 .sr-only {
   position: absolute; width: 1px; height: 1px;
@@ -77,9 +77,7 @@ a { color: inherit; text-decoration: none; }
 @keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
 /* ═══════════════════════════════════════════════
-   NAV — floats on carbon hero
-   Carbon pills with white/semi-transparent border.
-   Red CTA contrasts with the dark field.
+   NAV
 ═══════════════════════════════════════════════ */
 .nav {
   position: fixed; top: var(--ticker-h); left: 0; right: 0; z-index: 500;
@@ -90,28 +88,13 @@ a { color: inherit; text-decoration: none; }
   pointer-events: all;
   font-family: var(--mono); font-size: var(--meta);
   text-transform: uppercase; letter-spacing: 0.09em;
-  background: transparent; color: var(--carbon);
-  border: 1.5px solid rgba(18,18,18,.38);
+  background: transparent; color: var(--white);
+  border: 1.5px solid rgba(249,249,248,.38);
   padding: 0.44rem 0.85rem;
   transition: background .15s, color .15s, border-color .15s;
   min-height: 44px; display: inline-flex; align-items: center;
 }
-.nav-id:hover { background: var(--carbon); color: var(--white); border-color: var(--carbon); }
-.nav-links { pointer-events: all; display: flex; }
-.nav-links a {
-  font-family: var(--mono); font-size: var(--meta);
-  text-transform: uppercase; letter-spacing: 0.07em;
-  background: var(--blue); color: var(--carbon);
-  border: 1.5px solid rgba(18,18,18,.38); border-left: none;
-  padding: 0.44rem 0.85rem;
-  transition: background .15s, color .15s, border-color .15s;
-  min-height: 44px; display: inline-flex; align-items: center;
-}
-.nav-links a:first-child { border-left: 1.5px solid rgba(18,18,18,.38); }
-.nav-links a:hover { background: var(--white); color: var(--carbon); border-color: var(--white); }
-.nav-links a.cta { background: var(--red); color: var(--white); border-color: var(--red); }
-.nav-links a.cta:hover { background: var(--carbon); color: var(--white); border-color: var(--carbon); }
-@media (max-width: 620px) { .nav-links a:not(.cta) { display: none; } }
+.nav-id:hover { background: var(--white); color: var(--carbon); border-color: var(--white); }
 
 /* ═══════════════════════════════════════════════
    BUTTONS
@@ -124,22 +107,12 @@ a { color: inherit; text-decoration: none; }
   transition: background .15s, color .15s, border-color .15s;
   white-space: nowrap;
 }
-/* on white bg */
-.btn-blue { background: var(--blue); color: var(--carbon); border-color: var(--blue); }
-.btn-blue:hover { background: var(--carbon); color: var(--white); border-color: var(--carbon); }
+.btn-wht { background: var(--white); color: var(--carbon); border-color: var(--white); }
+.btn-wht:hover { background: var(--carbon); color: var(--white); border-color: var(--carbon); }
+.btn-ghost-wht { background: transparent; color: var(--white); border-color: rgba(249,249,248,.55); }
+.btn-ghost-wht:hover { border-color: var(--white); background: rgba(249,249,248,.08); }
 .btn-outline { background: transparent; color: var(--carbon); border-color: var(--carbon); }
 .btn-outline:hover { background: var(--carbon); color: var(--white); }
-/* on blue bg */
-.btn-carbon-solid { background: var(--carbon); color: var(--white); border-color: var(--carbon); }
-.btn-carbon-solid:hover { background: var(--white); color: var(--carbon); border-color: var(--white); }
-.btn-ghost-blue { background: transparent; color: var(--carbon); border-color: rgba(18,18,18,.48); }
-.btn-ghost-blue:hover { border-color: var(--carbon); color: var(--carbon); }
-/* on carbon/dark bg */
-.btn-wht-carbon { background: var(--white); color: var(--carbon); border-color: var(--white); }
-.btn-wht-carbon:hover { background: transparent; color: var(--white); }
-/* red accent — works on any bg */
-.btn-red { background: var(--red); color: var(--white); border-color: var(--red); }
-.btn-red:hover { background: var(--carbon); color: var(--white); border-color: var(--carbon); }
 
 /* ═══════════════════════════════════════════════
    SECTION UTILITIES
@@ -147,7 +120,6 @@ a { color: inherit; text-decoration: none; }
 .sec { padding: var(--sp-y) var(--sp-x); position: relative; }
 .inner { max-width: 1340px; margin: 0 auto; }
 .f-white  { background: var(--white);  color: var(--carbon); }
-.f-blue   { background: var(--blue);   color: var(--carbon); }
 .f-carbon { background: var(--carbon); color: var(--white); }
 
 /* ═══════════════════════════════════════════════
@@ -159,21 +131,16 @@ a { color: inherit; text-decoration: none; }
   position: absolute; pointer-events: none;
   white-space: nowrap; line-height: 1.2;
 }
-.mg-on-white { color: var(--carbon); opacity: 0.38; }
-.mg-on-blue  { color: rgba(18,18,18,.36); }
-.mg-red      { color: var(--red); opacity: 0.72; }
+.mg-on-red { color: rgba(249,249,248,.65); }
 
 /* ═══════════════════════════════════════════════
-   HERO — CARBON FIELD
-   White Overpass knocked out of deep carbon.
-   Red italic Instrument Serif interlaced.
-   Ticker is also carbon — a continuous dark entry.
+   HERO — RED FIELD
 ═══════════════════════════════════════════════ */
 .hero {
   position: relative; min-height: calc(100svh - var(--ticker-h));
   display: flex; flex-direction: column; overflow: hidden;
-  background: var(--blue); color: var(--carbon);
-  border-bottom: 2px solid rgba(18,18,18,.15);
+  background: var(--red); color: var(--white);
+  border-bottom: 2px solid rgba(18,18,18,.18);
   margin-top: var(--ticker-h);
   padding: clamp(1.5rem, 4vw, 3rem) var(--sp-x);
   color-scheme: only light;
@@ -188,67 +155,64 @@ a { color: inherit; text-decoration: none; }
 .hero-eyebrow {
   font-family: var(--mono); font-size: var(--meta);
   text-transform: uppercase; letter-spacing: .16em;
-  color: rgba(18,18,18,.82);
+  color: rgba(249,249,248,.82);
   margin-bottom: clamp(.8rem, 2vw, 1.5rem);
 }
-/* Carbon Overpass knocked out of blue — primary plate */
+/* White Overpass on red — primary plate */
 .hw {
   font-family: var(--sys); font-weight: 900;
   font-size: var(--hfs); line-height: 1;
   text-transform: uppercase; letter-spacing: -.04em;
-  color: var(--carbon); white-space: nowrap; display: block;
+  color: var(--white); white-space: nowrap; display: block;
 }
-/* Carbon italic multiply — second plate overprint on blue → deep blue-black */
+/* White italic — second plate */
 .hop {
   font-family: var(--serif); font-style: italic; font-weight: 400;
   font-size: calc(var(--hfs) * 0.5);
   line-height: 1; letter-spacing: -.01em;
-  color: var(--carbon);
-  mix-blend-mode: multiply;
+  color: var(--white);
   white-space: nowrap; display: block;
   margin-top:    calc(var(--hfs) * -0.26);
   margin-bottom: calc(var(--hfs) * -0.26);
 }
-/* HCQ — massive Overpass, white — decorative back plate */
+/* Large decorative back plate */
 .hcq-wrap {
   display: flex; flex-direction: column; align-items: stretch;
-  width: min(72vw, 680px); position: relative;
+  width: min(88vw, 820px); position: relative;
 }
 .hcq-back-line {
   font-family: var(--sys); font-weight: 900;
   font-size: var(--hfs);
   line-height: 1; letter-spacing: -.04em; text-transform: uppercase;
-  color: var(--white);
+  color: rgba(249,249,248,.12);
   display: block; text-align: center;
   pointer-events: none; user-select: none;
 }
-/* Tagline overlay — absolute, spans the full back-plate block */
+/* Tagline overlay */
 .hero-taglines {
   position: absolute; inset: 0;
   pointer-events: none;
 }
-/* Individual tagline rows — absolutely pinned to the seams between back-plate lines */
-.hero-req-row {
+.hero-tag-row {
   position: absolute; left: 0; right: 0;
   display: flex; justify-content: flex-start; align-items: baseline;
-  font-family: var(--serif); font-weight: 400; font-style: italic;
-  font-size: calc(var(--hfs) * 0.58);
-  line-height: 1; letter-spacing: -.01em;
-  color: var(--carbon);
-  mix-blend-mode: multiply;
+  font-family: var(--sys); font-weight: 900;
+  font-size: var(--hfs);
+  line-height: 1; letter-spacing: -.04em; text-transform: uppercase;
+  color: var(--white);
   white-space: nowrap;
-  /* seam 1: nudged slightly above center → 0.62×hfs */
-  top: calc(var(--hfs) * 0.62);
+  top: 0;
 }
-.hero-req-right {
-  justify-content: flex-end;
-  /* seam 2: nudged slightly above center → 1.62×hfs */
-  top: calc(var(--hfs) * 1.62);
+.hero-tag-row:nth-child(2) {
+  top: calc(var(--hfs) * 1);
+}
+.hero-tag-row:nth-child(3) {
+  top: calc(var(--hfs) * 2);
 }
 .hero-sub {
   font-family: var(--serif); font-style: italic;
   font-size: clamp(1rem, 1.9vw, 1.6rem); line-height: 1.45;
-  color: rgba(18,18,18,.85);
+  color: rgba(249,249,248,.88);
   margin-top: clamp(1.8rem, 3.5vw, 3rem);
   max-width: 48ch;
 }
@@ -262,31 +226,22 @@ a { color: inherit; text-decoration: none; }
   font-family: var(--mono); font-size: var(--meta);
   text-transform: uppercase; letter-spacing: 0.07em; line-height: 2;
   animation: cornerIn .8s .6s both; flex-shrink: 0;
-  color: rgba(18,18,18,.75);
+  color: rgba(249,249,248,.72);
 }
 .hero-br {
   display: flex; flex-direction: column; align-items: flex-end; gap: .5rem;
   animation: cornerIn .8s .8s both; flex-shrink: 0;
-}
-.hero-deadline {
-  font-family: var(--mono); font-size: var(--meta);
-  text-transform: uppercase; letter-spacing: .09em;
-  color: var(--carbon); padding: .3rem .7rem;
-  border: 1px solid rgba(18,18,18,.35);
-  display: inline-block;
 }
 @keyframes heroIn   { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
 @keyframes cornerIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:none; } }
 @media (max-width: 600px) {
   .hero-bl { font-size: 0.75rem; line-height: 1.75; }
   .hero-br .btn { padding: 0.75rem 1.4rem; font-size: 0.75rem; }
-  .hero-deadline { font-size: 0.75rem; }
   .hero-bottom { flex-direction: column; align-items: flex-start; gap: .8rem; }
   .hero-br { align-items: flex-start; }
   .hero { min-height: auto; }
   .hero-top { min-height: 2rem; }
   :root { --hfs: clamp(2rem, 20vw, 6rem); }
-  .hero-req-row { font-size: calc(var(--hfs) * 0.5); }
 }
 
 /* ═══════════════════════════════════════════════
@@ -299,83 +254,51 @@ a { color: inherit; text-decoration: none; }
 .col-label {
   font-family: var(--mono); font-size: var(--meta);
   text-transform: uppercase; letter-spacing: .07em; line-height: 2.2;
-  border-top: 2px solid var(--blue); padding-top: 1.2rem;
+  border-top: 2px solid var(--red); padding-top: 1.2rem;
   position: sticky; top: 6rem;
   color: rgba(18,18,18,.78);
-}
-.col-label.on-dark {
-  border-top-color: rgba(249,249,248,.2); color: var(--white);
-}
-.col-label.on-blue {
-  border-top-color: rgba(18,18,18,.2); color: rgba(18,18,18,.78);
 }
 .col-body h2 {
   font-family: var(--serif); font-weight: 400;
   font-size: clamp(1.9rem, 4vw, 4.4rem);
   line-height: 1.05; margin-bottom: 2rem;
 }
-.col-body.on-dark h2 { color: var(--white); }
-.col-body.on-blue h2 { color: var(--carbon); }
 .col-body p {
   font-size: clamp(.97rem, 1.5vw, 1.13rem);
   max-width: 640px; margin-bottom: 1.5rem; line-height: 1.72; opacity: .88;
 }
-.col-body.on-dark p { color: var(--white); opacity: 1; }
-.col-body.on-blue p { color: rgba(18,18,18,.88); opacity: 1; }
 .ctas { margin-top: 2.8rem; display: flex; gap: 1rem; flex-wrap: wrap; }
 @media (max-width: 800px) {
   .two-col { grid-template-columns: 1fr; gap: 2rem; }
   .col-label { position: static; border-top: none; padding-top: 0;
     border-bottom: 1px solid rgba(18,18,18,.1); padding-bottom: 1rem; }
-  .col-label.on-dark { border-bottom-color: rgba(249,249,248,.1); border-top: none; }
 }
 
 /* ═══════════════════════════════════════════════
-   REGISTER — WHITE FIELD, SINGLE COLUMN
+   COMING SOON — CARBON FIELD
 ═══════════════════════════════════════════════ */
-.reg-in { max-width: 1340px; margin: 0 auto; }
-.reg-header {
-  display: flex; justify-content: space-between; align-items: flex-end;
-  gap: clamp(2rem, 4vw, 4rem); flex-wrap: wrap;
-  padding-bottom: clamp(2rem, 4vw, 3rem);
-  border-bottom: 2px solid var(--blue);
-  margin-bottom: clamp(2rem, 4vw, 3rem);
+.coming-soon {
+  text-align: center;
+  padding: clamp(5rem, 10vw, 10rem) var(--sp-x);
+  background: var(--carbon); color: var(--white);
+  border-top: 2px solid rgba(249,249,248,.1);
 }
-.reg-header-left h2 {
-  font-family: var(--serif); font-weight: 400;
-  font-size: clamp(1.9rem, 4vw, 4rem);
-  line-height: 1.05; margin-bottom: .75rem;
-}
-.reg-header-left p {
-  font-size: clamp(.97rem, 1.5vw, 1.1rem);
-  line-height: 1.72; opacity: .82; max-width: 44ch;
-}
-.reg-header-right { text-align: right; flex-shrink: 0; }
-.reg-deadline {
+.coming-soon .cs-label {
   font-family: var(--mono); font-size: var(--meta);
-  text-transform: uppercase; letter-spacing: .09em;
-  color: var(--red); border: 1.5px solid var(--red);
-  padding: .55rem 1rem;
-  display: inline-block; margin-bottom: 1rem;
+  text-transform: uppercase; letter-spacing: .16em;
+  color: rgba(249,249,248,.55);
+  margin-bottom: 2rem;
 }
-.reg-det {
-  font-family: var(--mono); font-size: var(--meta);
-  text-transform: uppercase; letter-spacing: .07em; line-height: 2.3;
-  opacity: .78;
+.coming-soon h2 {
+  font-family: var(--serif); font-weight: 400; font-style: italic;
+  font-size: clamp(2rem, 5vw, 5rem);
+  line-height: 1.05; color: var(--white);
+  margin-bottom: 1.5rem;
 }
-.tally-wrap { max-width: 680px; margin: 0 auto; }
-.form-label {
-  font-family: var(--mono); font-size: var(--meta);
-  text-transform: uppercase; letter-spacing: .07em;
-  border-bottom: 1.5px solid var(--blue);
-  padding-bottom: .5rem; margin-bottom: 1.2rem;
-  display: flex; justify-content: space-between; align-items: baseline;
-  flex-wrap: wrap; gap: .5rem;
-}
-.form-label span { opacity: .72; }
-@media (max-width: 680px) {
-  .reg-header { flex-direction: column; align-items: flex-start; }
-  .reg-header-right { text-align: left; }
+.coming-soon p {
+  font-size: clamp(.97rem, 1.5vw, 1.13rem);
+  max-width: 44ch; margin: 0 auto 2.8rem;
+  line-height: 1.72; color: rgba(249,249,248,.75);
 }
 
 /* ═══════════════════════════════════════════════
@@ -440,7 +363,7 @@ footer {
 .ft-wm {
   font-family: var(--sys); font-weight: 900;
   font-size: clamp(1.4rem, 3.2vw, 3rem);
-  text-transform: uppercase; color: var(--blue);
+  text-transform: uppercase; color: var(--red);
   line-height: .88; letter-spacing: -.03em; margin-bottom: 1rem;
 }
 .ft-brand p { font-size: .86rem; max-width: 270px; line-height: 1.75; }
@@ -452,14 +375,14 @@ footer {
 }
 .ft-col ul { list-style: none; }
 .ft-col ul li { margin-bottom: .6rem; }
-.ft-col ul li a { font-size: .86rem; transition: opacity .15s; padding: .3rem 0; display: inline-block; }
+.ft-col ul li a { font-size: .86rem; transition: opacity .15s; padding: .3rem 0; display: inline-block; opacity: .72; }
 .ft-col ul li a:hover { opacity: 1; }
 .ft-bot {
   max-width: 1340px; margin: 0 auto;
   display: flex; justify-content: space-between; align-items: center;
   flex-wrap: wrap; gap: 1rem;
 }
-.ft-bot p { font-family: var(--mono); font-size: var(--meta); text-transform: uppercase; letter-spacing: .05em; }
+.ft-bot p { font-family: var(--mono); font-size: var(--meta); text-transform: uppercase; letter-spacing: .05em; opacity: .55; }
 @media (max-width: 700px) { .ft { grid-template-columns: 1fr; gap: 2.2rem; } }
 
 /* ═══════════════════════════════════════════════
@@ -467,24 +390,6 @@ footer {
 ═══════════════════════════════════════════════ */
 .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
 .reveal.in { opacity: 1; transform: none; }
-
-/* Sticky CTA — body-level fixed button, shown when hero-br exits viewport */
-.hero-cta-sticky {
-  position: fixed;
-  top: var(--ticker-h);
-  right: var(--sp-x);
-  z-index: 550;
-  padding: 0.44rem 0.85rem;
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(-6px);
-  transition: opacity .2s ease, transform .2s ease;
-}
-.hero-cta-sticky.visible {
-  opacity: 1;
-  pointer-events: all;
-  transform: none;
-}
 
 /* ── Skip link ── */
 .skip-link {
@@ -499,18 +404,18 @@ footer {
 
 /* ── Focus visible ── */
 :focus-visible {
-  outline: 2px solid var(--red);
+  outline: 2px solid var(--white);
   outline-offset: 3px;
 }
 
-/* ── Hide marginalia on small screens to prevent overlap ── */
+/* ── Hide marginalia on small screens ── */
 @media (max-width: 600px) { .mg { display: none; } }
 
 /* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
   .ticker-track { animation-play-state: paused; }
   .reveal { transition: none; opacity: 1; transform: none; }
-  .hero-stack, .hero-bl, .hero-br, .hero-bottom { animation: none; }
+  .hero-stack, .hero-bl, .hero-br { animation: none; }
 }
 </style>
 </head>
@@ -521,10 +426,10 @@ footer {
 <!-- TICKER -->
 <div class="ticker-bar" aria-hidden="true">
   <div class="ticker-track">
-    <span>REQUEST A TABLE &mdash; HUMAN CAPITAL QUARTERLY &mdash; SPRING FORUM &mdash; APRIL 14 &mdash; MLK LIBRARY &mdash; WASHINGTON DC &mdash; SPACES LIMITED &mdash; FORM CLOSES APRIL 7 &mdash;&nbsp;</span>
-    <span>REQUEST A TABLE &mdash; HUMAN CAPITAL QUARTERLY &mdash; SPRING FORUM &mdash; APRIL 14 &mdash; MLK LIBRARY &mdash; WASHINGTON DC &mdash; SPACES LIMITED &mdash; FORM CLOSES APRIL 7 &mdash;&nbsp;</span>
-    <span>REQUEST A TABLE &mdash; HUMAN CAPITAL QUARTERLY &mdash; SPRING FORUM &mdash; APRIL 14 &mdash; MLK LIBRARY &mdash; WASHINGTON DC &mdash; SPACES LIMITED &mdash; FORM CLOSES APRIL 7 &mdash;&nbsp;</span>
-    <span>REQUEST A TABLE &mdash; HUMAN CAPITAL QUARTERLY &mdash; SPRING FORUM &mdash; APRIL 14 &mdash; MLK LIBRARY &mdash; WASHINGTON DC &mdash; SPACES LIMITED &mdash; FORM CLOSES APRIL 7 &mdash;&nbsp;</span>
+    <span>SPREAD THE WORD &mdash; HUMAN CAPITAL QUARTERLY &mdash; SPRING FORUM &mdash; APRIL 14 &mdash; MLK LIBRARY &mdash; WASHINGTON DC &mdash; FREE &amp; OPEN TO ALL &mdash;&nbsp;</span>
+    <span>SPREAD THE WORD &mdash; HUMAN CAPITAL QUARTERLY &mdash; SPRING FORUM &mdash; APRIL 14 &mdash; MLK LIBRARY &mdash; WASHINGTON DC &mdash; FREE &amp; OPEN TO ALL &mdash;&nbsp;</span>
+    <span>SPREAD THE WORD &mdash; HUMAN CAPITAL QUARTERLY &mdash; SPRING FORUM &mdash; APRIL 14 &mdash; MLK LIBRARY &mdash; WASHINGTON DC &mdash; FREE &amp; OPEN TO ALL &mdash;&nbsp;</span>
+    <span>SPREAD THE WORD &mdash; HUMAN CAPITAL QUARTERLY &mdash; SPRING FORUM &mdash; APRIL 14 &mdash; MLK LIBRARY &mdash; WASHINGTON DC &mdash; FREE &amp; OPEN TO ALL &mdash;&nbsp;</span>
   </div>
 </div>
 
@@ -535,38 +440,39 @@ footer {
 </header>
 
 <main id="main-content">
-<h1 class="sr-only">Request an Expo Table &mdash; Human Capital Quarterly Spring Forum</h1>
+<h1 class="sr-only">Spread the Word &mdash; Human Capital Quarterly Spring Forum</h1>
 
 <!-- ═══════════════════════════════════════════════
-     HERO — CARBON FIELD
-     White Overpass + red italic on deep carbon.
-     Ticker is also carbon — a seamless dark entry.
+     HERO — RED FIELD
 ═══════════════════════════════════════════════ -->
-<section class="hero" id="top" aria-label="Request an Expo Table">
+<section class="hero" id="top" aria-label="Spread the Word">
+
+  <div class="mg mg-on-red" style="top:18%;right:var(--sp-x);transform:rotate(5deg);font-size:clamp(1.1rem,2vw,1.9rem);" aria-hidden="true">tell a friend,<br>tell a neighbor</div>
 
   <div class="hero-top" aria-hidden="true"></div>
 
   <div class="hero-stack">
     <div class="hcq-wrap">
-      <span class="hcq-back-line" aria-hidden="true">CLAIM</span>
-      <span class="hcq-back-line" aria-hidden="true">YOUR</span>
-      <span class="hcq-back-line" aria-hidden="true">TABLE</span>
+      <span class="hcq-back-line" aria-hidden="true">SPREAD</span>
+      <span class="hcq-back-line" aria-hidden="true">THE</span>
+      <span class="hcq-back-line" aria-hidden="true">WORD</span>
       <div class="hero-taglines" aria-hidden="true">
-        <div class="hero-req-row"><span>Build Awareness,</span></div>
-        <div class="hero-req-row hero-req-right"><span>Show Your Value.</span></div>
+        <div class="hero-tag-row"><span>Spread</span></div>
+        <div class="hero-tag-row"><span>the</span></div>
+        <div class="hero-tag-row"><span>Word.</span></div>
       </div>
     </div>
+    <p class="hero-sub">Help more D.C. residents discover what&rsquo;s possible. The Spring Forum is free, open to all, and worth sharing.</p>
   </div>
 
   <div class="hero-bottom">
     <div class="hero-bl" aria-hidden="true">
       Tuesday, April 14, 2026<br>
       MLK Jr. Memorial Library<br>
-      901 G St. NW, Washington, DC 20001
+      Free &amp; Open to All
     </div>
     <div class="hero-br">
-      <span class="hero-deadline">Form closes April 7 &mdash; 5:00 PM</span>
-      <a href="#reserve" class="btn btn-red">Request a Table</a>
+      <a href="/" class="btn btn-wht">Register Free</a>
     </div>
   </div>
 
@@ -574,74 +480,32 @@ footer {
 
 <!-- ═══════════════════════════════════════════════
      ABOUT — WHITE FIELD
-     Two-column editorial on paper-white ground.
 ═══════════════════════════════════════════════ -->
-<section class="sec f-white reveal" style="border-top:2px solid var(--blue);">
+<section class="sec f-white reveal" style="border-top:2px solid var(--red);">
   <div class="inner">
     <div class="two-col">
-      <div class="col-label">About This Opportunity</div>
-      <div class="col-body" style="position:relative;">
-        <h2>Help the right people find you.</h2>
-        <p>Human Capital Quarterly brings residents into direct contact with the organizations helping them move forward in the capital region.</p>
-        <p>If your organization offers opportunities, guidance, tools, training, or support, this is your chance to show up in a setting built for relevance, trust, and real connection.</p>
-        <div style="margin-top:1.5rem;font-family:var(--mono);font-size:var(--meta);text-transform:uppercase;letter-spacing:.07em;line-height:2.4;border-top:2px solid var(--blue);padding-top:1.2rem;opacity:.65;">
-          Tuesday, April 14, 2026<br>
-          MLK Jr. Memorial Library<br>
-          901 G St. NW, Washington, DC 20001
-        </div>
+      <div class="col-label">Why It Matters</div>
+      <div class="col-body">
+        <h2>Your network is someone&rsquo;s next step.</h2>
+        <p>Human Capital Quarterly brings residents face-to-face with the organizations, practitioners, and opportunities that can move their lives forward. The more people who show up, the more powerful the room.</p>
+        <p>Sharing this event takes a moment. The impact can last much longer.</p>
         <div class="ctas">
-          <a href="#reserve" class="btn btn-red">Request a Table</a>
+          <a href="/" class="btn btn-outline">Register Free &rarr;</a>
         </div>
-        <span class="mg mg-on-white" style="bottom:-1rem;right:0;transform:rotate(-3deg);font-size:clamp(1rem,1.8vw,1.7rem);" aria-hidden="true">first come, first served</span>
+        <span class="mg mg-on-white" style="bottom:-1rem;right:0;transform:rotate(-3deg);font-size:clamp(1rem,1.8vw,1.7rem);color:var(--carbon);opacity:.3;" aria-hidden="true">it&rsquo;s free!</span>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ═══════════════════════════════════════════════
-     VALUE PROP — CARBON FIELD
-     Bold declaration. White type on carbon.
+     COMING SOON — CARBON FIELD
 ═══════════════════════════════════════════════ -->
-<section class="sec f-carbon reveal" style="border-top:2px solid rgba(249,249,248,.1);">
-  <div class="inner">
-    <div class="two-col">
-      <div class="col-label on-dark">Why Table</div>
-      <div class="col-body on-dark">
-        <h2>Show people what you make possible.</h2>
-        <p>When you table at Human Capital Quarterly, your work becomes easier to see, understand, and act on.</p>
-        <p>You are not just showing up. You are helping residents discover resources, recognize new possibilities, and take clearer next steps in a changing economy.</p>
-        <div class="ctas">
-          <a href="#reserve" class="btn btn-red">Request a Table</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════
-     RESERVE — WHITE FIELD, RED BORDER
-     The ask. Tally form. Deadline front and center.
-═══════════════════════════════════════════════ -->
-<section class="sec f-white reveal" id="reserve" style="border-top:3px solid var(--blue);">
-  <div class="reg-in">
-    <div class="reg-header">
-      <div class="reg-header-left">
-        <h2>Request a Table</h2>
-        <p>Slots are limited and go first come, first served.</p>
-      </div>
-      <div class="reg-header-right">
-        <span class="reg-deadline">Form closes April 7 &mdash; 5:00 PM</span>
-        <div class="reg-det">
-          SPRING FORUM &mdash; TUESDAY, APRIL 14, 2026<br>
-          MLK JR. MEMORIAL LIBRARY &mdash; 901 G ST. NW, WASHINGTON, DC 20001
-        </div>
-      </div>
-    </div>
-    <div class="tally-wrap">
-      <iframe data-tally-src="https://tally.so/embed/xX21yv?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="2722" title="HCQ Public Forum: Tabling Request" style="border:0"></iframe>
-      <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
-    </div>
-  </div>
+<section class="coming-soon reveal">
+  <div class="cs-label">Coming Soon</div>
+  <h2>Shareable assets on the way.</h2>
+  <p>Flyers, social graphics, and sample messages to make it easy to spread the word in your community.</p>
+  <a href="/" class="btn btn-ghost-wht">Back to the Forum</a>
 </section>
 
 <!-- COALITION -->
@@ -672,10 +536,10 @@ footer {
       <p>A quarterly civic anchor for D.C.'s workforce and upskilling ecosystem. Recurring. Practical. For everyone who wants to build something real.</p>
     </div>
     <div class="ft-col">
-      <h2>Expo Table</h2>
+      <h2>Spread the Word</h2>
       <ul>
-        <li><a href="#top">About This Opportunity</a></li>
-        <li><a href="#reserve">Request a Table</a></li>
+        <li><a href="#top">Why It Matters</a></li>
+        <li><a href="/">Register Free</a></li>
       </ul>
     </div>
     <div class="ft-col">
@@ -683,13 +547,13 @@ footer {
       <ul>
         <li><a href="/">Public Forum &mdash; Apr 14</a></li>
         <li><a href="/sessions/">Practitioner Day &mdash; Apr 10</a></li>
-        <li><a href="/spread-the-word/">Spread the Word</a></li>
+        <li><a href="/expo/">Request an Expo Table</a></li>
         <li><a href="/get-involved.html">Partner with Us</a></li>
       </ul>
     </div>
   </div>
   <div class="ft-bot">
-    <p>HCQ Spring 2026 &mdash; Public Forum: April 14 &mdash; humancapital.withlevy.com/expo</p>
+    <p>HCQ Spring 2026 &mdash; Public Forum: April 14 &mdash; humancapital.withlevy.com/spread-the-word</p>
     <span style="font-family:var(--hand);color:var(--red);font-size:1.6rem;">People are the real capital.</span>
   </div>
 </footer>
@@ -700,26 +564,6 @@ const obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
 }, { threshold: 0.06 });
 revealEls.forEach(el => obs.observe(el));
-
-// Sticky CTA: append a fixed clone to <body> so it's free of any overflow/stacking context.
-// Show it via IntersectionObserver once hero-br exits above the ticker bar.
-(function () {
-  const ticker = document.querySelector('.ticker-bar');
-  const heroBr = document.querySelector('.hero-br');
-  if (!ticker || !heroBr) return;
-
-  const stickyBtn = document.createElement('a');
-  stickyBtn.href = '#reserve';
-  stickyBtn.className = 'btn btn-red hero-cta-sticky';
-  stickyBtn.textContent = 'Request a Table';
-  document.body.appendChild(stickyBtn);
-
-  const ctaObs = new IntersectionObserver(
-    ([e]) => stickyBtn.classList.toggle('visible', !e.isIntersecting),
-    { threshold: 0, rootMargin: '-' + ticker.offsetHeight + 'px 0px 0px 0px' }
-  );
-  ctaObs.observe(heroBr);
-}());
 </script>
 </body>
 </html>
