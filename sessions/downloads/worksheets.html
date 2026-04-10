@@ -362,8 +362,82 @@ body {
 }
 
 /* ═══════════════════════════════════════════════
-   SCREEN-ONLY — preview navigation
+   COVER PAGE
 ═══════════════════════════════════════════════ */
+.ws-cover {
+  background: var(--carbon); color: var(--white);
+  display: flex; flex-direction: column;
+  justify-content: space-between;
+}
+.cover-top {
+  font-family: var(--mono); font-size: 0.6rem;
+  text-transform: uppercase; letter-spacing: 0.12em;
+  color: rgba(249,249,248,.45);
+  border-bottom: 1px solid rgba(249,249,248,.12);
+  padding-bottom: 0.55rem;
+}
+.cover-body {
+  flex: 1;
+  display: flex; flex-direction: column;
+  justify-content: center;
+}
+.cover-label {
+  font-family: var(--mono); font-size: 0.65rem;
+  text-transform: uppercase; letter-spacing: 0.14em;
+  color: rgba(249,249,248,.45);
+  margin-bottom: 1.4rem;
+}
+.cover-title {
+  font-family: var(--sys); font-weight: 900;
+  font-size: 3.4rem;
+  text-transform: uppercase; letter-spacing: -0.02em;
+  line-height: 0.92; color: var(--white);
+  margin-bottom: 1rem;
+}
+.cover-sub {
+  font-family: var(--serif); font-style: italic;
+  font-size: 1.5rem;
+  color: rgba(249,249,248,.72);
+  line-height: 1.2;
+  margin-bottom: 2.5rem;
+}
+.cover-rule {
+  width: 2.5rem; height: 2px;
+  background: var(--red); margin-bottom: 2rem;
+}
+.cover-desc {
+  font-family: var(--body); font-weight: 300;
+  font-size: 0.88rem; line-height: 1.72;
+  color: rgba(249,249,248,.6);
+  max-width: 44ch;
+}
+.cover-bottom {
+  border-top: 1px solid rgba(249,249,248,.12);
+  padding-top: 1.2rem;
+  display: flex; justify-content: space-between; align-items: flex-end;
+}
+.cover-event {
+  font-family: var(--mono); font-size: 0.6rem;
+  text-transform: uppercase; letter-spacing: 0.09em;
+  color: rgba(249,249,248,.45);
+  line-height: 1.7;
+}
+.cover-logos {
+  display: flex; align-items: center; gap: 1.8rem;
+}
+.cover-logo {
+  display: block;
+  height: auto; max-height: 36px;
+  width: auto; max-width: 100px;
+  opacity: 0.75;
+}
+
+/* ── Screen-only: darken cover page body for contrast ── */
+@media screen {
+  .ws-cover { box-shadow: 0 1px 12px rgba(0,0,0,.25); }
+}
+
+
 @media screen {
   body { background: #e8e8e6; }
   .ws-page {
@@ -409,6 +483,33 @@ body {
   <a href="/sessions/downloads/">&larr; Back to Downloads</a>
   <span>Peer Consulting Lab &mdash; Audience Diagnosis</span>
   <button class="screen-btn" onclick="window.print()">Print / Save PDF</button>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     COVER PAGE
+═══════════════════════════════════════════════════════ -->
+<div class="ws-page ws-cover">
+  <div class="cover-top">Human Capital Sessions &mdash; April 10, 2026 &mdash; MLK Memorial Library &mdash; Washington D.C.</div>
+
+  <div class="cover-body">
+    <div class="cover-label">Peer Consulting Lab</div>
+    <div class="cover-title">Audience<br>Diagnosis</div>
+    <div class="cover-sub">Worksheet Packet</div>
+    <div class="cover-rule" aria-hidden="true"></div>
+    <p class="cover-desc">A structured six-page worksheet for mapping your audience, evaluating your current tactics, and identifying your highest-leverage opportunities.</p>
+  </div>
+
+  <div class="cover-bottom">
+    <div class="cover-event">
+      Human Capital Quarterly &mdash; Spring 2026<br>
+      Practitioner Day &mdash; Friday, April 10<br>
+      1:00 PM &ndash; 4:00 PM &mdash; Rooms 401-A &amp; 401-G
+    </div>
+    <div class="cover-logos">
+      <img class="cover-logo" src="../../logos/dcpl-knockout.png" alt="DC Public Library">
+      <img class="cover-logo" src="levy-knockout-sm.png" alt="Levy">
+    </div>
+  </div>
 </div>
 
 <!-- ═══════════════════════════════════════════════════════
