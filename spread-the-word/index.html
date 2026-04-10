@@ -275,30 +275,56 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ═══════════════════════════════════════════════
-   COMING SOON — CARBON FIELD
+   SECTION LABEL
 ═══════════════════════════════════════════════ */
-.coming-soon {
-  text-align: center;
-  padding: clamp(5rem, 10vw, 10rem) var(--sp-x);
-  background: var(--carbon); color: var(--white);
-  border-top: 2px solid rgba(249,249,248,.1);
-}
-.coming-soon .cs-label {
+.sec-label {
   font-family: var(--mono); font-size: var(--meta);
-  text-transform: uppercase; letter-spacing: .16em;
-  color: rgba(249,249,248,.55);
-  margin-bottom: 2rem;
+  text-transform: uppercase; letter-spacing: .14em;
+  color: var(--red); display: block; margin-bottom: 1rem;
 }
-.coming-soon h2 {
-  font-family: var(--serif); font-weight: 400; font-style: italic;
-  font-size: clamp(2rem, 5vw, 5rem);
-  line-height: 1.05; color: var(--white);
-  margin-bottom: 1.5rem;
+
+/* ═══════════════════════════════════════════════
+   DOWNLOADS SECTION
+═══════════════════════════════════════════════ */
+.dl-header { margin-bottom: clamp(2.5rem, 5vw, 4rem); }
+.dl-header h2 {
+  font-family: var(--serif); font-weight: 400;
+  font-size: clamp(1.9rem, 4vw, 4.4rem);
+  line-height: 1.05; margin-bottom: 1rem;
 }
-.coming-soon p {
-  font-size: clamp(.97rem, 1.5vw, 1.13rem);
-  max-width: 44ch; margin: 0 auto 2.8rem;
-  line-height: 1.72; color: rgba(249,249,248,.75);
+.dl-header p { font-size: clamp(.97rem, 1.5vw, 1.13rem); max-width: 56ch; line-height: 1.72; opacity: .82; }
+.dl-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.9fr 1.2fr;
+  gap: clamp(1.5rem, 3.5vw, 3rem);
+  align-items: start;
+}
+.dl-card {
+  border-top: 2px solid var(--carbon); padding-top: 1.4rem;
+  display: flex; flex-direction: column; gap: 1rem;
+}
+.dl-card-label {
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: .09em; opacity: .55;
+}
+.dl-preview {
+  height: 260px; background: #ddddd9;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+#qr-display { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; }
+#qr-display canvas { max-width: 220px !important; max-height: 220px !important; width: auto !important; height: auto !important; }
+.dl-preview canvas { max-width: 100%; max-height: 100%; display: block; object-fit: contain; }
+.dl-desc { font-size: .86rem; line-height: 1.65; opacity: .72; }
+.dl-btn { width: 100%; text-align: center; display: block; }
+.dl-btn:disabled { opacity: .4; cursor: default; pointer-events: none; }
+@media (max-width: 860px) {
+  .dl-grid { grid-template-columns: 1fr 1fr; }
+  .dl-card:nth-child(2) { grid-column: 1 / -1; }
+}
+@media (max-width: 520px) {
+  .dl-grid { grid-template-columns: 1fr; }
+  .dl-card:nth-child(2) { grid-column: auto; }
 }
 
 /* ═══════════════════════════════════════════════
@@ -499,13 +525,49 @@ footer {
 </section>
 
 <!-- ═══════════════════════════════════════════════
-     COMING SOON — CARBON FIELD
+     DOWNLOADS — WHITE FIELD
 ═══════════════════════════════════════════════ -->
-<section class="coming-soon reveal">
-  <div class="cs-label">Coming Soon</div>
-  <h2>Shareable assets on the way.</h2>
-  <p>Flyers, social graphics, and sample messages to make it easy to spread the word in your community.</p>
-  <a href="/" class="btn btn-ghost-wht">Back to the Forum</a>
+<section class="sec f-white reveal" id="downloads" style="border-top:2px solid var(--carbon);">
+  <div class="inner">
+    <div class="dl-header">
+      <span class="sec-label">Download Kit</span>
+      <h2>Share it everywhere.</h2>
+      <p>Print and post the flyer, drop the social graphic in your feed, or just pull up the QR code on your phone. Every share brings in someone who might need what this event offers.</p>
+    </div>
+    <div class="dl-grid">
+
+      <!-- QR Code -->
+      <div class="dl-card">
+        <div class="dl-card-label">QR Code</div>
+        <div class="dl-preview">
+          <div id="qr-display"></div>
+        </div>
+        <p class="dl-desc">Links directly to registration. Save to your camera roll and show it anywhere.</p>
+        <button class="btn btn-outline dl-btn" id="btn-qr" disabled>Download QR Code</button>
+      </div>
+
+      <!-- Social Graphic -->
+      <div class="dl-card">
+        <div class="dl-card-label">Social Post — 1200 &times; 630</div>
+        <div class="dl-preview">
+          <canvas id="social-canvas"></canvas>
+        </div>
+        <p class="dl-desc">Optimized for Instagram, LinkedIn, X, and Facebook feeds.</p>
+        <button class="btn btn-outline dl-btn" id="btn-social" disabled>Download Social Graphic</button>
+      </div>
+
+      <!-- PDF Flyer -->
+      <div class="dl-card">
+        <div class="dl-card-label">Bulletin Board Flyer — PDF</div>
+        <div class="dl-preview">
+          <canvas id="flyer-canvas"></canvas>
+        </div>
+        <p class="dl-desc">Full-page, print-ready. Post at libraries, coffee shops, rec centers, and community boards.</p>
+        <button class="btn btn-outline dl-btn" id="btn-flyer" disabled>Download PDF Flyer</button>
+      </div>
+
+    </div>
+  </div>
 </section>
 
 <!-- COALITION -->
@@ -558,12 +620,275 @@ footer {
   </div>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
-const revealEls = document.querySelectorAll('.reveal');
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
-}, { threshold: 0.06 });
-revealEls.forEach(el => obs.observe(el));
+(function () {
+  /* ── Brand tokens ─────────────────────────────── */
+  const WH = '#F9F9F8', CA = '#121212', RE = '#E4002B', BL = '#41B6E6';
+  const REG_URL = 'https://humancapital.withlevy.com/#register';
+
+  let qrCanvas = null;
+
+  /* ── Helpers ──────────────────────────────────── */
+  function wrapText(ctx, text, x, y, maxW, lh) {
+    const words = text.split(' ');
+    let line = '';
+    for (const w of words) {
+      const test = line + w + ' ';
+      if (ctx.measureText(test).width > maxW && line) {
+        ctx.fillText(line.trimEnd(), x, y);
+        y += lh; line = w + ' ';
+      } else { line = test; }
+    }
+    if (line.trim()) ctx.fillText(line.trimEnd(), x, y);
+    return y;
+  }
+
+  function roundRect(ctx, x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x+r,y); ctx.lineTo(x+w-r,y);
+    ctx.arcTo(x+w,y,x+w,y+r,r); ctx.lineTo(x+w,y+h-r);
+    ctx.arcTo(x+w,y+h,x+w-r,y+h,r); ctx.lineTo(x+r,y+h);
+    ctx.arcTo(x,y+h,x,y+h-r,r); ctx.lineTo(x,y+r);
+    ctx.arcTo(x,y,x+r,y,r); ctx.closePath();
+  }
+
+  function dlCanvas(canvas, name) {
+    const a = document.createElement('a');
+    a.download = name; a.href = canvas.toDataURL('image/png'); a.click();
+  }
+
+  /* ── Social thumbnail 1200 × 630 ─────────────── */
+  function drawSocial(c) {
+    const W = 1200, H = 630;
+    c.width = W; c.height = H;
+    const ctx = c.getContext('2d');
+    const P = 56;
+
+    /* Background */
+    ctx.fillStyle = RE; ctx.fillRect(0, 0, W, H);
+
+    /* Eyebrow */
+    ctx.font = "600 13px 'IBM Plex Mono'";
+    ctx.letterSpacing = '2px';
+    ctx.fillStyle = 'rgba(249,249,248,0.62)';
+    ctx.fillText('HUMAN CAPITAL QUARTERLY', P, P + 16);
+
+    /* "FREE." */
+    ctx.font = "900 196px 'Overpass'";
+    ctx.letterSpacing = '-8px';
+    ctx.fillStyle = WH;
+    ctx.fillText('FREE.', P - 6, 295);
+
+    /* "APRIL 14." */
+    ctx.font = "900 90px 'Overpass'";
+    ctx.letterSpacing = '-3px';
+    ctx.fillStyle = CA;
+    ctx.fillText('APRIL 14.', P - 2, 400);
+
+    /* Serif tagline */
+    ctx.font = "italic 400 35px 'Instrument Serif'";
+    ctx.letterSpacing = '0px';
+    ctx.fillStyle = 'rgba(249,249,248,0.9)';
+    ctx.fillText('Spring Forum \u2014 MLK Jr. Memorial Library', P, 458);
+
+    /* URL */
+    ctx.font = "400 14px 'IBM Plex Mono'";
+    ctx.letterSpacing = '1px';
+    ctx.fillStyle = 'rgba(249,249,248,0.55)';
+    ctx.fillText('HUMANCAPITAL.WITHLEVY.COM', P, 490);
+
+    /* QR card */
+    if (qrCanvas) {
+      const QS = 194, QP = 18;
+      const QX = W - P - QS - QP * 2;
+      const QY = Math.round((H - 52 - QS - QP * 2 - 30) / 2);
+      roundRect(ctx, QX, QY, QS + QP * 2, QS + QP * 2 + 34, 6);
+      ctx.fillStyle = WH; ctx.fill();
+      ctx.drawImage(qrCanvas, QX + QP, QY + QP, QS, QS);
+      ctx.font = "600 11px 'IBM Plex Mono'";
+      ctx.letterSpacing = '1px';
+      ctx.fillStyle = CA;
+      ctx.textAlign = 'center';
+      ctx.fillText('SCAN TO REGISTER', QX + QP + QS / 2, QY + QP + QS + 24);
+      ctx.textAlign = 'left';
+    }
+
+    /* Bottom bar */
+    ctx.fillStyle = CA; ctx.fillRect(0, H - 52, W, 52);
+    ctx.font = "400 12px 'IBM Plex Mono'";
+    ctx.letterSpacing = '1px';
+    ctx.fillStyle = 'rgba(249,249,248,0.6)';
+    ctx.fillText('FREE & OPEN TO ALL  \u00B7  TUESDAY, APRIL 14, 2026  \u00B7  MLK JR. MEMORIAL LIBRARY  \u00B7  WASHINGTON, D.C.', P, H - 18);
+  }
+
+  /* ── Flyer 1700 × 2200 (8.5 \u00D7 11 @ ~200 dpi) ──── */
+  function drawFlyer(c) {
+    const W = 1700, H = 2200;
+    c.width = W; c.height = H;
+    const ctx = c.getContext('2d');
+
+    /* ── ATTENTION: carbon top ─────────────────── */
+    const ATT_H = 570;
+    ctx.fillStyle = CA; ctx.fillRect(0, 0, W, ATT_H);
+
+    ctx.font = "900 300px 'Overpass'";
+    ctx.letterSpacing = '-12px';
+    ctx.fillStyle = WH;
+    ctx.fillText('FREE.', 76, ATT_H - 176);
+
+    ctx.font = "900 86px 'Overpass'";
+    ctx.letterSpacing = '-2px';
+    ctx.fillStyle = RE;
+    ctx.fillText('APRIL 14, 2026', 80, ATT_H - 60);
+
+    /* ── INTEREST: white section ───────────────── */
+    const INT_Y = ATT_H, INT_H = 800;
+    ctx.fillStyle = WH; ctx.fillRect(0, INT_Y, W, INT_H);
+
+    ctx.font = "900 70px 'Overpass'";
+    ctx.letterSpacing = '-2px';
+    ctx.fillStyle = RE;
+    ctx.fillText('HUMAN CAPITAL QUARTERLY', 80, INT_Y + 108);
+
+    ctx.font = "italic 400 62px 'Instrument Serif'";
+    ctx.letterSpacing = '0px';
+    ctx.fillStyle = CA;
+    ctx.fillText('Spring Forum', 82, INT_Y + 190);
+
+    ctx.strokeStyle = RE; ctx.lineWidth = 4;
+    ctx.beginPath(); ctx.moveTo(80, INT_Y + 218); ctx.lineTo(W - 80, INT_Y + 218); ctx.stroke();
+
+    ctx.font = "300 35px 'IBM Plex Sans'";
+    ctx.letterSpacing = '0px';
+    ctx.fillStyle = CA;
+    wrapText(ctx,
+      'A free afternoon connecting D.C. residents with employers, career coaches, skills trainers, and community organizations. All are welcome.',
+      80, INT_Y + 290, W - 160, 54
+    );
+
+    /* ── DESIRE: bullets ──────────────────────── */
+    ctx.font = "600 17px 'IBM Plex Mono'";
+    ctx.letterSpacing = '2px';
+    ctx.fillStyle = 'rgba(18,18,18,0.5)';
+    ctx.fillText('WHAT YOU\'LL FIND:', 80, INT_Y + 462);
+
+    const bullets = [
+      'Career coaching & mentorship',
+      'Job & internship opportunities',
+      'Skills workshops & certification info',
+      'Financial tools & resource navigation',
+      'Community organizations & services',
+      'Expert workforce practitioners',
+    ];
+    const CW = (W - 160) / 2;
+    ctx.font = "400 32px 'IBM Plex Sans'";
+    ctx.letterSpacing = '0px';
+    bullets.forEach((b, i) => {
+      const bx = 80 + (i % 2) * CW;
+      const by = INT_Y + 524 + Math.floor(i / 2) * 64;
+      ctx.fillStyle = RE; ctx.fillText('\u2014', bx, by);
+      ctx.fillStyle = CA; ctx.fillText(b, bx + 48, by);
+    });
+
+    /* ── ACTION: carbon bottom ────────────────── */
+    const ACT_Y = INT_Y + INT_H;
+    ctx.fillStyle = CA; ctx.fillRect(0, ACT_Y, W, H - ACT_Y);
+
+    /* QR block */
+    const QS = 320, QP = 20, QX = 80, QY = ACT_Y + 100;
+    if (qrCanvas) {
+      ctx.fillStyle = WH;
+      ctx.fillRect(QX - QP, QY - QP, QS + QP * 2, QS + QP * 2);
+      ctx.drawImage(qrCanvas, QX, QY, QS, QS);
+    }
+    ctx.font = "600 18px 'IBM Plex Mono'";
+    ctx.letterSpacing = '2px';
+    ctx.fillStyle = WH;
+    ctx.fillText('SCAN TO REGISTER FREE', QX - QP, QY + QS + QP * 2 + 42);
+
+    /* Event details */
+    const DX = QX + QS + QP * 2 + 80;
+
+    ctx.font = "400 16px 'IBM Plex Mono'";
+    ctx.letterSpacing = '2px';
+    ctx.fillStyle = 'rgba(249,249,248,0.45)';
+    ctx.fillText('WHEN & WHERE', DX, ACT_Y + 132);
+
+    ctx.font = "900 58px 'Overpass'";
+    ctx.letterSpacing = '-2px';
+    ctx.fillStyle = WH;
+    ctx.fillText('Tuesday', DX, ACT_Y + 218);
+    ctx.fillText('April 14, 2026', DX, ACT_Y + 290);
+
+    ctx.font = "300 33px 'IBM Plex Sans'";
+    ctx.letterSpacing = '0px';
+    ctx.fillStyle = 'rgba(249,249,248,0.82)';
+    ctx.fillText('MLK Jr. Memorial Library', DX, ACT_Y + 364);
+    ctx.fillText('901 G St. NW, Washington, DC 20001', DX, ACT_Y + 410);
+
+    ctx.font = "600 28px 'IBM Plex Mono'";
+    ctx.letterSpacing = '1px';
+    ctx.fillStyle = RE;
+    ctx.fillText('FREE & OPEN TO ALL', DX, ACT_Y + 480);
+
+    ctx.font = "400 19px 'IBM Plex Mono'";
+    ctx.letterSpacing = '1px';
+    ctx.fillStyle = 'rgba(249,249,248,0.42)';
+    ctx.fillText('humancapital.withlevy.com', DX, ACT_Y + 520);
+
+    /* Handwritten closer */
+    ctx.font = "400 58px 'Caveat'";
+    ctx.letterSpacing = '0px';
+    ctx.fillStyle = BL;
+    ctx.fillText('People are the real capital.', 80, H - 56);
+  }
+
+  /* ── Init ─────────────────────────────────────── */
+  document.fonts.ready.then(() => {
+    const holder = document.getElementById('qr-display');
+    new QRCode(holder, {
+      text: REG_URL, width: 400, height: 400,
+      colorDark: CA, colorLight: WH,
+      correctLevel: QRCode.CorrectLevel.H
+    });
+
+    setTimeout(() => {
+      qrCanvas = holder.querySelector('canvas');
+
+      drawSocial(document.getElementById('social-canvas'));
+      drawFlyer(document.getElementById('flyer-canvas'));
+
+      ['btn-qr','btn-social','btn-flyer'].forEach(id => {
+        document.getElementById(id).disabled = false;
+      });
+    }, 300);
+  });
+
+  /* ── Download handlers ────────────────────────── */
+  document.getElementById('btn-qr').addEventListener('click', () => {
+    if (qrCanvas) dlCanvas(qrCanvas, 'hcq-spring-forum-qr.png');
+  });
+
+  document.getElementById('btn-social').addEventListener('click', () => {
+    dlCanvas(document.getElementById('social-canvas'), 'hcq-spring-forum-social.png');
+  });
+
+  document.getElementById('btn-flyer').addEventListener('click', () => {
+    const fc = document.getElementById('flyer-canvas');
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({ orientation: 'portrait', unit: 'in', format: 'letter' });
+    doc.addImage(fc.toDataURL('image/png'), 'PNG', 0, 0, 8.5, 11);
+    doc.save('hcq-spring-forum-flyer.pdf');
+  });
+
+  /* ── Scroll reveal ────────────────────────────── */
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+  }, { threshold: 0.06 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+}());
 </script>
 </body>
 </html>
