@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Downloads — Human Capital Sessions · Practitioner Day · April 10</title>
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://humancapital.withlevy.com/sessions/downloads">
+<meta property="og:title" content="Downloads — Human Capital Sessions · Practitioner Day">
+<meta property="og:description" content="Print-ready worksheets for the Peer Consulting Lab. Download and print before attending.">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600&family=Overpass:wght@900&family=Instrument+Serif:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+
+<style>
+/*
+  SESSIONS / DOWNLOADS
+  ─────────────────────
+  Session materials hub for the Practitioner Day.
+  Same brand tokens and sessions sub-brand as /sessions/.
+*/
+
+/* ═══════════════════════════════════════════════
+   TOKENS — identical to main site
+═══════════════════════════════════════════════ */
+:root {
+  --white:  #F9F9F8;
+  --carbon: #121212;
+  --red:    #E4002B;
+  --blue:   #41B6E6;
+
+  --sys:   'Overpass',         sans-serif;
+  --serif: 'Instrument Serif', serif;
+  --body:  'IBM Plex Sans',    sans-serif;
+  --mono:  'IBM Plex Mono',    monospace;
+  --hand:  'Caveat',           cursive;
+  --meta:  0.75rem;
+
+  --sp-y: clamp(4rem, 9vw, 8rem);
+  --sp-x: clamp(1.5rem, 5.5vw, 6vw);
+  --ticker-h: 2.35rem;
+}
+
+/* ═══════════════════════════════════════════════
+   RESET / BASE
+═══════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--carbon); color: var(--white);
+  font-family: var(--body); font-weight: 300;
+  line-height: 1.6; overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+body::after {
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9000;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+}
+::selection { background: var(--red); color: var(--white); }
+a { color: inherit; text-decoration: none; }
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
+/* ═══════════════════════════════════════════════
+   TICKER — carbon field, white type
+═══════════════════════════════════════════════ */
+.ticker-bar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 600;
+  background: var(--carbon); color: var(--white);
+  padding: 0.58rem 0; overflow: hidden;
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: 0.1em;
+  border-bottom: 1px solid rgba(249,249,248,.08);
+}
+.ticker-track { display: flex; white-space: nowrap; animation: tick 50s linear infinite; }
+.ticker-track span { padding: 0 4rem; flex-shrink: 0; }
+@keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ═══════════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════════ */
+.nav {
+  position: fixed; top: var(--ticker-h); left: 0; right: 0; z-index: 500;
+  display: flex; align-items: center;
+  padding: 0.75rem var(--sp-x); pointer-events: none;
+}
+.nav-id {
+  pointer-events: all;
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: 0.09em;
+  background: transparent; color: var(--white);
+  border: 1.5px solid rgba(249,249,248,.28);
+  padding: 0.44rem 0.85rem;
+  transition: background .15s, border-color .15s, color .15s;
+  min-height: 44px; display: inline-flex; align-items: center;
+}
+.nav-id:hover { background: var(--white); color: var(--carbon); border-color: var(--white); }
+
+/* ═══════════════════════════════════════════════
+   BUTTONS
+═══════════════════════════════════════════════ */
+.btn {
+  display: inline-block;
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: 0.1em;
+  padding: 0.85rem 2rem; border: 2px solid; cursor: pointer;
+  transition: background .15s, color .15s, border-color .15s;
+  white-space: nowrap;
+}
+.btn-wht { background: var(--white); color: var(--carbon); border-color: var(--white); }
+.btn-wht:hover { background: transparent; color: var(--white); }
+.btn-ghost-wht { background: transparent; color: var(--white); border-color: rgba(249,249,248,.45); }
+.btn-ghost-wht:hover { background: rgba(249,249,248,.08); border-color: var(--white); }
+
+/* ═══════════════════════════════════════════════
+   HEADER SECTION — page intro
+═══════════════════════════════════════════════ */
+.dl-header {
+  padding: calc(var(--ticker-h) + 6rem) var(--sp-x) clamp(3rem, 6vw, 5rem);
+  text-align: center;
+}
+.dl-header-label {
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: .16em;
+  color: rgba(249,249,248,.45);
+  margin-bottom: 1.6rem;
+}
+.dl-header h2 {
+  font-family: var(--serif); font-weight: 400; font-style: italic;
+  font-size: clamp(2rem, 5.5vw, 5rem);
+  line-height: 1.05; color: var(--white);
+  margin-bottom: 1.2rem;
+}
+.dl-header p {
+  font-size: clamp(.97rem, 1.5vw, 1.13rem);
+  max-width: 44ch; margin: 0 auto;
+  line-height: 1.72; color: rgba(249,249,248,.65);
+}
+
+/* ═══════════════════════════════════════════════
+   DOWNLOAD SECTION — white field
+═══════════════════════════════════════════════ */
+.dl-section {
+  background: var(--white); color: var(--carbon);
+  padding: var(--sp-y) var(--sp-x);
+  border-top: 2px solid var(--red);
+}
+.dl-inner { max-width: 1340px; margin: 0 auto; }
+
+.dl-card {
+  display: grid;
+  grid-template-columns: 15rem 1fr;
+  gap: clamp(2.5rem, 5vw, 6rem);
+}
+.dl-card-label {
+  font-family: var(--mono); font-size: var(--meta);
+  font-weight: 600;
+  text-transform: uppercase; letter-spacing: .09em;
+  color: var(--carbon);
+  border-top: 2px solid var(--red);
+  padding-top: .5rem;
+  position: sticky; top: 5rem; align-self: start;
+}
+.dl-card-body h3 {
+  font-family: var(--sys); font-weight: 900;
+  font-size: clamp(1.4rem, 3vw, 2.4rem);
+  text-transform: uppercase;
+  letter-spacing: -.01em;
+  line-height: 1; margin-bottom: .6rem;
+}
+.dl-card-body .dl-sub {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(1rem, 1.7vw, 1.35rem);
+  color: rgba(18,18,18,.65);
+  line-height: 1.3; margin-bottom: 1.4rem;
+}
+.dl-card-body p {
+  font-size: clamp(.95rem, 1.4vw, 1.05rem);
+  line-height: 1.72;
+  color: rgba(18,18,18,.78);
+  max-width: 56ch;
+  margin-bottom: 1.8rem;
+}
+.dl-meta {
+  font-family: var(--mono); font-size: calc(var(--meta) - .06rem);
+  text-transform: uppercase; letter-spacing: .07em;
+  color: rgba(18,18,18,.45);
+  margin-bottom: 1.8rem;
+}
+.dl-actions {
+  display: flex; flex-wrap: wrap; gap: .8rem;
+}
+.btn-red { background: var(--red); color: var(--white); border-color: var(--red); }
+.btn-red:hover { background: var(--carbon); border-color: var(--carbon); }
+.btn-outline { background: transparent; color: var(--carbon); border-color: var(--carbon); }
+.btn-outline:hover { background: var(--carbon); color: var(--white); }
+
+.dl-contents {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(18,18,18,.1);
+}
+.dl-contents-title {
+  font-family: var(--mono); font-size: calc(var(--meta) - .04rem);
+  font-weight: 600;
+  text-transform: uppercase; letter-spacing: .09em;
+  color: rgba(18,18,18,.55);
+  margin-bottom: 1rem;
+}
+.dl-toc {
+  list-style: none;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: .4rem 2rem;
+}
+.dl-toc li {
+  font-size: .88rem;
+  color: rgba(18,18,18,.72);
+  padding: .3rem 0;
+  border-bottom: 1px solid rgba(18,18,18,.06);
+  display: flex; align-items: baseline; gap: .5rem;
+}
+.dl-toc .toc-num {
+  font-family: var(--mono); font-size: .65rem;
+  color: rgba(18,18,18,.3);
+  flex-shrink: 0;
+}
+@media (max-width: 800px) {
+  .dl-card { grid-template-columns: 1fr; gap: 1.2rem; }
+  .dl-card-label { position: static; }
+  .dl-toc { grid-template-columns: 1fr; }
+}
+
+/* ═══════════════════════════════════════════════
+   COALITION BAR
+═══════════════════════════════════════════════ */
+.coalition {
+  background: var(--carbon); color: var(--white);
+  padding: clamp(2.5rem, 5.5vh, 5rem) var(--sp-x);
+  border-top: 2px solid rgba(249,249,248,.08);
+}
+.coal-in {
+  max-width: 1340px; margin: 0 auto;
+  display: grid; grid-template-columns: auto 1fr;
+  gap: clamp(2.5rem, 6vw, 6rem); align-items: center;
+}
+.coal-label {
+  font-family: var(--sys); font-weight: 900;
+  font-size: clamp(1.2rem, 2.8vw, 2.8rem);
+  text-transform: uppercase; line-height: .9; color: var(--white);
+}
+.coal-orgs { display: flex; flex-wrap: wrap; align-items: flex-start; }
+.org { border-left: 1px solid rgba(249,249,248,.18); padding: .3rem 2.2rem; }
+.org:first-child { border-left: none; padding-left: 0; }
+.coal-logo-ph {
+  display: block; height: auto; max-height: 44px;
+  width: auto; max-width: 110px;
+  margin-bottom: .6rem; opacity: .9;
+}
+.org-role {
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: .07em;
+  color: var(--white); display: block; margin-bottom: .15rem;
+}
+.org-name {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(.9rem, 1.7vw, 1.45rem); line-height: 1.15;
+}
+.org-name-sm { font-size: clamp(.85rem, 1.4vw, 1.2rem); }
+.org-desc { font-size: .78rem; color: rgba(249,249,248,.55); display: block; margin-top: .2rem; }
+@media (max-width: 680px) {
+  .coal-in { grid-template-columns: 1fr; gap: 1.5rem; }
+  .coal-orgs { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .org { border-left: none; padding-left: 0; border-top: 1px solid rgba(249,249,248,.12); padding-top: 1rem; }
+  .org:first-child { border-top: none; padding-top: 0; }
+}
+
+/* ═══════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════ */
+footer {
+  background: var(--carbon); color: var(--white);
+  padding: clamp(3rem, 7vw, 6rem) var(--sp-x) 2.2rem;
+  border-top: 1px solid rgba(249,249,248,.07);
+}
+.ft {
+  max-width: 1340px; margin: 0 auto;
+  display: grid; grid-template-columns: 2fr 1fr 1fr;
+  gap: clamp(2.5rem, 5vw, 5rem);
+  padding-bottom: 2.2rem;
+  border-bottom: 1px solid rgba(249,249,248,.07); margin-bottom: 1.6rem;
+}
+.ft-wm {
+  font-family: var(--sys); font-weight: 900;
+  font-size: clamp(1.4rem, 3.2vw, 3rem);
+  text-transform: uppercase; color: var(--red);
+  line-height: .88; letter-spacing: -.03em; margin-bottom: 1rem;
+}
+.ft-brand p { font-size: .86rem; max-width: 270px; line-height: 1.75; }
+.ft-col h2 {
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: .09em;
+  border-bottom: 1px solid rgba(249,249,248,.1);
+  padding-bottom: .5rem; margin-bottom: 1rem;
+}
+.ft-col ul { list-style: none; }
+.ft-col ul li { margin-bottom: .6rem; }
+.ft-col ul li a {
+  font-size: .86rem; transition: opacity .15s;
+  padding: .3rem 0; display: inline-block; opacity: .72;
+}
+.ft-col ul li a:hover { opacity: 1; }
+.ft-bot {
+  max-width: 1340px; margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 1rem;
+}
+.ft-bot p { font-family: var(--mono); font-size: var(--meta); text-transform: uppercase; letter-spacing: .05em; opacity: .55; }
+@media (max-width: 700px) { .ft { grid-template-columns: 1fr; gap: 2.2rem; } }
+
+/* ═══════════════════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════════════════ */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.in { opacity: 1; transform: none; }
+
+/* ── Skip link ── */
+.skip-link {
+  position: absolute; top: -100%; left: 1rem; z-index: 9999;
+  padding: .6rem 1.2rem;
+  background: var(--white); color: var(--carbon);
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: .08em;
+  text-decoration: none; transition: top .15s;
+}
+.skip-link:focus { top: 1rem; }
+
+/* ── Focus visible ── */
+:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track { animation-play-state: paused; }
+  .reveal { transition: none; opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<header>
+<!-- TICKER -->
+<div class="ticker-bar" aria-hidden="true">
+  <div class="ticker-track">
+    <span>PRACTITIONER SESSIONS &mdash; DOWNLOADS &mdash; HUMAN CAPITAL QUARTERLY &mdash; APRIL 10 &mdash; MLK MEMORIAL LIBRARY &mdash; WASHINGTON DC &mdash;&nbsp;</span>
+    <span>PRACTITIONER SESSIONS &mdash; DOWNLOADS &mdash; HUMAN CAPITAL QUARTERLY &mdash; APRIL 10 &mdash; MLK MEMORIAL LIBRARY &mdash; WASHINGTON DC &mdash;&nbsp;</span>
+    <span>PRACTITIONER SESSIONS &mdash; DOWNLOADS &mdash; HUMAN CAPITAL QUARTERLY &mdash; APRIL 10 &mdash; MLK MEMORIAL LIBRARY &mdash; WASHINGTON DC &mdash;&nbsp;</span>
+    <span>PRACTITIONER SESSIONS &mdash; DOWNLOADS &mdash; HUMAN CAPITAL QUARTERLY &mdash; APRIL 10 &mdash; MLK MEMORIAL LIBRARY &mdash; WASHINGTON DC &mdash;&nbsp;</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav" aria-label="Site navigation">
+  <a class="nav-id" href="/sessions/">&larr; Practitioner Sessions</a>
+</nav>
+</header>
+
+<main id="main-content">
+<h1 class="sr-only">Downloads &mdash; Human Capital Sessions</h1>
+
+<!-- ═══════════════════════════════════════════════
+     HEADER
+═══════════════════════════════════════════════ -->
+<section class="dl-header reveal">
+  <div class="dl-header-label">Session Downloads</div>
+  <h2>Download and print before attending.</h2>
+  <p>Materials for the April&nbsp;10 Practitioner Day at MLK Memorial Library.</p>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     WORKSHEET DOWNLOAD — white field
+═══════════════════════════════════════════════ -->
+<section class="dl-section reveal">
+  <div class="dl-inner">
+    <div class="dl-card">
+      <div class="dl-card-label">Session Worksheets</div>
+      <div class="dl-card-body">
+        <h3>Peer Consulting Lab</h3>
+        <div class="dl-sub">Audience Diagnosis &mdash; 6-page worksheet packet</div>
+        <p>A structured set of print worksheets for the peer consulting session. Work through persona definition, tactic mapping, success criteria, and synthesis&mdash;designed for fast, in-room use with handwriting.</p>
+        <div class="dl-meta">6 pages &middot; 8.5 &times; 11 &middot; Print-ready</div>
+        <div class="dl-actions">
+          <a href="/sessions/downloads/peer-consulting-lab-worksheets.pdf" class="btn btn-red" download>Download PDF</a>
+          <a href="/sessions/downloads/worksheets.html" class="btn btn-outline">View Online</a>
+        </div>
+
+        <div class="dl-contents">
+          <div class="dl-contents-title">What&rsquo;s inside</div>
+          <ul class="dl-toc">
+            <li><span class="toc-num">01</span> Persona Definition</li>
+            <li><span class="toc-num">02</span> Current Tactics</li>
+            <li><span class="toc-num">03</span> Success Criteria</li>
+            <li><span class="toc-num">04</span> Evaluate &amp; Prioritize</li>
+            <li><span class="toc-num">05</span> Areas for Growth</li>
+            <li><span class="toc-num">06</span> Final Synthesis</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COALITION -->
+<section class="coalition reveal">
+  <div class="coal-in">
+    <div class="coal-label">A Pilot<br>Project of</div>
+    <div class="coal-orgs">
+      <div class="org">
+        <img class="coal-logo-ph" src="/logos/dcpl-knockout.png" alt="DC Public Library">
+        <span class="org-role">Anchor Institution</span>
+        <div class="org-name">DC Public Library</div>
+      </div>
+      <div class="org">
+        <img class="coal-logo-ph" src="/logos/levy-knockout.png" alt="Levy">
+        <span class="org-role">Design &amp; Strategy</span>
+        <div class="org-name">Levy</div>
+      </div>
+      <div class="org">
+        <span class="org-role">Featured Program Partner</span>
+        <div class="org-name org-name-sm">The Upskilling Labs</div>
+        <span class="org-desc">Anchor learning community &amp; Build Cycle host</span>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft">
+    <div class="ft-brand">
+      <div class="ft-wm">Human<br>Capital<br>Quarterly</div>
+      <p>Human Capital Sessions is the practitioner convening of Human Capital Quarterly. A pilot project of DC Public Library and Levy. Washington, D.C. &mdash; Est. Spring 2026.</p>
+    </div>
+    <div class="ft-col">
+      <h2>Downloads</h2>
+      <ul>
+        <li><a href="/sessions/downloads/peer-consulting-lab-worksheets.pdf" download>Worksheet Packet (PDF)</a></li>
+        <li><a href="/sessions/downloads/worksheets.html">Worksheets (Web)</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h2>Explore More</h2>
+      <ul>
+        <li><a href="/sessions/">Practitioner Day &mdash; Apr 10</a></li>
+        <li><a href="/">Public Forum &mdash; Apr 14</a></li>
+        <li><a href="/expo/">Request an Expo Table</a></li>
+        <li><a href="/spread-the-word/">Spread the Word</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-bot">
+    <p>HCQ Spring 2026 &mdash; Sessions: April 10 &mdash; humancapital.withlevy.com/sessions/downloads</p>
+    <span style="font-family:var(--hand);color:var(--red);font-size:1.6rem;">First one. Let&rsquo;s build it.</span>
+  </div>
+</footer>
+
+<script>
+const revealEls = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+}, { threshold: 0.06 });
+revealEls.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

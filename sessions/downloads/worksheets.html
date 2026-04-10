@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peer Consulting Lab: Audience Diagnosis — Human Capital Sessions</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600&family=Overpass:wght@900&family=Instrument+Serif:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════════════════
+   TOKENS — from the brand system
+═══════════════════════════════════════════════ */
+:root {
+  --white:  #F9F9F8;
+  --carbon: #121212;
+  --red:    #E4002B;
+  --blue:   #41B6E6;
+
+  --sys:   'Overpass',         sans-serif;
+  --serif: 'Instrument Serif', serif;
+  --body:  'IBM Plex Sans',    sans-serif;
+  --mono:  'IBM Plex Mono',    monospace;
+  --hand:  'Caveat',           cursive;
+  --meta:  0.75rem;
+}
+
+/* ═══════════════════════════════════════════════
+   RESET / BASE
+═══════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--white); color: var(--carbon);
+  font-family: var(--body); font-weight: 300;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ═══════════════════════════════════════════════
+   PAGE — print-optimized
+═══════════════════════════════════════════════ */
+@page {
+  size: letter portrait;
+  margin: 0;
+}
+
+.ws-page {
+  width: 8.5in;
+  min-height: 11in;
+  padding: 0.65in 0.7in 0.6in;
+  page-break-after: always;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.ws-page:last-child { page-break-after: auto; }
+
+/* ── Running header ── */
+.ws-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--carbon);
+  margin-bottom: 1.6rem;
+}
+.ws-header-title {
+  font-family: var(--sys); font-weight: 900;
+  font-size: 0.6rem;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--carbon);
+}
+.ws-header-page {
+  font-family: var(--mono); font-size: 0.6rem;
+  text-transform: uppercase; letter-spacing: 0.07em;
+  color: rgba(18,18,18,.55);
+}
+
+/* ── Section title ── */
+.ws-title {
+  font-family: var(--sys); font-weight: 900;
+  font-size: 1.55rem;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  color: var(--carbon);
+  margin-bottom: 0.25rem;
+}
+.ws-subtitle {
+  font-family: var(--serif); font-style: italic;
+  font-size: 1.05rem;
+  color: rgba(18,18,18,.65);
+  line-height: 1.3;
+  margin-bottom: 1.1rem;
+}
+
+/* ── Content area ── */
+.ws-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Running footer ── */
+.ws-footer {
+  margin-top: auto;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(18,18,18,.12);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.ws-footer-flow {
+  font-family: var(--mono); font-size: 0.55rem;
+  text-transform: uppercase; letter-spacing: 0.09em;
+  color: rgba(18,18,18,.4);
+}
+.ws-footer-id {
+  font-family: var(--mono); font-size: 0.55rem;
+  letter-spacing: 0.05em;
+  color: rgba(18,18,18,.3);
+}
+
+/* ═══════════════════════════════════════════════
+   FIELD GROUP — label + write area
+═══════════════════════════════════════════════ */
+.field {
+  margin-bottom: 0.85rem;
+}
+.field-label {
+  font-family: var(--mono); font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.09em;
+  color: var(--carbon);
+  border-top: 2px solid var(--red);
+  padding-top: 0.35rem;
+  margin-bottom: 0.5rem;
+}
+.field-area {
+  border-bottom: 1px solid rgba(18,18,18,.15);
+  min-height: 1.15in;
+  position: relative;
+}
+.field-area-sm {
+  min-height: 0.8in;
+}
+.field-area-lg {
+  min-height: 1.8in;
+}
+.field-area-xl {
+  min-height: 2.2in;
+}
+.field-lines .field-area {
+  background-image: repeating-linear-gradient(
+    transparent, transparent 1.3rem,
+    rgba(18,18,18,.06) 1.3rem, rgba(18,18,18,.06) calc(1.3rem + 1px)
+  );
+  background-position: 0 0.05rem;
+}
+.field-helper {
+  font-family: var(--serif); font-style: italic;
+  font-size: 0.72rem;
+  color: rgba(18,18,18,.42);
+  margin-top: 0.25rem;
+}
+
+/* ═══════════════════════════════════════════════
+   CONSTRAINT BOX — visually emphasized callout
+═══════════════════════════════════════════════ */
+.constraint {
+  margin-top: 1.2rem;
+  border: 2px solid var(--red);
+  padding: 0.65rem 0.8rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+.constraint-mark {
+  font-family: var(--sys); font-weight: 900;
+  font-size: 0.9rem;
+  color: var(--red);
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 0.05rem;
+}
+.constraint-text {
+  font-family: var(--body); font-weight: 600;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: var(--carbon);
+}
+
+/* ═══════════════════════════════════════════════
+   TABLE — for structured data entry
+═══════════════════════════════════════════════ */
+.ws-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+.ws-table th {
+  font-family: var(--mono); font-size: 0.6rem;
+  font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.09em;
+  text-align: left;
+  color: var(--white);
+  background: var(--carbon);
+  padding: 0.45rem 0.55rem;
+  border: 1px solid var(--carbon);
+}
+.ws-table th .th-hint {
+  font-weight: 400;
+  color: rgba(249,249,248,.55);
+  display: block;
+  margin-top: 0.1rem;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 0.55rem;
+}
+.ws-table td {
+  border: 1px solid rgba(18,18,18,.15);
+  padding: 0.4rem 0.55rem;
+  vertical-align: top;
+  height: 1in;
+}
+.ws-table td.td-sm {
+  height: 0.7in;
+}
+.ws-table td.td-narrow {
+  width: 0.7in;
+  text-align: center;
+}
+.ws-table .row-num {
+  font-family: var(--mono); font-size: 0.55rem;
+  color: rgba(18,18,18,.3);
+  display: block;
+  margin-bottom: 0.15rem;
+}
+
+/* ═══════════════════════════════════════════════
+   NUMBERED LIST — for ordered prompts
+═══════════════════════════════════════════════ */
+.numbered-field {
+  display: flex;
+  gap: 0.65rem;
+  margin-bottom: 0.2rem;
+}
+.num-marker {
+  font-family: var(--sys); font-weight: 900;
+  font-size: 1.3rem;
+  color: rgba(18,18,18,.12);
+  line-height: 1;
+  flex-shrink: 0;
+  width: 1.4rem;
+  text-align: right;
+  padding-top: 0.55rem;
+}
+.num-body {
+  flex: 1;
+  border-bottom: 1px solid rgba(18,18,18,.15);
+  min-height: 1.35in;
+}
+
+/* ═══════════════════════════════════════════════
+   CHECKBOX GROUP
+═══════════════════════════════════════════════ */
+.check-group {
+  margin-bottom: 1.2rem;
+}
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  padding: 0.45rem 0;
+  border-bottom: 1px solid rgba(18,18,18,.06);
+}
+.check-box {
+  width: 0.8rem; height: 0.8rem;
+  border: 1.5px solid rgba(18,18,18,.35);
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+.check-label {
+  font-family: var(--body); font-weight: 400;
+  font-size: 0.85rem;
+  color: var(--carbon);
+  line-height: 1.35;
+}
+
+/* ═══════════════════════════════════════════════
+   INLINE FIELD — label + write line on one row
+═══════════════════════════════════════════════ */
+.inline-field {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin-bottom: 0.75rem;
+}
+.inline-label {
+  font-family: var(--mono); font-size: 0.62rem;
+  font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.07em;
+  color: var(--carbon);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.inline-line {
+  flex: 1;
+  border-bottom: 1px solid rgba(18,18,18,.15);
+  min-height: 1.1rem;
+}
+
+/* ═══════════════════════════════════════════════
+   SYNTHESIS FIELD — large-format for final page
+═══════════════════════════════════════════════ */
+.synth-field {
+  margin-bottom: 0.85rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.synth-label {
+  font-family: var(--sys); font-weight: 900;
+  font-size: 0.85rem;
+  text-transform: uppercase; letter-spacing: 0.04em;
+  color: var(--carbon);
+  border-left: 3px solid var(--red);
+  padding-left: 0.6rem;
+  margin-bottom: 0.45rem;
+}
+.synth-area {
+  flex: 1;
+  border: 1px solid rgba(18,18,18,.12);
+  min-height: 1.6in;
+  background-image: repeating-linear-gradient(
+    transparent, transparent 1.3rem,
+    rgba(18,18,18,.04) 1.3rem, rgba(18,18,18,.04) calc(1.3rem + 1px)
+  );
+  background-position: 0 0.55rem;
+}
+
+/* ═══════════════════════════════════════════════
+   SECTION DIVIDER
+═══════════════════════════════════════════════ */
+.ws-divider {
+  border: none;
+  border-top: 1px solid rgba(18,18,18,.1);
+  margin: 1rem 0;
+}
+
+/* ═══════════════════════════════════════════════
+   PROMPT — italic instruction text
+═══════════════════════════════════════════════ */
+.ws-prompt {
+  font-family: var(--serif); font-style: italic;
+  font-size: 0.95rem;
+  color: rgba(18,18,18,.82);
+  line-height: 1.45;
+  margin-bottom: 1.2rem;
+}
+
+/* ═══════════════════════════════════════════════
+   SCREEN-ONLY — preview navigation
+═══════════════════════════════════════════════ */
+@media screen {
+  body { background: #e8e8e6; }
+  .ws-page {
+    background: var(--white);
+    margin: 1.5rem auto;
+    box-shadow: 0 1px 8px rgba(0,0,0,.12);
+  }
+  .screen-bar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: var(--carbon); color: var(--white);
+    padding: 0.7rem 1.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: var(--mono); font-size: var(--meta);
+    text-transform: uppercase; letter-spacing: 0.09em;
+  }
+  .screen-bar a {
+    color: var(--white); opacity: .7;
+    text-decoration: none; transition: opacity .15s;
+  }
+  .screen-bar a:hover { opacity: 1; }
+  .screen-btn {
+    background: transparent; color: var(--white);
+    border: 1.5px solid rgba(249,249,248,.45);
+    padding: 0.4rem 1rem;
+    font-family: var(--mono); font-size: 0.65rem;
+    text-transform: uppercase; letter-spacing: 0.09em;
+    cursor: pointer; transition: background .15s, border-color .15s;
+  }
+  .screen-btn:hover { background: rgba(249,249,248,.08); border-color: var(--white); }
+}
+
+@media print {
+  .screen-bar { display: none; }
+  body { background: white; }
+  .ws-page { box-shadow: none; margin: 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- Screen-only navigation bar -->
+<div class="screen-bar">
+  <a href="/sessions/downloads/">&larr; Back to Downloads</a>
+  <span>Peer Consulting Lab &mdash; Audience Diagnosis</span>
+  <button class="screen-btn" onclick="window.print()">Print / Save PDF</button>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     PAGE 1 — PERSONA DEFINITION
+═══════════════════════════════════════════════════════ -->
+<div class="ws-page">
+  <div class="ws-header">
+    <span class="ws-header-title">Human Capital Sessions &mdash; Peer Consulting Lab</span>
+    <span class="ws-header-page">Page 1 of 6</span>
+  </div>
+
+  <div class="ws-title">Persona Definition</div>
+  <div class="ws-subtitle">Get specific about who you&rsquo;re trying to reach.</div>
+
+  <div class="ws-body">
+    <div class="field field-lines">
+      <div class="field-label">Who are they?</div>
+      <div class="field-helper">Role, context, life stage &mdash; be specific enough to picture one person.</div>
+      <div class="field-area"></div>
+    </div>
+
+    <div class="field field-lines">
+      <div class="field-label">What are they trying to get done right now?</div>
+      <div class="field-area"></div>
+    </div>
+
+    <div class="field field-lines">
+      <div class="field-label">What pressure are they under?</div>
+      <div class="field-area"></div>
+    </div>
+
+    <div class="field field-lines">
+      <div class="field-label">Where do they actually spend attention?</div>
+      <div class="field-helper">Physical spaces, digital channels, trusted voices.</div>
+      <div class="field-area"></div>
+    </div>
+
+    <div class="constraint">
+      <span class="constraint-mark">&#9632;</span>
+      <span class="constraint-text">Could you find and reach this person within 7 days?</span>
+    </div>
+  </div>
+
+  <div class="ws-footer">
+    <span class="ws-footer-flow">Solo reflection &rarr; 30-second share &rarr; Peer discussion</span>
+    <span class="ws-footer-id">HCQ Sessions &middot; Spring 2026</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     PAGE 2 — CURRENT TACTICS
+═══════════════════════════════════════════════════════ -->
+<div class="ws-page">
+  <div class="ws-header">
+    <span class="ws-header-title">Human Capital Sessions &mdash; Peer Consulting Lab</span>
+    <span class="ws-header-page">Page 2 of 6</span>
+  </div>
+
+  <div class="ws-title">Current Tactics</div>
+  <div class="ws-subtitle">Map how you&rsquo;re reaching your audience today.</div>
+
+  <div class="ws-body">
+    <table class="ws-table">
+      <thead>
+        <tr>
+          <th style="width:33%;">Channel <span class="th-hint">Where do you show up?</span></th>
+          <th style="width:34%;">Mechanism <span class="th-hint">How do you engage them?</span></th>
+          <th style="width:33%;">Moment <span class="th-hint">When does it happen?</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="row-num">01</span></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><span class="row-num">02</span></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><span class="row-num">03</span></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><span class="row-num">04</span></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><span class="row-num">05</span></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="ws-footer">
+    <span class="ws-footer-flow">Solo reflection &rarr; 30-second share &rarr; Peer discussion</span>
+    <span class="ws-footer-id">HCQ Sessions &middot; Spring 2026</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     PAGE 3 — SUCCESS CRITERIA
+═══════════════════════════════════════════════════════ -->
+<div class="ws-page">
+  <div class="ws-header">
+    <span class="ws-header-title">Human Capital Sessions &mdash; Peer Consulting Lab</span>
+    <span class="ws-header-page">Page 3 of 6</span>
+  </div>
+
+  <div class="ws-title">Success Criteria</div>
+  <div class="ws-subtitle">What does &ldquo;working&rdquo; actually look like?</div>
+
+  <div class="ws-body">
+    <div class="ws-prompt">Define three criteria you&rsquo;ll use to evaluate whether your tactics are working. These will become your scoring columns on the next page.</div>
+
+    <div class="numbered-field">
+      <span class="num-marker">1</span>
+      <div class="num-body"></div>
+    </div>
+
+    <div class="numbered-field">
+      <span class="num-marker">2</span>
+      <div class="num-body"></div>
+    </div>
+
+    <div class="numbered-field">
+      <span class="num-marker">3</span>
+      <div class="num-body"></div>
+    </div>
+
+    <div class="field-helper" style="margin-top:0.8rem;">Consider: behavior change &middot; depth of engagement &middot; conversion &middot; retention &middot; reach</div>
+  </div>
+
+  <div class="ws-footer">
+    <span class="ws-footer-flow">Solo reflection &rarr; 30-second share &rarr; Peer discussion</span>
+    <span class="ws-footer-id">HCQ Sessions &middot; Spring 2026</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     PAGE 4 — EVALUATE & PRIORITIZE
+═══════════════════════════════════════════════════════ -->
+<div class="ws-page">
+  <div class="ws-header">
+    <span class="ws-header-title">Human Capital Sessions &mdash; Peer Consulting Lab</span>
+    <span class="ws-header-page">Page 4 of 6</span>
+  </div>
+
+  <div class="ws-title">Evaluate &amp; Prioritize</div>
+  <div class="ws-subtitle">Score each tactic against your criteria. Use a simple 1&ndash;3 scale.</div>
+
+  <div class="ws-body">
+    <table class="ws-table">
+      <thead>
+        <tr>
+          <th style="width:28%;">Tactic</th>
+          <th style="width:17%;">Criteria 1</th>
+          <th style="width:17%;">Criteria 2</th>
+          <th style="width:17%;">Criteria 3</th>
+          <th style="width:11%;">Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="td-sm"><span class="row-num">01</span></td>
+          <td class="td-sm td-narrow"></td>
+          <td class="td-sm td-narrow"></td>
+          <td class="td-sm td-narrow"></td>
+          <td class="td-sm td-narrow"></td>
+        </tr>
+        <tr>
+          <td class="td-sm"><span class="row-num">02</span></td>
+          <td class="td-sm td-narrow"></td>
+          <td class="td-sm td-narrow"></td>
+          <td class="td-sm td-narrow"></td>
+          <td class="td-sm td-narrow"></td>
+        </tr>
+        <tr>
+          <td class="td-sm"><span class="row-num">03</span></td>
+          <td class="td-sm td-narrow"></td>
+          <td class="td-sm td-narrow"></td>
+          <td class="td-sm td-narrow"></td>
+          <td class="td-sm td-narrow"></td>
+        </tr>
+        <tr>
+          <td class="td-sm"><span class="row-num">04</span></td>
+          <td class="td-sm td-narrow"></td>
+          <td class="td-sm td-narrow"></td>
+          <td class="td-sm td-narrow"></td>
+          <td class="td-sm td-narrow"></td>
+        </tr>
+        <tr>
+          <td class="td-sm"><span class="row-num">05</span></td>
+          <td class="td-sm td-narrow"></td>
+          <td class="td-sm td-narrow"></td>
+          <td class="td-sm td-narrow"></td>
+          <td class="td-sm td-narrow"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr class="ws-divider">
+
+    <div class="field-label" style="border-top:none;margin-bottom:0.75rem;">Based on your scores</div>
+
+    <div class="inline-field">
+      <span class="inline-label">Most effective:</span>
+      <span class="inline-line"></span>
+    </div>
+    <div class="inline-field">
+      <span class="inline-label">Weakest:</span>
+      <span class="inline-line"></span>
+    </div>
+    <div class="inline-field">
+      <span class="inline-label">Stop:</span>
+      <span class="inline-line"></span>
+    </div>
+  </div>
+
+  <div class="ws-footer">
+    <span class="ws-footer-flow">Solo reflection &rarr; 30-second share &rarr; Peer discussion</span>
+    <span class="ws-footer-id">HCQ Sessions &middot; Spring 2026</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     PAGE 5 — AREAS FOR GROWTH
+═══════════════════════════════════════════════════════ -->
+<div class="ws-page">
+  <div class="ws-header">
+    <span class="ws-header-title">Human Capital Sessions &mdash; Peer Consulting Lab</span>
+    <span class="ws-header-page">Page 5 of 6</span>
+  </div>
+
+  <div class="ws-title">Areas for Growth</div>
+  <div class="ws-subtitle">Where are the gaps between intention and impact?</div>
+
+  <div class="ws-body">
+    <div class="field-label">Check all that apply</div>
+
+    <div class="check-group">
+      <div class="check-item">
+        <div class="check-box"></div>
+        <span class="check-label">Audience clarity &mdash; We aren&rsquo;t specific enough about who we&rsquo;re trying to reach</span>
+      </div>
+      <div class="check-item">
+        <div class="check-box"></div>
+        <span class="check-label">Channel mismatch &mdash; We&rsquo;re showing up in places our audience isn&rsquo;t</span>
+      </div>
+      <div class="check-item">
+        <div class="check-box"></div>
+        <span class="check-label">Messaging relevance &mdash; What we say doesn&rsquo;t connect to what they need</span>
+      </div>
+      <div class="check-item">
+        <div class="check-box"></div>
+        <span class="check-label">Conversion gaps &mdash; People engage but don&rsquo;t take the next step</span>
+      </div>
+      <div class="check-item">
+        <div class="check-box"></div>
+        <span class="check-label">Measurement gaps &mdash; We don&rsquo;t know if our tactics are working</span>
+      </div>
+    </div>
+
+    <hr class="ws-divider">
+
+    <div class="field-label">Top 3 gaps to address</div>
+    <div class="ws-prompt" style="margin-bottom:0.9rem;">From the list above or your own reflection &mdash; what matters most right now?</div>
+
+    <div class="numbered-field">
+      <span class="num-marker">1</span>
+      <div class="num-body"></div>
+    </div>
+
+    <div class="numbered-field">
+      <span class="num-marker">2</span>
+      <div class="num-body"></div>
+    </div>
+
+    <div class="numbered-field">
+      <span class="num-marker">3</span>
+      <div class="num-body"></div>
+    </div>
+  </div>
+
+  <div class="ws-footer">
+    <span class="ws-footer-flow">Solo reflection &rarr; 30-second share &rarr; Peer discussion</span>
+    <span class="ws-footer-id">HCQ Sessions &middot; Spring 2026</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     PAGE 6 — FINAL SYNTHESIS
+═══════════════════════════════════════════════════════ -->
+<div class="ws-page">
+  <div class="ws-header">
+    <span class="ws-header-title">Human Capital Sessions &mdash; Peer Consulting Lab</span>
+    <span class="ws-header-page">Page 6 of 6</span>
+  </div>
+
+  <div class="ws-title">Final Synthesis</div>
+  <div class="ws-subtitle">Distill everything into three statements you can act on.</div>
+
+  <div class="ws-body" style="gap:0.5rem;">
+    <div class="synth-field">
+      <div class="synth-label">Biggest Insight</div>
+      <div class="synth-area"></div>
+    </div>
+
+    <div class="synth-field">
+      <div class="synth-label">Top Constraint</div>
+      <div class="synth-area"></div>
+    </div>
+
+    <div class="synth-field">
+      <div class="synth-label">Highest-Leverage Opportunity</div>
+      <div class="synth-area"></div>
+    </div>
+  </div>
+
+  <div class="ws-footer">
+    <span class="ws-footer-flow">Solo reflection &rarr; 30-second share &rarr; Peer discussion</span>
+    <span class="ws-footer-id">HCQ Sessions &middot; Spring 2026</span>
+  </div>
+</div>
+
+</body>
+</html>
