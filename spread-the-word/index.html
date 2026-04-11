@@ -284,6 +284,58 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ═══════════════════════════════════════════════
+   MESSAGING GUIDANCE SECTION
+═══════════════════════════════════════════════ */
+.msg-intro {
+  font-size: clamp(.97rem, 1.5vw, 1.13rem);
+  max-width: 52ch; line-height: 1.72; opacity: .82;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+.how-to {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.2rem, 3vw, 2.5rem);
+  margin-bottom: clamp(3rem, 6vw, 5rem);
+}
+.how-to-item {
+  border-top: 2px solid var(--carbon); padding-top: 1.1rem;
+}
+.how-to-label {
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: .09em;
+  color: var(--red); display: block; margin-bottom: .6rem;
+}
+.how-to-item p { font-size: .86rem; line-height: 1.7; opacity: .78; }
+
+/* Starters */
+.starters-head {
+  font-family: var(--serif); font-weight: 400;
+  font-size: clamp(1.5rem, 3vw, 2.8rem);
+  line-height: 1.05; margin-bottom: clamp(1.8rem, 4vw, 3rem);
+}
+.starters-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.5rem, 3vw, 3rem); align-items: start;
+}
+.starter-col { display: flex; flex-direction: column; gap: 1rem; }
+.starter-pillar {
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: .09em;
+  color: var(--red); border-top: 2px solid var(--red);
+  padding-top: .9rem; margin-bottom: .4rem;
+}
+.starter-item {
+  border-top: 1px solid rgba(18,18,18,.12); padding: .9rem 0;
+  font-size: clamp(.9rem, 1.3vw, 1rem); line-height: 1.65;
+  cursor: text; user-select: text;
+}
+.starter-item:first-of-type { border-top: none; padding-top: 0; }
+
+@media (max-width: 760px) {
+  .how-to { grid-template-columns: 1fr; gap: 1.5rem; }
+  .starters-grid { grid-template-columns: 1fr; }
+}
+
+/* ═══════════════════════════════════════════════
    DOWNLOADS SECTION
 ═══════════════════════════════════════════════ */
 .dl-header { margin-bottom: clamp(2.5rem, 5vw, 4rem); }
@@ -293,38 +345,54 @@ a { color: inherit; text-decoration: none; }
   line-height: 1.05; margin-bottom: 1rem;
 }
 .dl-header p { font-size: clamp(.97rem, 1.5vw, 1.13rem); max-width: 56ch; line-height: 1.72; opacity: .82; }
-.dl-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.9fr 1.2fr;
-  gap: clamp(1.5rem, 3.5vw, 3rem);
-  align-items: start;
+
+/* Pillar group */
+.dl-pillar { margin-bottom: clamp(3rem, 6vw, 5rem); }
+.dl-pillar:last-child { margin-bottom: 0; }
+.dl-pillar-label {
+  font-family: var(--mono); font-size: var(--meta);
+  text-transform: uppercase; letter-spacing: .12em;
+  color: var(--red); border-top: 2px solid var(--red);
+  padding-top: .9rem; margin-bottom: clamp(1.2rem, 3vw, 2rem);
+}
+.dl-card-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.2rem, 2.5vw, 2.5rem); align-items: start;
+}
+.dl-util-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: clamp(1.2rem, 2.5vw, 2.5rem); align-items: start;
+  max-width: 640px;
 }
 .dl-card {
   border-top: 2px solid var(--carbon); padding-top: 1.4rem;
-  display: flex; flex-direction: column; gap: 1rem;
+  display: flex; flex-direction: column; gap: .85rem;
 }
 .dl-card-label {
   font-family: var(--mono); font-size: var(--meta);
   text-transform: uppercase; letter-spacing: .09em; opacity: .55;
 }
 .dl-preview {
-  height: 260px; background: #ddddd9;
+  background: #ddddd9; overflow: hidden;
   display: flex; align-items: center; justify-content: center;
-  overflow: hidden;
 }
+.dl-preview.sq  { aspect-ratio: 1 / 1; }
+.dl-preview.st  { aspect-ratio: 9 / 16; max-height: 280px; }
+.dl-preview.util { height: 180px; }
 #qr-display { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; }
-#qr-display canvas { max-width: 220px !important; max-height: 220px !important; width: auto !important; height: auto !important; }
-.dl-preview canvas { max-width: 100%; max-height: 100%; display: block; object-fit: contain; }
+#qr-display canvas { max-width: 150px !important; max-height: 150px !important; width: auto !important; height: auto !important; }
+.dl-preview canvas { width: 100% !important; height: 100% !important; object-fit: cover; display: block; }
+.dl-preview.st canvas { object-fit: contain; width: auto !important; height: 100% !important; max-width: 100%; }
 .dl-desc { font-size: .86rem; line-height: 1.65; opacity: .72; }
 .dl-btn { width: 100%; text-align: center; display: block; }
 .dl-btn:disabled { opacity: .4; cursor: default; pointer-events: none; }
-@media (max-width: 860px) {
-  .dl-grid { grid-template-columns: 1fr 1fr; }
-  .dl-card:nth-child(2) { grid-column: 1 / -1; }
+
+@media (max-width: 700px) {
+  .dl-card-grid { grid-template-columns: 1fr 1fr; }
+  .dl-util-grid { grid-template-columns: 1fr 1fr; }
 }
-@media (max-width: 520px) {
-  .dl-grid { grid-template-columns: 1fr; }
-  .dl-card:nth-child(2) { grid-column: auto; }
+@media (max-width: 480px) {
+  .dl-card-grid { grid-template-columns: 1fr; }
 }
 
 /* ═══════════════════════════════════════════════
@@ -505,20 +573,58 @@ footer {
 </section>
 
 <!-- ═══════════════════════════════════════════════
-     ABOUT — WHITE FIELD
+     MESSAGING GUIDANCE — WHITE FIELD
 ═══════════════════════════════════════════════ -->
-<section class="sec f-white reveal" style="border-top:2px solid var(--red);">
+<section class="sec f-white reveal" id="messaging" style="border-top:2px solid var(--red);">
   <div class="inner">
     <div class="two-col">
-      <div class="col-label">Why It Matters</div>
+      <div class="col-label">How to Share</div>
       <div class="col-body">
+
         <h2>Your network is someone&rsquo;s next step.</h2>
-        <p>Human Capital Quarterly brings residents face-to-face with the organizations, practitioners, and opportunities that can move their lives forward. The more people who show up, the more powerful the room.</p>
-        <p>Sharing this event takes a moment. The impact can last much longer.</p>
-        <div class="ctas">
-          <a href="/" class="btn btn-outline">Register Free &rarr;</a>
+        <p class="msg-intro">You know people who would benefit from this. The guidance below is for when you&rsquo;re ready to share &mdash; not a script, just a starting point. Use it however it&rsquo;s useful, and make it yours.</p>
+
+        <div class="how-to">
+          <div class="how-to-item">
+            <span class="how-to-label">Square images &mdash; 1080&times;1080</span>
+            <p>Best for Instagram feed, LinkedIn, Facebook. Save and upload directly.</p>
+          </div>
+          <div class="how-to-item">
+            <span class="how-to-label">Vertical images &mdash; 1080&times;1920</span>
+            <p>Best for Instagram Stories and LinkedIn Stories. Crop to your platform&rsquo;s safe zones as needed.</p>
+          </div>
+          <div class="how-to-item">
+            <span class="how-to-label">Tagging &amp; linking</span>
+            <p>Link to <strong>humancapital.withlevy.com</strong>. Tag <strong>@HumanCapitalQuarterly</strong> on LinkedIn and Instagram. Hashtag <strong>#SpringForum</strong> if you want it searchable.</p>
+          </div>
         </div>
-        <span class="mg mg-on-white" style="bottom:-1rem;right:0;transform:rotate(-3deg);font-size:clamp(1rem,1.8vw,1.7rem);color:var(--carbon);opacity:.3;" aria-hidden="true">it&rsquo;s free!</span>
+
+        <p class="starters-head"><em>Copy starters.</em> Adapt freely.</p>
+        <div class="starters-grid">
+
+          <div class="starter-col">
+            <div class="starter-pillar">Community</div>
+            <p class="starter-item">&ldquo;I&rsquo;m going to this on April 14. If you&rsquo;re figuring out your next move in DC, come with me. It&rsquo;s free, it&rsquo;s at MLK Library, and it&rsquo;s actually useful.&rdquo;</p>
+            <p class="starter-item">&ldquo;A lot of people I respect are going to the Spring Forum at MLK Library. Free event, April 14. If you&rsquo;re in the DMV and thinking about where your career is headed &mdash; this is worth a Tuesday afternoon.&rdquo;</p>
+            <p class="starter-item">&ldquo;You don&rsquo;t have to figure this out alone. The Spring Forum is a room full of people doing exactly that. April 14, free, MLK Library. Come.&rdquo;</p>
+          </div>
+
+          <div class="starter-col">
+            <div class="starter-pillar">Practical</div>
+            <p class="starter-item">&ldquo;Not a conference. Not a panel. The Spring Forum is a working session &mdash; peer consulting, skill labs, real conversations with people who can actually help. April 14, free, MLK Library.&rdquo;</p>
+            <p class="starter-item">&ldquo;If you&rsquo;re looking for something concrete &mdash; not inspiration, actual next steps &mdash; this is the right event. Free, April 14, Washington DC.&rdquo;</p>
+            <p class="starter-item">&ldquo;Free event. April 14. MLK Library. Come with a question about your work and leave with something useful. That&rsquo;s the whole idea.&rdquo;</p>
+          </div>
+
+          <div class="starter-col">
+            <div class="starter-pillar">Strategic</div>
+            <p class="starter-item">&ldquo;The workforce is shifting fast. The Spring Forum is a DC event built around one question: what do you do about it? Free, April 14, MLK Library.&rdquo;</p>
+            <p class="starter-item">&ldquo;Human capital &mdash; your skills, your network, your direction &mdash; is something you can actually build. The Spring Forum is about doing that deliberately. April 14, free, DC.&rdquo;</p>
+            <p class="starter-item">&ldquo;Work is changing, and DC is not waiting around. The Spring Forum is one of those rooms where something real is happening. April 14, MLK Library, free to attend.&rdquo;</p>
+          </div>
+
+        </div>
+
       </div>
     </div>
   </div>
@@ -529,44 +635,126 @@ footer {
 ═══════════════════════════════════════════════ -->
 <section class="sec f-white reveal" id="downloads" style="border-top:2px solid var(--carbon);">
   <div class="inner">
+
     <div class="dl-header">
-      <span class="sec-label">Download Kit</span>
-      <h2>Share it everywhere.</h2>
-      <p>Print and post the flyer, drop the social graphic in your feed, or just pull up the QR code on your phone. Every share brings in someone who might need what this event offers.</p>
+      <span class="sec-label">Share Kit</span>
+      <h2>Nine graphics, three angles.</h2>
+      <p>Each set of three tests a different emotional angle. Download what fits how you talk, or share all three. Every format has a preview below &mdash; what you download is full resolution.</p>
     </div>
-    <div class="dl-grid">
 
-      <!-- QR Code -->
-      <div class="dl-card">
-        <div class="dl-card-label">QR Code</div>
-        <div class="dl-preview">
-          <div id="qr-display"></div>
+    <!-- ── Community ─────────────────────────────── -->
+    <div class="dl-pillar">
+      <div class="dl-pillar-label">Community &mdash; Not Alone</div>
+      <div class="dl-card-grid">
+
+        <div class="dl-card">
+          <div class="dl-card-label">C1 &mdash; Square &mdash; 1080&times;1080</div>
+          <div class="dl-preview sq"><canvas id="c1-canvas"></canvas></div>
+          <p class="dl-desc">Recognition. The moment of seeing yourself in the room. Best for a personal post.</p>
+          <button class="btn btn-outline dl-btn" id="btn-c1" disabled>Download &darr;</button>
         </div>
-        <p class="dl-desc">Links directly to registration. Save to your camera roll and show it anywhere.</p>
-        <button class="btn btn-outline dl-btn" id="btn-qr" disabled>Download QR Code</button>
-      </div>
 
-      <!-- Social Graphic -->
-      <div class="dl-card">
-        <div class="dl-card-label">Social Post — 1200 &times; 630</div>
-        <div class="dl-preview">
-          <canvas id="social-canvas"></canvas>
+        <div class="dl-card">
+          <div class="dl-card-label">C2 &mdash; Story &mdash; 1080&times;1920</div>
+          <div class="dl-preview st"><canvas id="c2-canvas"></canvas></div>
+          <p class="dl-desc">Local pride. The civic frame. Best for Instagram or LinkedIn Story.</p>
+          <button class="btn btn-outline dl-btn" id="btn-c2" disabled>Download &darr;</button>
         </div>
-        <p class="dl-desc">Optimized for Instagram, LinkedIn, X, and Facebook feeds.</p>
-        <button class="btn btn-outline dl-btn" id="btn-social" disabled>Download Social Graphic</button>
-      </div>
 
-      <!-- PDF Flyer -->
-      <div class="dl-card">
-        <div class="dl-card-label">Bulletin Board Flyer — PDF</div>
-        <div class="dl-preview">
-          <canvas id="flyer-canvas"></canvas>
+        <div class="dl-card">
+          <div class="dl-card-label">C3 &mdash; Square &mdash; 1080&times;1080</div>
+          <div class="dl-preview sq"><canvas id="c3-canvas"></canvas></div>
+          <p class="dl-desc">The invitation. Explicitly asks someone to bring a friend. Best for a DM or group post.</p>
+          <button class="btn btn-outline dl-btn" id="btn-c3" disabled>Download &darr;</button>
         </div>
-        <p class="dl-desc">Full-page, print-ready. Post at libraries, coffee shops, rec centers, and community boards.</p>
-        <button class="btn btn-outline dl-btn" id="btn-flyer" disabled>Download PDF Flyer</button>
-      </div>
 
+      </div>
     </div>
+
+    <!-- ── Practical ──────────────────────────────── -->
+    <div class="dl-pillar">
+      <div class="dl-pillar-label">Practical &mdash; Hands-On Help</div>
+      <div class="dl-card-grid">
+
+        <div class="dl-card">
+          <div class="dl-card-label">P1 &mdash; Square &mdash; 1080&times;1080</div>
+          <div class="dl-preview sq"><canvas id="p1-canvas"></canvas></div>
+          <p class="dl-desc">The outcome promise. Walk out with a real next step, not just inspiration.</p>
+          <button class="btn btn-outline dl-btn" id="btn-p1" disabled>Download &darr;</button>
+        </div>
+
+        <div class="dl-card">
+          <div class="dl-card-label">P2 &mdash; Story &mdash; 1080&times;1920</div>
+          <div class="dl-preview st"><canvas id="p2-canvas"></canvas></div>
+          <p class="dl-desc">The credibility card. Distinguishes this event from panels and networking happy hours.</p>
+          <button class="btn btn-outline dl-btn" id="btn-p2" disabled>Download &darr;</button>
+        </div>
+
+        <div class="dl-card">
+          <div class="dl-card-label">P3 &mdash; Square &mdash; 1080&times;1080</div>
+          <div class="dl-preview sq"><canvas id="p3-canvas"></canvas></div>
+          <p class="dl-desc">Friction removal. Free, accessible, no barriers. Best for neighborhood or group posts.</p>
+          <button class="btn btn-outline dl-btn" id="btn-p3" disabled>Download &darr;</button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── Strategic ──────────────────────────────── -->
+    <div class="dl-pillar">
+      <div class="dl-pillar-label">Strategic &mdash; Where Work Is Headed</div>
+      <div class="dl-card-grid">
+
+        <div class="dl-card">
+          <div class="dl-card-label">S1 &mdash; Square &mdash; 1080&times;1080</div>
+          <div class="dl-preview sq"><canvas id="s1-canvas"></canvas></div>
+          <p class="dl-desc">Local reality. Grounds the macro workforce-shift in a DC truth.</p>
+          <button class="btn btn-outline dl-btn" id="btn-s1" disabled>Download &darr;</button>
+        </div>
+
+        <div class="dl-card">
+          <div class="dl-card-label">S2 &mdash; Story &mdash; 1080&times;1920</div>
+          <div class="dl-preview st"><canvas id="s2-canvas"></canvas></div>
+          <p class="dl-desc">Agency, not anxiety. Confident posture on a stressful topic. Best for LinkedIn Story.</p>
+          <button class="btn btn-outline dl-btn" id="btn-s2" disabled>Download &darr;</button>
+        </div>
+
+        <div class="dl-card">
+          <div class="dl-card-label">S3 &mdash; Square &mdash; 1080&times;1080</div>
+          <div class="dl-preview sq"><canvas id="s3-canvas"></canvas></div>
+          <p class="dl-desc">Brand meaning. Reclaims the term &ldquo;human capital&rdquo; as something human. Best for LinkedIn.</p>
+          <button class="btn btn-outline dl-btn" id="btn-s3" disabled>Download &darr;</button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── Utilities ──────────────────────────────── -->
+    <div class="dl-pillar" style="border-top:1px solid rgba(18,18,18,.12); padding-top:clamp(2rem,4vw,3.5rem);">
+      <div class="dl-pillar-label" style="color:rgba(18,18,18,.45); border-top-color:rgba(18,18,18,.2);">Event Utilities</div>
+      <div class="dl-util-grid">
+
+        <div class="dl-card">
+          <div class="dl-card-label">QR Code</div>
+          <div class="dl-preview util">
+            <div id="qr-display"></div>
+          </div>
+          <p class="dl-desc">Links directly to registration. Save to your camera roll and show it anywhere.</p>
+          <button class="btn btn-outline dl-btn" id="btn-qr" disabled>Download QR Code</button>
+        </div>
+
+        <div class="dl-card">
+          <div class="dl-card-label">Bulletin Board Flyer &mdash; PDF</div>
+          <div class="dl-preview util">
+            <canvas id="flyer-canvas"></canvas>
+          </div>
+          <p class="dl-desc">Print-ready 8.5&times;11. Post at libraries, coffee shops, rec centers, and community boards.</p>
+          <button class="btn btn-outline dl-btn" id="btn-flyer" disabled>Download PDF Flyer</button>
+        </div>
+
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -600,7 +788,8 @@ footer {
     <div class="ft-col">
       <h2>Spread the Word</h2>
       <ul>
-        <li><a href="#top">Why It Matters</a></li>
+        <li><a href="#messaging">How to Share</a></li>
+        <li><a href="#downloads">Share Kit</a></li>
         <li><a href="/">Register Free</a></li>
       </ul>
     </div>
@@ -627,7 +816,6 @@ footer {
   /* ── Brand tokens ─────────────────────────────── */
   const WH = '#F9F9F8', CA = '#121212', RE = '#E4002B', BL = '#41B6E6';
   const REG_URL = 'https://humancapital.withlevy.com/#register';
-
   let qrCanvas = null;
 
   /* ── Helpers ──────────────────────────────────── */
@@ -637,21 +825,19 @@ footer {
     for (const w of words) {
       const test = line + w + ' ';
       if (ctx.measureText(test).width > maxW && line) {
-        ctx.fillText(line.trimEnd(), x, y);
-        y += lh; line = w + ' ';
+        ctx.fillText(line.trimEnd(), x, y); y += lh; line = w + ' ';
       } else { line = test; }
     }
     if (line.trim()) ctx.fillText(line.trimEnd(), x, y);
     return y;
   }
 
-  function roundRect(ctx, x, y, w, h, r) {
-    ctx.beginPath();
-    ctx.moveTo(x+r,y); ctx.lineTo(x+w-r,y);
-    ctx.arcTo(x+w,y,x+w,y+r,r); ctx.lineTo(x+w,y+h-r);
-    ctx.arcTo(x+w,y+h,x+w-r,y+h,r); ctx.lineTo(x+r,y+h);
-    ctx.arcTo(x,y+h,x,y+h-r,r); ctx.lineTo(x,y+r);
-    ctx.arcTo(x,y,x+r,y,r); ctx.closePath();
+  /* Draw to a temp canvas at full res, return it */
+  function makeCanvas(W, H, drawFn) {
+    const c = document.createElement('canvas');
+    c.width = W; c.height = H;
+    drawFn(c.getContext('2d'), W, H);
+    return c;
   }
 
   function dlCanvas(canvas, name) {
@@ -659,197 +845,377 @@ footer {
     a.download = name; a.href = canvas.toDataURL('image/png'); a.click();
   }
 
-  /* ── Social thumbnail 1200 × 630 ─────────────── */
-  function drawSocial(c) {
-    const W = 1200, H = 630;
-    c.width = W; c.height = H;
-    const ctx = c.getContext('2d');
-    const P = 56;
+  /* Draw a preview (scaled to preview canvas size) then return the full-res draw fn */
+  function renderPreview(previewCanvas, drawFn, fullW, fullH) {
+    const W = previewCanvas.width  = previewCanvas.offsetWidth  || fullW;
+    const H = previewCanvas.height = previewCanvas.offsetHeight || fullH;
+    drawFn(previewCanvas.getContext('2d'), W, H);
+  }
 
-    /* Background */
-    ctx.fillStyle = RE; ctx.fillRect(0, 0, W, H);
-
-    /* Eyebrow */
-    ctx.font = "600 13px 'IBM Plex Mono'";
-    ctx.letterSpacing = '2px';
-    ctx.fillStyle = 'rgba(249,249,248,0.62)';
-    ctx.fillText('HUMAN CAPITAL QUARTERLY', P, P + 16);
-
-    /* "FREE." */
-    ctx.font = "900 196px 'Overpass'";
-    ctx.letterSpacing = '-8px';
-    ctx.fillStyle = WH;
-    ctx.fillText('FREE.', P - 6, 295);
-
-    /* "APRIL 14." */
-    ctx.font = "900 90px 'Overpass'";
-    ctx.letterSpacing = '-3px';
-    ctx.fillStyle = CA;
-    ctx.fillText('APRIL 14.', P - 2, 400);
-
-    /* Serif tagline */
-    ctx.font = "italic 400 35px 'Instrument Serif'";
-    ctx.letterSpacing = '0px';
-    ctx.fillStyle = 'rgba(249,249,248,0.9)';
-    ctx.fillText('Spring Forum \u2014 MLK Jr. Memorial Library', P, 458);
-
-    /* URL */
-    ctx.font = "400 14px 'IBM Plex Mono'";
-    ctx.letterSpacing = '1px';
-    ctx.fillStyle = 'rgba(249,249,248,0.55)';
-    ctx.fillText('HUMANCAPITAL.WITHLEVY.COM', P, 490);
-
-    /* QR card */
-    if (qrCanvas) {
-      const QS = 194, QP = 18;
-      const QX = W - P - QS - QP * 2;
-      const QY = Math.round((H - 52 - QS - QP * 2 - 30) / 2);
-      roundRect(ctx, QX, QY, QS + QP * 2, QS + QP * 2 + 34, 6);
-      ctx.fillStyle = WH; ctx.fill();
-      ctx.drawImage(qrCanvas, QX + QP, QY + QP, QS, QS);
-      ctx.font = "600 11px 'IBM Plex Mono'";
-      ctx.letterSpacing = '1px';
-      ctx.fillStyle = CA;
-      ctx.textAlign = 'center';
-      ctx.fillText('SCAN TO REGISTER', QX + QP + QS / 2, QY + QP + QS + 24);
-      ctx.textAlign = 'left';
-    }
-
-    /* Bottom bar */
-    ctx.fillStyle = CA; ctx.fillRect(0, H - 52, W, 52);
-    ctx.font = "400 12px 'IBM Plex Mono'";
+  /* Bottom bar helper used by square graphics */
+  function bottomBar(ctx, W, H, text) {
+    const BH = Math.round(H * 0.068);
+    ctx.fillStyle = CA; ctx.fillRect(0, H - BH, W, BH);
+    ctx.font = `400 ${Math.round(H * 0.013)}px 'IBM Plex Mono'`;
     ctx.letterSpacing = '1px';
     ctx.fillStyle = 'rgba(249,249,248,0.6)';
-    ctx.fillText('FREE & OPEN TO ALL  \u00B7  TUESDAY, APRIL 14, 2026  \u00B7  MLK JR. MEMORIAL LIBRARY  \u00B7  WASHINGTON, D.C.', P, H - 18);
+    ctx.textAlign = 'left';
+    ctx.fillText(text, Math.round(W * 0.052), H - Math.round(BH * 0.28));
   }
 
-  /* ── Flyer 1700 × 2200 (8.5 \u00D7 11 @ ~200 dpi) ──── */
-  function drawFlyer(c) {
-    const W = 1700, H = 2200;
-    c.width = W; c.height = H;
-    const ctx = c.getContext('2d');
-
-    /* ── ATTENTION: carbon top ─────────────────── */
-    const ATT_H = 570;
-    ctx.fillStyle = CA; ctx.fillRect(0, 0, W, ATT_H);
-
-    ctx.font = "900 300px 'Overpass'";
-    ctx.letterSpacing = '-12px';
-    ctx.fillStyle = WH;
-    ctx.fillText('FREE.', 76, ATT_H - 176);
-
-    ctx.font = "900 86px 'Overpass'";
-    ctx.letterSpacing = '-2px';
-    ctx.fillStyle = RE;
-    ctx.fillText('APRIL 14, 2026', 80, ATT_H - 60);
-
-    /* ── INTEREST: white section ───────────────── */
-    const INT_Y = ATT_H, INT_H = 800;
-    ctx.fillStyle = WH; ctx.fillRect(0, INT_Y, W, INT_H);
-
-    ctx.font = "900 70px 'Overpass'";
-    ctx.letterSpacing = '-2px';
-    ctx.fillStyle = RE;
-    ctx.fillText('HUMAN CAPITAL QUARTERLY', 80, INT_Y + 108);
-
-    ctx.font = "italic 400 62px 'Instrument Serif'";
-    ctx.letterSpacing = '0px';
-    ctx.fillStyle = CA;
-    ctx.fillText('Spring Forum', 82, INT_Y + 190);
-
-    ctx.strokeStyle = RE; ctx.lineWidth = 4;
-    ctx.beginPath(); ctx.moveTo(80, INT_Y + 218); ctx.lineTo(W - 80, INT_Y + 218); ctx.stroke();
-
-    ctx.font = "300 35px 'IBM Plex Sans'";
-    ctx.letterSpacing = '0px';
-    ctx.fillStyle = CA;
-    wrapText(ctx,
-      'A free afternoon connecting D.C. residents with employers, career coaches, skills trainers, and community organizations. All are welcome.',
-      80, INT_Y + 290, W - 160, 54
-    );
-
-    /* ── DESIRE: bullets ──────────────────────── */
-    ctx.font = "600 17px 'IBM Plex Mono'";
+  /* Eyebrow label used across many graphics */
+  function eyebrow(ctx, W, text, color) {
+    const P = Math.round(W * 0.052);
+    ctx.font = `600 ${Math.round(W * 0.014)}px 'IBM Plex Mono'`;
     ctx.letterSpacing = '2px';
-    ctx.fillStyle = 'rgba(18,18,18,0.5)';
-    ctx.fillText('WHAT YOU\'LL FIND:', 80, INT_Y + 462);
+    ctx.fillStyle = color || 'rgba(249,249,248,0.62)';
+    ctx.textAlign = 'left';
+    ctx.fillText(text, P, P + Math.round(W * 0.016));
+  }
 
-    const bullets = [
-      'Career coaching & mentorship',
-      'Job & internship opportunities',
-      'Skills workshops & certification info',
-      'Financial tools & resource navigation',
-      'Community organizations & services',
-      'Expert workforce practitioners',
-    ];
-    const CW = (W - 160) / 2;
-    ctx.font = "400 32px 'IBM Plex Sans'";
+  /* ════════════════════════════════════════════════
+     COMMUNITY GRAPHICS — red background
+  ════════════════════════════════════════════════ */
+
+  /* C1 — "Not alone." — 1080×1080 square */
+  function drawC1(ctx, W, H) {
+    const P = Math.round(W * 0.052);
+    ctx.fillStyle = RE; ctx.fillRect(0, 0, W, H);
+    eyebrow(ctx, W, 'HUMAN CAPITAL QUARTERLY');
+    /* Main headline */
+    const fs1 = Math.round(W * 0.305);
+    ctx.font = `900 ${fs1}px 'Overpass'`;
+    ctx.letterSpacing = `${Math.round(-W * 0.004)}px`;
+    ctx.fillStyle = WH; ctx.textAlign = 'left';
+    ctx.fillText('NOT', P, Math.round(H * 0.44));
+    ctx.fillText('ALONE.', P, Math.round(H * 0.44) + fs1 * 0.92);
+    /* Serif sub */
+    ctx.font = `italic 400 ${Math.round(W * 0.038)}px 'Instrument Serif'`;
     ctx.letterSpacing = '0px';
-    bullets.forEach((b, i) => {
-      const bx = 80 + (i % 2) * CW;
-      const by = INT_Y + 524 + Math.floor(i / 2) * 64;
-      ctx.fillStyle = RE; ctx.fillText('\u2014', bx, by);
-      ctx.fillStyle = CA; ctx.fillText(b, bx + 48, by);
-    });
+    ctx.fillStyle = 'rgba(249,249,248,0.88)';
+    ctx.fillText('A lot of people in DC are figuring this out right now.', P, Math.round(H * 0.82));
+    bottomBar(ctx, W, H, 'SPRING FORUM \u00B7 APRIL 14 \u00B7 FREE \u00B7 MLK LIBRARY \u00B7 WASHINGTON D.C.');
+  }
 
-    /* ── ACTION: carbon bottom ────────────────── */
-    const ACT_Y = INT_Y + INT_H;
-    ctx.fillStyle = CA; ctx.fillRect(0, ACT_Y, W, H - ACT_Y);
-
-    /* QR block */
-    const QS = 320, QP = 20, QX = 80, QY = ACT_Y + 100;
-    if (qrCanvas) {
-      ctx.fillStyle = WH;
-      ctx.fillRect(QX - QP, QY - QP, QS + QP * 2, QS + QP * 2);
-      ctx.drawImage(qrCanvas, QX, QY, QS, QS);
-    }
-    ctx.font = "600 18px 'IBM Plex Mono'";
-    ctx.letterSpacing = '2px';
-    ctx.fillStyle = WH;
-    ctx.fillText('SCAN TO REGISTER FREE', QX - QP, QY + QS + QP * 2 + 42);
-
-    /* Event details */
-    const DX = QX + QS + QP * 2 + 80;
-
-    ctx.font = "400 16px 'IBM Plex Mono'";
-    ctx.letterSpacing = '2px';
-    ctx.fillStyle = 'rgba(249,249,248,0.45)';
-    ctx.fillText('WHEN & WHERE', DX, ACT_Y + 132);
-
-    ctx.font = "900 58px 'Overpass'";
-    ctx.letterSpacing = '-2px';
-    ctx.fillStyle = WH;
-    ctx.fillText('Tuesday', DX, ACT_Y + 218);
-    ctx.fillText('April 14, 2026', DX, ACT_Y + 290);
-
-    ctx.font = "300 33px 'IBM Plex Sans'";
+  /* C2 — "DC is building something." — 1080×1920 story */
+  function drawC2(ctx, W, H) {
+    const P = Math.round(W * 0.074);
+    ctx.fillStyle = RE; ctx.fillRect(0, 0, W, H);
+    eyebrow(ctx, W, 'HUMAN CAPITAL QUARTERLY');
+    const fs = Math.round(W * 0.21);
+    ctx.font = `900 ${fs}px 'Overpass'`;
+    ctx.letterSpacing = `${Math.round(-W * 0.004)}px`;
+    ctx.fillStyle = WH; ctx.textAlign = 'left';
+    const lines = ['DC', 'IS', 'BUILD-', 'ING', 'SOME-', 'THING.'];
+    const startY = Math.round(H * 0.22);
+    lines.forEach((l, i) => ctx.fillText(l, P, startY + i * fs * 0.9));
+    /* Sub */
+    ctx.font = `300 ${Math.round(W * 0.042)}px 'IBM Plex Sans'`;
     ctx.letterSpacing = '0px';
     ctx.fillStyle = 'rgba(249,249,248,0.82)';
-    ctx.fillText('MLK Jr. Memorial Library', DX, ACT_Y + 364);
-    ctx.fillText('901 G St. NW, Washington, DC 20001', DX, ACT_Y + 410);
-
-    ctx.font = "600 28px 'IBM Plex Mono'";
+    ctx.fillText('The Spring Forum brings people together', P, Math.round(H * 0.88));
+    ctx.fillText('who are ready to move.', P, Math.round(H * 0.88) + Math.round(W * 0.052));
+    /* Bottom mono */
+    ctx.font = `600 ${Math.round(W * 0.026)}px 'IBM Plex Mono'`;
     ctx.letterSpacing = '1px';
-    ctx.fillStyle = RE;
-    ctx.fillText('FREE & OPEN TO ALL', DX, ACT_Y + 480);
-
-    ctx.font = "400 19px 'IBM Plex Mono'";
-    ctx.letterSpacing = '1px';
-    ctx.fillStyle = 'rgba(249,249,248,0.42)';
-    ctx.fillText('humancapital.withlevy.com', DX, ACT_Y + 520);
-
-    /* Handwritten closer */
-    ctx.font = "400 58px 'Caveat'";
-    ctx.letterSpacing = '0px';
-    ctx.fillStyle = BL;
-    ctx.fillText('People are the real capital.', 80, H - 56);
+    ctx.fillStyle = 'rgba(249,249,248,0.52)';
+    ctx.fillText('APRIL 14 \u00B7 FREE \u00B7 MLK LIBRARY', P, Math.round(H * 0.962));
   }
 
-  /* ── Init ─────────────────────────────────────── */
+  /* C3 — "Bring someone." — 1080×1080 square */
+  function drawC3(ctx, W, H) {
+    const P = Math.round(W * 0.052);
+    ctx.fillStyle = RE; ctx.fillRect(0, 0, W, H);
+    eyebrow(ctx, W, 'HUMAN CAPITAL QUARTERLY');
+    const fs = Math.round(W * 0.28);
+    ctx.font = `900 ${fs}px 'Overpass'`;
+    ctx.letterSpacing = `${Math.round(-W * 0.004)}px`;
+    ctx.fillStyle = WH; ctx.textAlign = 'left';
+    ctx.fillText('BRING', P, Math.round(H * 0.44));
+    ctx.fillText('SOME-', P, Math.round(H * 0.44) + fs * 0.88);
+    ctx.fillText('ONE.', P, Math.round(H * 0.44) + fs * 0.88 * 2);
+    ctx.font = `italic 400 ${Math.round(W * 0.036)}px 'Instrument Serif'`;
+    ctx.letterSpacing = '0px';
+    ctx.fillStyle = 'rgba(249,249,248,0.88)';
+    ctx.fillText('There\u2019s someone in your life who needs this room.', P, Math.round(H * 0.88));
+    bottomBar(ctx, W, H, 'SPRING FORUM \u00B7 APRIL 14 \u00B7 FREE \u00B7 WASHINGTON D.C.');
+  }
+
+  /* ════════════════════════════════════════════════
+     PRACTICAL GRAPHICS — carbon background
+  ════════════════════════════════════════════════ */
+
+  /* P1 — "Walk out with a plan." — 1080×1080 square */
+  function drawP1(ctx, W, H) {
+    const P = Math.round(W * 0.052);
+    ctx.fillStyle = CA; ctx.fillRect(0, 0, W, H);
+    eyebrow(ctx, W, 'HUMAN CAPITAL QUARTERLY');
+    const fs = Math.round(W * 0.175);
+    ctx.font = `900 ${fs}px 'Overpass'`;
+    ctx.letterSpacing = `${Math.round(-W * 0.004)}px`;
+    ctx.fillStyle = WH; ctx.textAlign = 'left';
+    ctx.fillText('WALK', P, Math.round(H * 0.36));
+    ctx.fillText('OUT', P, Math.round(H * 0.36) + fs * 0.9);
+    ctx.fillText('WITH A', P, Math.round(H * 0.36) + fs * 0.9 * 2);
+    ctx.fillText('PLAN.', P, Math.round(H * 0.36) + fs * 0.9 * 3);
+    /* Red rule */
+    ctx.fillStyle = RE; ctx.fillRect(P, Math.round(H * 0.82), Math.round(W * 0.12), 3);
+    /* Sub */
+    ctx.font = `300 ${Math.round(W * 0.034)}px 'IBM Plex Sans'`;
+    ctx.letterSpacing = '0px';
+    ctx.fillStyle = 'rgba(249,249,248,0.72)';
+    ctx.fillText('Not inspiration. A real next step.', P, Math.round(H * 0.87));
+    bottomBar(ctx, W, H, 'SPRING FORUM \u00B7 APRIL 14 \u00B7 FREE \u00B7 MLK LIBRARY');
+  }
+
+  /* P2 — "Real help from real people." — 1080×1920 story */
+  function drawP2(ctx, W, H) {
+    const P = Math.round(W * 0.074);
+    ctx.fillStyle = CA; ctx.fillRect(0, 0, W, H);
+    eyebrow(ctx, W, 'HUMAN CAPITAL QUARTERLY');
+    /* Blue accent bar */
+    ctx.fillStyle = BL; ctx.fillRect(P, Math.round(H * 0.14), 4, Math.round(H * 0.52));
+    const fs = Math.round(W * 0.185);
+    ctx.font = `900 ${fs}px 'Overpass'`;
+    ctx.letterSpacing = `${Math.round(-W * 0.004)}px`;
+    ctx.fillStyle = WH; ctx.textAlign = 'left';
+    const lx = P + Math.round(W * 0.04);
+    ctx.fillText('REAL', lx, Math.round(H * 0.22));
+    ctx.fillText('HELP.', lx, Math.round(H * 0.22) + fs * 0.9);
+    ctx.fillText('REAL', lx, Math.round(H * 0.22) + fs * 0.9 * 2);
+    ctx.fillText('PEOPLE.', lx, Math.round(H * 0.22) + fs * 0.9 * 3);
+    /* Sub */
+    ctx.font = `300 ${Math.round(W * 0.044)}px 'IBM Plex Sans'`;
+    ctx.letterSpacing = '0px';
+    ctx.fillStyle = 'rgba(249,249,248,0.8)';
+    ctx.fillText('Peer consulting. Skill labs.', lx, Math.round(H * 0.82));
+    ctx.fillText('Honest conversation.', lx, Math.round(H * 0.82) + Math.round(W * 0.056));
+    ctx.font = `600 ${Math.round(W * 0.026)}px 'IBM Plex Mono'`;
+    ctx.letterSpacing = '1px';
+    ctx.fillStyle = 'rgba(249,249,248,0.45)';
+    ctx.fillText('APRIL 14 \u00B7 FREE \u00B7 MLK LIBRARY', P, Math.round(H * 0.962));
+  }
+
+  /* P3 — "Free. April 14." — 1080×1080 square */
+  function drawP3(ctx, W, H) {
+    const P = Math.round(W * 0.052);
+    ctx.fillStyle = CA; ctx.fillRect(0, 0, W, H);
+    eyebrow(ctx, W, 'HUMAN CAPITAL QUARTERLY');
+    const fs = Math.round(W * 0.225);
+    ctx.font = `900 ${fs}px 'Overpass'`;
+    ctx.letterSpacing = `${Math.round(-W * 0.005)}px`;
+    ctx.textAlign = 'left';
+    ctx.fillStyle = RE;
+    ctx.fillText('FREE.', P, Math.round(H * 0.46));
+    ctx.fillStyle = WH;
+    ctx.fillText('APRIL', P, Math.round(H * 0.46) + fs * 0.88);
+    ctx.fillText('14.', P, Math.round(H * 0.46) + fs * 0.88 * 2);
+    ctx.font = `400 ${Math.round(W * 0.034)}px 'IBM Plex Mono'`;
+    ctx.letterSpacing = '2px';
+    ctx.fillStyle = 'rgba(249,249,248,0.52)';
+    ctx.fillText('MLK JR. MEMORIAL LIBRARY', P, Math.round(H * 0.88));
+    ctx.fillText('WASHINGTON, D.C.', P, Math.round(H * 0.88) + Math.round(W * 0.048));
+    bottomBar(ctx, W, H, 'HUMANCAPITAL.WITHLEVY.COM \u00B7 FREE & OPEN TO ALL');
+  }
+
+  /* ════════════════════════════════════════════════
+     STRATEGIC GRAPHICS — white background
+  ════════════════════════════════════════════════ */
+
+  /* S1 — "The skills gap is local." — 1080×1080 square */
+  function drawS1(ctx, W, H) {
+    const P = Math.round(W * 0.052);
+    ctx.fillStyle = WH; ctx.fillRect(0, 0, W, H);
+    eyebrow(ctx, W, 'HUMAN CAPITAL QUARTERLY', 'rgba(18,18,18,0.45)');
+    const fs = Math.round(W * 0.2);
+    ctx.font = `900 ${fs}px 'Overpass'`;
+    ctx.letterSpacing = `${Math.round(-W * 0.004)}px`;
+    ctx.fillStyle = CA; ctx.textAlign = 'left';
+    ctx.fillText('THE', P, Math.round(H * 0.35));
+    ctx.fillText('SKILLS', P, Math.round(H * 0.35) + fs * 0.88);
+    ctx.fillText('GAP IS', P, Math.round(H * 0.35) + fs * 0.88 * 2);
+    ctx.fillStyle = RE;
+    ctx.fillText('LOCAL.', P, Math.round(H * 0.35) + fs * 0.88 * 3);
+    /* Red rule */
+    ctx.fillStyle = RE; ctx.fillRect(P, Math.round(H * 0.82), Math.round(W * 0.1), 3);
+    ctx.font = `300 ${Math.round(W * 0.033)}px 'IBM Plex Sans'`;
+    ctx.letterSpacing = '0px';
+    ctx.fillStyle = 'rgba(18,18,18,0.62)';
+    ctx.fillText('DC residents are dealing with it right now.', P, Math.round(H * 0.87));
+    /* Bottom bar — carbon on white for this one */
+    const BH = Math.round(H * 0.068);
+    ctx.fillStyle = CA; ctx.fillRect(0, H - BH, W, BH);
+    ctx.font = `400 ${Math.round(H * 0.013)}px 'IBM Plex Mono'`;
+    ctx.letterSpacing = '1px';
+    ctx.fillStyle = 'rgba(249,249,248,0.6)';
+    ctx.textAlign = 'left';
+    ctx.fillText('SPRING FORUM \u00B7 APRIL 14 \u00B7 FREE \u00B7 MLK LIBRARY', P, H - Math.round(BH * 0.28));
+  }
+
+  /* S2 — "Work is changing." — 1080×1920 story */
+  function drawS2(ctx, W, H) {
+    const P = Math.round(W * 0.074);
+    ctx.fillStyle = WH; ctx.fillRect(0, 0, W, H);
+    /* Top field: carbon */
+    const midY = Math.round(H * 0.62);
+    ctx.fillStyle = CA; ctx.fillRect(0, 0, W, midY);
+    eyebrow(ctx, W, 'HUMAN CAPITAL QUARTERLY');
+    const fs = Math.round(W * 0.2);
+    ctx.font = `900 ${fs}px 'Overpass'`;
+    ctx.letterSpacing = `${Math.round(-W * 0.004)}px`;
+    ctx.fillStyle = WH; ctx.textAlign = 'left';
+    ctx.fillText('WORK', P, Math.round(H * 0.18));
+    ctx.fillText('IS', P, Math.round(H * 0.18) + fs * 0.9);
+    ctx.fillText('CHANG-', P, Math.round(H * 0.18) + fs * 0.9 * 2);
+    ctx.fillText('ING.', P, Math.round(H * 0.18) + fs * 0.9 * 3);
+    /* Bottom field: white */
+    ctx.fillStyle = RE; ctx.fillRect(P, midY + Math.round(H * 0.04), Math.round(W * 0.1), 3);
+    ctx.font = `900 ${fs}px 'Overpass'`;
+    ctx.letterSpacing = `${Math.round(-W * 0.004)}px`;
+    ctx.fillStyle = CA; ctx.textAlign = 'left';
+    ctx.fillText('HERE\u2019S', P, midY + Math.round(H * 0.1));
+    ctx.fillText('WHAT', P, midY + Math.round(H * 0.1) + fs * 0.9);
+    ctx.fillText('TO DO.', P, midY + Math.round(H * 0.1) + fs * 0.9 * 2);
+    ctx.font = `600 ${Math.round(W * 0.026)}px 'IBM Plex Mono'`;
+    ctx.letterSpacing = '1px';
+    ctx.fillStyle = RE;
+    ctx.fillText('SPRING FORUM \u00B7 APRIL 14 \u00B7 FREE', P, Math.round(H * 0.962));
+  }
+
+  /* S3 — "Human capital isn't a policy term." — 1080×1080 square */
+  function drawS3(ctx, W, H) {
+    const P = Math.round(W * 0.052);
+    ctx.fillStyle = WH; ctx.fillRect(0, 0, W, H);
+    eyebrow(ctx, W, 'HUMAN CAPITAL QUARTERLY', 'rgba(18,18,18,0.45)');
+    /* Red rule top */
+    ctx.fillStyle = RE; ctx.fillRect(P, Math.round(H * 0.14), Math.round(W * 0.42), 3);
+    /* Serif italic headline */
+    const fs = Math.round(W * 0.072);
+    ctx.font = `italic 400 ${fs}px 'Instrument Serif'`;
+    ctx.letterSpacing = '0px';
+    ctx.fillStyle = CA; ctx.textAlign = 'left';
+    const lineH = fs * 1.2;
+    ctx.fillText('\u201CHuman capital', P, Math.round(H * 0.28));
+    ctx.fillText('isn\u2019t a policy', P, Math.round(H * 0.28) + lineH);
+    ctx.fillText('term.\u201D', P, Math.round(H * 0.28) + lineH * 2);
+    /* Body copy */
+    ctx.font = `300 ${Math.round(W * 0.033)}px 'IBM Plex Sans'`;
+    ctx.letterSpacing = '0px';
+    ctx.fillStyle = 'rgba(18,18,18,0.68)';
+    wrapText(ctx,
+      'It\u2019s your skills, your network, your next move. The Spring Forum is about building it, on purpose, with people who can help.',
+      P, Math.round(H * 0.68), W - P * 2, Math.round(W * 0.048));
+    /* Bottom bar */
+    const BH = Math.round(H * 0.068);
+    ctx.fillStyle = CA; ctx.fillRect(0, H - BH, W, BH);
+    ctx.font = `400 ${Math.round(H * 0.013)}px 'IBM Plex Mono'`;
+    ctx.letterSpacing = '1px';
+    ctx.fillStyle = 'rgba(249,249,248,0.6)';
+    ctx.textAlign = 'left';
+    ctx.fillText('HUMAN CAPITAL QUARTERLY \u00B7 SPRING FORUM \u00B7 APRIL 14', P, H - Math.round(BH * 0.28));
+  }
+
+  /* ════════════════════════════════════════════════
+     FLYER  8.5×11 @ ~200 dpi
+  ════════════════════════════════════════════════ */
+  function drawFlyer(ctx, W, H) {
+    /* ATTENTION: carbon top */
+    const ATT_H = Math.round(H * 0.26);
+    ctx.fillStyle = CA; ctx.fillRect(0, 0, W, ATT_H);
+    const P = Math.round(W * 0.047);
+    ctx.font = `900 ${Math.round(ATT_H * 0.62)}px 'Overpass'`;
+    ctx.letterSpacing = `-${Math.round(W * 0.007)}px`;
+    ctx.fillStyle = WH; ctx.textAlign = 'left';
+    ctx.fillText('FREE.', P, ATT_H - Math.round(ATT_H * 0.28));
+    ctx.font = `900 ${Math.round(ATT_H * 0.175)}px 'Overpass'`;
+    ctx.letterSpacing = '-2px';
+    ctx.fillStyle = RE;
+    ctx.fillText('APRIL 14, 2026', P, ATT_H - Math.round(ATT_H * 0.072));
+    /* INTEREST: white section */
+    const INT_Y = ATT_H, INT_H = Math.round(H * 0.365);
+    ctx.fillStyle = WH; ctx.fillRect(0, INT_Y, W, INT_H);
+    ctx.font = `900 ${Math.round(W * 0.042)}px 'Overpass'`;
+    ctx.letterSpacing = '-2px'; ctx.fillStyle = RE;
+    ctx.fillText('HUMAN CAPITAL QUARTERLY', P, INT_Y + Math.round(INT_H * 0.14));
+    ctx.font = `italic 400 ${Math.round(W * 0.038)}px 'Instrument Serif'`;
+    ctx.letterSpacing = '0px'; ctx.fillStyle = CA;
+    ctx.fillText('Spring Forum', P, INT_Y + Math.round(INT_H * 0.28));
+    ctx.fillStyle = RE; ctx.fillRect(P, INT_Y + Math.round(INT_H * 0.32), W - P * 2, 3);
+    ctx.font = `300 ${Math.round(W * 0.022)}px 'IBM Plex Sans'`;
+    ctx.fillStyle = CA; ctx.letterSpacing = '0px';
+    wrapText(ctx,
+      'A free afternoon connecting D.C. residents with employers, career coaches, skills trainers, and community organizations. All are welcome.',
+      P, INT_Y + Math.round(INT_H * 0.44), W - P * 2, Math.round(W * 0.03));
+    const bullets = ['Career coaching & mentorship','Job & internship opportunities','Skills workshops & certification info','Financial tools & resource navigation','Community organizations & services','Expert workforce practitioners'];
+    ctx.font = `600 ${Math.round(W * 0.011)}px 'IBM Plex Mono'`;
+    ctx.letterSpacing = '2px'; ctx.fillStyle = 'rgba(18,18,18,0.45)';
+    ctx.fillText('WHAT YOU\'LL FIND:', P, INT_Y + Math.round(INT_H * 0.65));
+    const CW = (W - P * 2) / 2;
+    ctx.font = `400 ${Math.round(W * 0.02)}px 'IBM Plex Sans'`;
+    ctx.letterSpacing = '0px';
+    bullets.forEach((b, i) => {
+      const bx = P + (i % 2) * CW;
+      const by = INT_Y + Math.round(INT_H * 0.73) + Math.floor(i / 2) * Math.round(W * 0.032);
+      ctx.fillStyle = RE; ctx.fillText('\u2014', bx, by);
+      ctx.fillStyle = CA; ctx.fillText(b, bx + Math.round(W * 0.028), by);
+    });
+    /* ACTION: carbon bottom */
+    const ACT_Y = INT_Y + INT_H;
+    ctx.fillStyle = CA; ctx.fillRect(0, ACT_Y, W, H - ACT_Y);
+    const QS = Math.round(W * 0.2), QP = Math.round(W * 0.012), QX = P, QY = ACT_Y + Math.round((H - ACT_Y) * 0.1);
+    if (qrCanvas) {
+      ctx.fillStyle = WH; ctx.fillRect(QX - QP, QY - QP, QS + QP * 2, QS + QP * 2);
+      ctx.drawImage(qrCanvas, QX, QY, QS, QS);
+    }
+    ctx.font = `600 ${Math.round(W * 0.011)}px 'IBM Plex Mono'`;
+    ctx.letterSpacing = '2px'; ctx.fillStyle = WH;
+    ctx.fillText('SCAN TO REGISTER FREE', QX - QP, QY + QS + QP * 2 + Math.round(W * 0.026));
+    const DX = QX + QS + QP * 2 + Math.round(W * 0.047);
+    ctx.font = `400 ${Math.round(W * 0.01)}px 'IBM Plex Mono'`;
+    ctx.letterSpacing = '2px'; ctx.fillStyle = 'rgba(249,249,248,0.45)';
+    ctx.fillText('WHEN & WHERE', DX, ACT_Y + Math.round((H - ACT_Y) * 0.15));
+    ctx.font = `900 ${Math.round(W * 0.036)}px 'Overpass'`;
+    ctx.letterSpacing = '-2px'; ctx.fillStyle = WH;
+    ctx.fillText('Tuesday', DX, ACT_Y + Math.round((H - ACT_Y) * 0.3));
+    ctx.fillText('April 14, 2026', DX, ACT_Y + Math.round((H - ACT_Y) * 0.45));
+    ctx.font = `300 ${Math.round(W * 0.02)}px 'IBM Plex Sans'`;
+    ctx.letterSpacing = '0px'; ctx.fillStyle = 'rgba(249,249,248,0.82)';
+    ctx.fillText('MLK Jr. Memorial Library', DX, ACT_Y + Math.round((H - ACT_Y) * 0.58));
+    ctx.fillText('901 G St. NW, Washington, DC 20001', DX, ACT_Y + Math.round((H - ACT_Y) * 0.68));
+    ctx.font = `600 ${Math.round(W * 0.017)}px 'IBM Plex Mono'`;
+    ctx.letterSpacing = '1px'; ctx.fillStyle = RE;
+    ctx.fillText('FREE & OPEN TO ALL', DX, ACT_Y + Math.round((H - ACT_Y) * 0.8));
+    ctx.font = `400 ${Math.round(W * 0.012)}px 'IBM Plex Mono'`;
+    ctx.letterSpacing = '1px'; ctx.fillStyle = 'rgba(249,249,248,0.42)';
+    ctx.fillText('humancapital.withlevy.com', DX, ACT_Y + Math.round((H - ACT_Y) * 0.88));
+    ctx.font = `400 ${Math.round(W * 0.034)}px 'Caveat'`;
+    ctx.letterSpacing = '0px'; ctx.fillStyle = BL;
+    ctx.fillText('People are the real capital.', P, H - Math.round(W * 0.02));
+  }
+
+  /* ════════════════════════════════════════════════
+     GRAPHICS REGISTRY
+  ════════════════════════════════════════════════ */
+  const GRAPHICS = [
+    { id: 'c1', W: 1080, H: 1080, fn: drawC1, file: 'hcq-spring-forum_community-1_square.png' },
+    { id: 'c2', W: 1080, H: 1920, fn: drawC2, file: 'hcq-spring-forum_community-2_story.png'  },
+    { id: 'c3', W: 1080, H: 1080, fn: drawC3, file: 'hcq-spring-forum_community-3_square.png' },
+    { id: 'p1', W: 1080, H: 1080, fn: drawP1, file: 'hcq-spring-forum_practical-1_square.png' },
+    { id: 'p2', W: 1080, H: 1920, fn: drawP2, file: 'hcq-spring-forum_practical-2_story.png'  },
+    { id: 'p3', W: 1080, H: 1080, fn: drawP3, file: 'hcq-spring-forum_practical-3_square.png' },
+    { id: 's1', W: 1080, H: 1080, fn: drawS1, file: 'hcq-spring-forum_strategic-1_square.png' },
+    { id: 's2', W: 1080, H: 1920, fn: drawS2, file: 'hcq-spring-forum_strategic-2_story.png'  },
+    { id: 's3', W: 1080, H: 1080, fn: drawS3, file: 'hcq-spring-forum_strategic-3_square.png' },
+  ];
+
+  /* ════════════════════════════════════════════════
+     INIT
+  ════════════════════════════════════════════════ */
   document.fonts.ready.then(() => {
+    /* QR code */
     const holder = document.getElementById('qr-display');
     new QRCode(holder, {
-      text: REG_URL, width: 400, height: 400,
+      text: REG_URL, width: 300, height: 300,
       colorDark: CA, colorLight: WH,
       correctLevel: QRCode.CorrectLevel.H
     });
@@ -857,35 +1223,60 @@ footer {
     setTimeout(() => {
       qrCanvas = holder.querySelector('canvas');
 
-      drawSocial(document.getElementById('social-canvas'));
-      drawFlyer(document.getElementById('flyer-canvas'));
-
-      ['btn-qr','btn-social','btn-flyer'].forEach(id => {
-        document.getElementById(id).disabled = false;
+      /* Draw preview for each of the 9 graphics */
+      GRAPHICS.forEach(({ id, fn }) => {
+        const c = document.getElementById(`${id}-canvas`);
+        if (!c) return;
+        /* Size the canvas element to match its CSS container */
+        const rect = c.parentElement.getBoundingClientRect();
+        c.width  = Math.round(rect.width)  || 360;
+        c.height = Math.round(rect.height) || 360;
+        fn(c.getContext('2d'), c.width, c.height);
+        const btn = document.getElementById(`btn-${id}`);
+        if (btn) btn.disabled = false;
       });
+
+      /* Flyer preview */
+      const fc = document.getElementById('flyer-canvas');
+      if (fc) {
+        const rect = fc.parentElement.getBoundingClientRect();
+        fc.width  = Math.round(rect.width)  || 320;
+        fc.height = Math.round(rect.height) || 180;
+        drawFlyer(fc.getContext('2d'), fc.width, fc.height);
+        document.getElementById('btn-flyer').disabled = false;
+      }
+
+      document.getElementById('btn-qr').disabled = false;
     }, 300);
   });
 
-  /* ── Download handlers ────────────────────────── */
+  /* ── Download handlers: 9 pillar graphics ─────── */
+  GRAPHICS.forEach(({ id, W, H, fn, file }) => {
+    const btn = document.getElementById(`btn-${id}`);
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+      dlCanvas(makeCanvas(W, H, fn), file);
+    });
+  });
+
+  /* ── Download handlers: utilities ─────────────── */
   document.getElementById('btn-qr').addEventListener('click', () => {
     if (qrCanvas) dlCanvas(qrCanvas, 'hcq-spring-forum-qr.png');
   });
 
-  document.getElementById('btn-social').addEventListener('click', () => {
-    dlCanvas(document.getElementById('social-canvas'), 'hcq-spring-forum-social.png');
-  });
-
   document.getElementById('btn-flyer').addEventListener('click', () => {
-    const fc = document.getElementById('flyer-canvas');
+    const fc = makeCanvas(1700, 2200, drawFlyer);
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF({ orientation: 'portrait', unit: 'in', format: 'letter' });
     doc.addImage(fc.toDataURL('image/png'), 'PNG', 0, 0, 8.5, 11);
     doc.save('hcq-spring-forum-flyer.pdf');
   });
 
-  /* ── Scroll reveal ────────────────────────────── */
+  /* ── Scroll reveal ─────────────────────────────── */
   const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+    });
   }, { threshold: 0.06 });
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 }());
