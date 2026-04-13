@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1200">
+<title>Ad 02 — LinkedIn Optimization</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600&family=Overpass:wght@800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    width: 1200px;
+    height: 627px;
+    overflow: hidden;
+    background: #121212;
+    font-family: 'IBM Plex Sans', sans-serif;
+  }
+
+  .ad {
+    width: 1200px;
+    height: 627px;
+    position: relative;
+    display: flex;
+    align-items: stretch;
+  }
+
+  .content {
+    position: absolute;
+    top: 50px;
+    left: 70px;
+    width: 1060px;
+    height: 527px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .top {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .accent-line {
+    width: 80px;
+    height: 7px;
+    background: #41B6E6;
+    margin-bottom: 36px;
+  }
+
+  .headline {
+    font-family: 'Overpass', sans-serif;
+    font-weight: 900;
+    font-size: 84px;
+    line-height: 0.93;
+    letter-spacing: -0.03em;
+    color: #F9F9F8;
+    text-transform: uppercase;
+  }
+
+  .subtext {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 400;
+    font-size: 22px;
+    letter-spacing: 0.04em;
+    color: #F9F9F8;
+    opacity: 0.7;
+    margin-top: 32px;
+    text-transform: uppercase;
+  }
+
+  .bottom {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+
+  .tag {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    letter-spacing: 0.08em;
+    color: #F9F9F8;
+    opacity: 0.45;
+    text-transform: uppercase;
+  }
+
+  .wordmark {
+    text-align: right;
+  }
+
+  .wordmark-main {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: 0.06em;
+    color: #F9F9F8;
+    text-transform: uppercase;
+    display: block;
+    line-height: 1.3;
+  }
+
+  .cta-main {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    letter-spacing: 0.01em;
+    color: #F9F9F8;
+  }
+  .cta-sub {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    letter-spacing: 0.05em;
+    color: #F9F9F8;
+    opacity: 0.6;
+    margin-top: 6px;
+    text-transform: uppercase;
+  }
+
+  .event-cta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    color: #41B6E6;
+    text-transform: uppercase;
+    text-align: right;
+  }
+
+  .scribble {
+    position: absolute;
+    right: 90px;
+    top: 170px;
+    font-family: 'Caveat', cursive;
+    font-size: 40px;
+    color: rgba(249,249,248,0.85);
+    transform: rotate(-14deg);
+    z-index: 6;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  .corner-block {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 7px;
+    height: 100%;
+    background: #41B6E6;
+  }
+</style>
+</head>
+<body>
+<div class="ad">
+  <div class="corner-block"></div>
+  <div class="scribble">it's free!</div>
+  <div class="content">
+    <div class="top">
+      <div class="accent-line"></div>
+      <h1 class="headline">Your profile<br>is already<br>talking.</h1>
+      <p class="subtext">LinkedIn Workshop &mdash; Tuesday, April 14</p>
+    </div>
+    <div class="cta-block">
+      <p class="cta-main">Human Capital Quarterly: Your next move starts here.</p>
+      <p class="cta-sub">Hands-on workshops &nbsp;|&nbsp; Hear from experts &nbsp;|&nbsp; Build community</p>
+    </div>
+    <div class="bottom">
+      <span class="tag">MLK Jr Memorial Library &middot; Washington D.C. &middot; Free</span>
+      <span class="event-cta">Happening Tuesday, April 14 &nbsp;|&nbsp; 12pm&ndash;8pm &nbsp;|&nbsp; Register now</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>
