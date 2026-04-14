@@ -812,92 +812,137 @@ footer {
     drawFn(previewCanvas.getContext('2d'), W, H);
   }
 
-  /* Bottom bar helper used by square graphics */
+  /* Bottom bar helper */
   function bottomBar(ctx, W, H, text) {
     const BH = Math.round(H * 0.068);
+    const P  = Math.round(W * 0.074);
     ctx.fillStyle = CA; ctx.fillRect(0, H - BH, W, BH);
-    ctx.font = `400 ${Math.round(H * 0.013)}px 'IBM Plex Mono'`;
-    ctx.letterSpacing = '1px';
-    ctx.fillStyle = 'rgba(249,249,248,0.6)';
+    ctx.font = `400 ${Math.round(H * 0.0125)}px 'IBM Plex Mono'`;
+    ctx.letterSpacing = '1.5px';
+    ctx.fillStyle = 'rgba(249,249,248,0.55)';
     ctx.textAlign = 'left';
-    ctx.fillText(text, Math.round(W * 0.052), H - Math.round(BH * 0.28));
+    ctx.fillText(text, P, H - Math.round(BH * 0.3));
   }
 
-  /* Eyebrow label used across many graphics */
+  /* Eyebrow label */
   function eyebrow(ctx, W, text, color) {
-    const P = Math.round(W * 0.052);
-    ctx.font = `600 ${Math.round(W * 0.014)}px 'IBM Plex Mono'`;
+    const P = Math.round(W * 0.074);
+    ctx.font = `600 ${Math.round(W * 0.0135)}px 'IBM Plex Mono'`;
     ctx.letterSpacing = '2px';
-    ctx.fillStyle = color || 'rgba(249,249,248,0.62)';
+    ctx.fillStyle = color || 'rgba(249,249,248,0.58)';
     ctx.textAlign = 'left';
-    ctx.fillText(text, P, P + Math.round(W * 0.016));
+    ctx.fillText(text, P, P + Math.round(W * 0.014));
+  }
+
+  /* Thin horizontal rule */
+  function rule(ctx, x, y, w, color, h) {
+    ctx.fillStyle = color; ctx.fillRect(x, y, w, h || 2);
   }
 
   /* ════════════════════════════════════════════════
      COMMUNITY GRAPHICS — red background
   ════════════════════════════════════════════════ */
 
-  /* C1 — "Not alone." — 1080×1080 square */
+  /* C1 — "Not alone." — 1080×1080 */
   function drawC1(ctx, W, H) {
-    const P = Math.round(W * 0.052);
+    const P = Math.round(W * 0.074);
     ctx.fillStyle = RE; ctx.fillRect(0, 0, W, H);
     eyebrow(ctx, W, 'HUMAN CAPITAL QUARTERLY');
-    /* Main headline */
-    const fs1 = Math.round(W * 0.305);
-    ctx.font = `900 ${fs1}px 'Overpass'`;
-    ctx.letterSpacing = `${Math.round(-W * 0.004)}px`;
+
+    /* Structural rule below eyebrow */
+    rule(ctx, P, Math.round(H * 0.148), Math.round(W * 0.36), 'rgba(249,249,248,0.2)', 1);
+
+    /* Headline — sized so ALONE. fits within margins */
+    const fs = Math.round(W * 0.215);
+    const ls = -Math.round(fs * 0.032);
+    ctx.font = `900 ${fs}px 'Overpass'`;
+    ctx.letterSpacing = `${ls}px`;
     ctx.fillStyle = WH; ctx.textAlign = 'left';
-    ctx.fillText('NOT', P, Math.round(H * 0.44));
-    ctx.fillText('ALONE.', P, Math.round(H * 0.44) + fs1 * 0.92);
-    /* Serif sub */
-    ctx.font = `italic 400 ${Math.round(W * 0.038)}px 'Instrument Serif'`;
+    ctx.fillText('NOT', P, Math.round(H * 0.40));
+    ctx.fillText('ALONE.', P, Math.round(H * 0.40) + Math.round(fs * 0.93));
+
+    /* Accent rule — pause before subhead */
     ctx.letterSpacing = '0px';
+    rule(ctx, P, Math.round(H * 0.775), Math.round(W * 0.075), 'rgba(249,249,248,0.4)');
+
+    /* Italic serif sub */
+    ctx.font = `italic 400 ${Math.round(W * 0.036)}px 'Instrument Serif'`;
     ctx.fillStyle = 'rgba(249,249,248,0.88)';
-    ctx.fillText('A lot of people in DC are figuring this out right now.', P, Math.round(H * 0.82));
-    bottomBar(ctx, W, H, 'SPRING FORUM \u00B7 APRIL 14 \u00B7 FREE \u00B7 MLK LIBRARY \u00B7 WASHINGTON D.C.');
+    ctx.fillText('People in DC are figuring this out.', P, Math.round(H * 0.825));
+
+    bottomBar(ctx, W, H, 'SPRING FORUM \u00B7 APRIL 14 \u00B7 FREE \u00B7 MLK LIBRARY');
   }
 
-  /* C2 — "DC is building something." — 1080×1920 story */
+  /* C2 — "DC shows up." — 1080×1920 story */
   function drawC2(ctx, W, H) {
     const P = Math.round(W * 0.074);
     ctx.fillStyle = RE; ctx.fillRect(0, 0, W, H);
     eyebrow(ctx, W, 'HUMAN CAPITAL QUARTERLY');
+
+    /* Full-width rule */
+    rule(ctx, 0, Math.round(H * 0.09), W, 'rgba(249,249,248,0.12)', 1);
+
+    /* Headline — 3 clean lines, no hyphens */
     const fs = Math.round(W * 0.21);
+    const ls = -Math.round(fs * 0.032);
     ctx.font = `900 ${fs}px 'Overpass'`;
-    ctx.letterSpacing = `${Math.round(-W * 0.004)}px`;
+    ctx.letterSpacing = `${ls}px`;
     ctx.fillStyle = WH; ctx.textAlign = 'left';
-    const lines = ['DC', 'IS', 'BUILD-', 'ING', 'SOME-', 'THING.'];
-    const startY = Math.round(H * 0.22);
-    lines.forEach((l, i) => ctx.fillText(l, P, startY + i * fs * 0.9));
-    /* Sub */
-    ctx.font = `300 ${Math.round(W * 0.042)}px 'IBM Plex Sans'`;
+    const lh = Math.round(fs * 0.90);
+    const sy = Math.round(H * 0.25);
+    ctx.fillText('DC', P, sy);
+    ctx.fillText('SHOWS', P, sy + lh);
+    ctx.fillText('UP.', P, sy + lh * 2);
+
+    /* Mid-canvas accent: italic serif statement */
     ctx.letterSpacing = '0px';
+    rule(ctx, P, Math.round(H * 0.595), Math.round(W * 0.36), 'rgba(249,249,248,0.28)');
+    ctx.font = `italic 400 ${Math.round(W * 0.048)}px 'Instrument Serif'`;
     ctx.fillStyle = 'rgba(249,249,248,0.82)';
-    ctx.fillText('The Spring Forum brings people together', P, Math.round(H * 0.88));
-    ctx.fillText('who are ready to move.', P, Math.round(H * 0.88) + Math.round(W * 0.052));
+    ctx.fillText('When DC moves, it', P, Math.round(H * 0.65));
+    ctx.fillText('moves together.', P, Math.round(H * 0.65) + Math.round(W * 0.062));
+
+    /* Sub — light sans */
+    ctx.font = `300 ${Math.round(W * 0.036)}px 'IBM Plex Sans'`;
+    ctx.fillStyle = 'rgba(249,249,248,0.62)';
+    ctx.fillText('The Spring Forum. April 14. MLK Library.', P, Math.round(H * 0.87));
+
     /* Bottom mono */
-    ctx.font = `600 ${Math.round(W * 0.026)}px 'IBM Plex Mono'`;
-    ctx.letterSpacing = '1px';
-    ctx.fillStyle = 'rgba(249,249,248,0.52)';
-    ctx.fillText('APRIL 14 \u00B7 FREE \u00B7 MLK LIBRARY', P, Math.round(H * 0.962));
+    ctx.font = `600 ${Math.round(W * 0.024)}px 'IBM Plex Mono'`;
+    ctx.letterSpacing = '1.5px';
+    ctx.fillStyle = 'rgba(249,249,248,0.42)';
+    ctx.fillText('FREE \u00B7 OPEN TO ALL \u00B7 WASHINGTON D.C.', P, Math.round(H * 0.962));
   }
 
-  /* C3 — "Bring someone." — 1080×1080 square */
+  /* C3 — "Bring your people." — 1080×1080 */
   function drawC3(ctx, W, H) {
-    const P = Math.round(W * 0.052);
+    const P = Math.round(W * 0.074);
     ctx.fillStyle = RE; ctx.fillRect(0, 0, W, H);
     eyebrow(ctx, W, 'HUMAN CAPITAL QUARTERLY');
-    const fs = Math.round(W * 0.28);
+
+    /* Structural rule */
+    rule(ctx, P, Math.round(H * 0.148), Math.round(W * 0.36), 'rgba(249,249,248,0.2)', 1);
+
+    /* Headline — PEOPLE. is the longest word, sizes to fit */
+    const fs = Math.round(W * 0.19);
+    const ls = -Math.round(fs * 0.032);
     ctx.font = `900 ${fs}px 'Overpass'`;
-    ctx.letterSpacing = `${Math.round(-W * 0.004)}px`;
+    ctx.letterSpacing = `${ls}px`;
     ctx.fillStyle = WH; ctx.textAlign = 'left';
-    ctx.fillText('BRING', P, Math.round(H * 0.44));
-    ctx.fillText('SOME-', P, Math.round(H * 0.44) + fs * 0.88);
-    ctx.fillText('ONE.', P, Math.round(H * 0.44) + fs * 0.88 * 2);
-    ctx.font = `italic 400 ${Math.round(W * 0.036)}px 'Instrument Serif'`;
+    const lh = Math.round(fs * 0.92);
+    ctx.fillText('BRING', P, Math.round(H * 0.36));
+    ctx.fillText('YOUR', P, Math.round(H * 0.36) + lh);
+    ctx.fillText('PEOPLE.', P, Math.round(H * 0.36) + lh * 2);
+
+    /* Accent rule */
     ctx.letterSpacing = '0px';
+    rule(ctx, P, Math.round(H * 0.775), Math.round(W * 0.075), 'rgba(249,249,248,0.4)');
+
+    /* Serif sub */
+    ctx.font = `italic 400 ${Math.round(W * 0.036)}px 'Instrument Serif'`;
     ctx.fillStyle = 'rgba(249,249,248,0.88)';
-    ctx.fillText('There\u2019s someone in your life who needs this room.', P, Math.round(H * 0.88));
+    ctx.fillText('There\u2019s someone in your life who needs this.', P, Math.round(H * 0.825));
+
     bottomBar(ctx, W, H, 'SPRING FORUM \u00B7 APRIL 14 \u00B7 FREE \u00B7 WASHINGTON D.C.');
   }
 
@@ -905,76 +950,118 @@ footer {
      PRACTICAL GRAPHICS — carbon background
   ════════════════════════════════════════════════ */
 
-  /* P1 — "Walk out with a plan." — 1080×1080 square */
+  /* P1 — "Walk out with a plan." — 1080×1080 */
   function drawP1(ctx, W, H) {
-    const P = Math.round(W * 0.052);
+    const P = Math.round(W * 0.074);
     ctx.fillStyle = CA; ctx.fillRect(0, 0, W, H);
     eyebrow(ctx, W, 'HUMAN CAPITAL QUARTERLY');
+
+    /* Structural rule */
+    rule(ctx, P, Math.round(H * 0.148), Math.round(W * 0.36), 'rgba(249,249,248,0.15)', 1);
+
+    /* Headline — 4 lines, sized so WITH A fits */
     const fs = Math.round(W * 0.175);
+    const ls = -Math.round(fs * 0.030);
     ctx.font = `900 ${fs}px 'Overpass'`;
-    ctx.letterSpacing = `${Math.round(-W * 0.004)}px`;
+    ctx.letterSpacing = `${ls}px`;
     ctx.fillStyle = WH; ctx.textAlign = 'left';
-    ctx.fillText('WALK', P, Math.round(H * 0.36));
-    ctx.fillText('OUT', P, Math.round(H * 0.36) + fs * 0.9);
-    ctx.fillText('WITH A', P, Math.round(H * 0.36) + fs * 0.9 * 2);
-    ctx.fillText('PLAN.', P, Math.round(H * 0.36) + fs * 0.9 * 3);
-    /* Red rule */
-    ctx.fillStyle = RE; ctx.fillRect(P, Math.round(H * 0.82), Math.round(W * 0.12), 3);
+    const lh = Math.round(fs * 0.91);
+    const sy = Math.round(H * 0.30);
+    ctx.fillText('WALK', P, sy);
+    ctx.fillText('OUT', P, sy + lh);
+    ctx.fillText('WITH A', P, sy + lh * 2);
+    ctx.fillText('PLAN.', P, sy + lh * 3);
+
+    /* Red accent rule */
+    ctx.letterSpacing = '0px';
+    rule(ctx, P, Math.round(H * 0.80), Math.round(W * 0.10), RE, 3);
+
     /* Sub */
     ctx.font = `300 ${Math.round(W * 0.034)}px 'IBM Plex Sans'`;
-    ctx.letterSpacing = '0px';
-    ctx.fillStyle = 'rgba(249,249,248,0.72)';
-    ctx.fillText('Not inspiration. A real next step.', P, Math.round(H * 0.87));
+    ctx.fillStyle = 'rgba(249,249,248,0.68)';
+    ctx.fillText('Not inspiration. A real next step.', P, Math.round(H * 0.855));
+
     bottomBar(ctx, W, H, 'SPRING FORUM \u00B7 APRIL 14 \u00B7 FREE \u00B7 MLK LIBRARY');
   }
 
-  /* P2 — "Real help from real people." — 1080×1920 story */
+  /* P2 — "Real help. Real people." — 1080×1920 story */
   function drawP2(ctx, W, H) {
     const P = Math.round(W * 0.074);
     ctx.fillStyle = CA; ctx.fillRect(0, 0, W, H);
     eyebrow(ctx, W, 'HUMAN CAPITAL QUARTERLY');
-    /* Blue accent bar */
-    ctx.fillStyle = BL; ctx.fillRect(P, Math.round(H * 0.14), 4, Math.round(H * 0.52));
+
+    /* Blue vertical accent bar — thicker, more visible */
+    ctx.fillStyle = BL;
+    ctx.fillRect(P, Math.round(H * 0.13), 5, Math.round(H * 0.48));
+
+    /* Headline — indented from blue bar */
     const fs = Math.round(W * 0.185);
+    const ls = -Math.round(fs * 0.030);
+    const lx = P + Math.round(W * 0.052);
     ctx.font = `900 ${fs}px 'Overpass'`;
-    ctx.letterSpacing = `${Math.round(-W * 0.004)}px`;
+    ctx.letterSpacing = `${ls}px`;
     ctx.fillStyle = WH; ctx.textAlign = 'left';
-    const lx = P + Math.round(W * 0.04);
-    ctx.fillText('REAL', lx, Math.round(H * 0.22));
-    ctx.fillText('HELP.', lx, Math.round(H * 0.22) + fs * 0.9);
-    ctx.fillText('REAL', lx, Math.round(H * 0.22) + fs * 0.9 * 2);
-    ctx.fillText('PEOPLE.', lx, Math.round(H * 0.22) + fs * 0.9 * 3);
-    /* Sub */
-    ctx.font = `300 ${Math.round(W * 0.044)}px 'IBM Plex Sans'`;
+    const lh = Math.round(fs * 0.91);
+    const sy = Math.round(H * 0.20);
+    ctx.fillText('REAL', lx, sy);
+    ctx.fillText('HELP.', lx, sy + lh);
+    ctx.fillText('REAL', lx, sy + lh * 2);
+    ctx.fillText('PEOPLE.', lx, sy + lh * 3);
+
+    /* Mid-canvas: secondary message */
     ctx.letterSpacing = '0px';
-    ctx.fillStyle = 'rgba(249,249,248,0.8)';
-    ctx.fillText('Peer consulting. Skill labs.', lx, Math.round(H * 0.82));
-    ctx.fillText('Honest conversation.', lx, Math.round(H * 0.82) + Math.round(W * 0.056));
-    ctx.font = `600 ${Math.round(W * 0.026)}px 'IBM Plex Mono'`;
-    ctx.letterSpacing = '1px';
-    ctx.fillStyle = 'rgba(249,249,248,0.45)';
+    rule(ctx, lx, Math.round(H * 0.68), Math.round(W * 0.52), 'rgba(249,249,248,0.15)', 1);
+    ctx.font = `italic 400 ${Math.round(W * 0.044)}px 'Instrument Serif'`;
+    ctx.fillStyle = 'rgba(249,249,248,0.75)';
+    ctx.fillText('Peer consulting.', lx, Math.round(H * 0.73));
+    ctx.fillText('Skill labs.', lx, Math.round(H * 0.73) + Math.round(W * 0.056));
+    ctx.fillText('Honest conversation.', lx, Math.round(H * 0.73) + Math.round(W * 0.056) * 2);
+
+    /* Bottom mono */
+    ctx.font = `600 ${Math.round(W * 0.024)}px 'IBM Plex Mono'`;
+    ctx.letterSpacing = '1.5px';
+    ctx.fillStyle = 'rgba(249,249,248,0.38)';
     ctx.fillText('APRIL 14 \u00B7 FREE \u00B7 MLK LIBRARY', P, Math.round(H * 0.962));
   }
 
-  /* P3 — "Free. April 14." — 1080×1080 square */
+  /* P3 — "Free. April 14." — 1080×1080 */
   function drawP3(ctx, W, H) {
-    const P = Math.round(W * 0.052);
+    const P = Math.round(W * 0.074);
     ctx.fillStyle = CA; ctx.fillRect(0, 0, W, H);
     eyebrow(ctx, W, 'HUMAN CAPITAL QUARTERLY');
-    const fs = Math.round(W * 0.225);
-    ctx.font = `900 ${fs}px 'Overpass'`;
-    ctx.letterSpacing = `${Math.round(-W * 0.005)}px`;
-    ctx.textAlign = 'left';
-    ctx.fillStyle = RE;
-    ctx.fillText('FREE.', P, Math.round(H * 0.46));
+
+    /* Structural rule */
+    rule(ctx, P, Math.round(H * 0.148), Math.round(W * 0.36), 'rgba(249,249,248,0.15)', 1);
+
+    /* "FREE." in red — large anchor word */
+    const fsLg = Math.round(W * 0.215);
+    const ls = -Math.round(fsLg * 0.032);
+    ctx.font = `900 ${fsLg}px 'Overpass'`;
+    ctx.letterSpacing = `${ls}px`;
+    ctx.fillStyle = RE; ctx.textAlign = 'left';
+    ctx.fillText('FREE.', P, Math.round(H * 0.38));
+
+    /* Thinner rule separator */
+    ctx.letterSpacing = '0px';
+    rule(ctx, P, Math.round(H * 0.46), W - P * 2, 'rgba(249,249,248,0.1)', 1);
+
+    /* "APRIL 14." in white — smaller but still bold */
+    const fsSm = Math.round(W * 0.155);
+    const ls2 = -Math.round(fsSm * 0.030);
+    ctx.font = `900 ${fsSm}px 'Overpass'`;
+    ctx.letterSpacing = `${ls2}px`;
     ctx.fillStyle = WH;
-    ctx.fillText('APRIL', P, Math.round(H * 0.46) + fs * 0.88);
-    ctx.fillText('14.', P, Math.round(H * 0.46) + fs * 0.88 * 2);
-    ctx.font = `400 ${Math.round(W * 0.034)}px 'IBM Plex Mono'`;
+    const lh = Math.round(fsSm * 0.92);
+    ctx.fillText('APRIL', P, Math.round(H * 0.525));
+    ctx.fillText('14.', P, Math.round(H * 0.525) + lh);
+
+    /* Venue detail */
     ctx.letterSpacing = '2px';
-    ctx.fillStyle = 'rgba(249,249,248,0.52)';
-    ctx.fillText('MLK JR. MEMORIAL LIBRARY', P, Math.round(H * 0.88));
-    ctx.fillText('WASHINGTON, D.C.', P, Math.round(H * 0.88) + Math.round(W * 0.048));
+    ctx.font = `400 ${Math.round(W * 0.028)}px 'IBM Plex Mono'`;
+    ctx.fillStyle = 'rgba(249,249,248,0.45)';
+    ctx.fillText('MLK JR. MEMORIAL LIBRARY', P, Math.round(H * 0.84));
+    ctx.fillText('WASHINGTON, D.C.', P, Math.round(H * 0.84) + Math.round(W * 0.040));
+
     bottomBar(ctx, W, H, 'HUMANCAPITAL.WITHLEVY.COM \u00B7 FREE & OPEN TO ALL');
   }
 
@@ -982,175 +1069,217 @@ footer {
      STRATEGIC GRAPHICS — white background
   ════════════════════════════════════════════════ */
 
-  /* S1 — "The skills gap is local." — 1080×1080 square */
+  /* S1 — "The skills gap is local." — 1080×1080 */
   function drawS1(ctx, W, H) {
-    const P = Math.round(W * 0.052);
+    const P = Math.round(W * 0.074);
     ctx.fillStyle = WH; ctx.fillRect(0, 0, W, H);
-    eyebrow(ctx, W, 'HUMAN CAPITAL QUARTERLY', 'rgba(18,18,18,0.45)');
-    const fs = Math.round(W * 0.2);
+    eyebrow(ctx, W, 'HUMAN CAPITAL QUARTERLY', 'rgba(18,18,18,0.42)');
+
+    /* Red structural rule */
+    rule(ctx, P, Math.round(H * 0.148), Math.round(W * 0.36), RE, 2);
+
+    /* Headline — 4 lines, sized so SKILLS fits without overflow */
+    const fs = Math.round(W * 0.185);
+    const ls = -Math.round(fs * 0.030);
     ctx.font = `900 ${fs}px 'Overpass'`;
-    ctx.letterSpacing = `${Math.round(-W * 0.004)}px`;
+    ctx.letterSpacing = `${ls}px`;
     ctx.fillStyle = CA; ctx.textAlign = 'left';
-    ctx.fillText('THE', P, Math.round(H * 0.35));
-    ctx.fillText('SKILLS', P, Math.round(H * 0.35) + fs * 0.88);
-    ctx.fillText('GAP IS', P, Math.round(H * 0.35) + fs * 0.88 * 2);
+    const lh = Math.round(fs * 0.91);
+    const sy = Math.round(H * 0.26);
+    ctx.fillText('THE', P, sy);
+    ctx.fillText('SKILLS', P, sy + lh);
+    ctx.fillText('GAP IS', P, sy + lh * 2);
     ctx.fillStyle = RE;
-    ctx.fillText('LOCAL.', P, Math.round(H * 0.35) + fs * 0.88 * 3);
-    /* Red rule */
-    ctx.fillStyle = RE; ctx.fillRect(P, Math.round(H * 0.82), Math.round(W * 0.1), 3);
-    ctx.font = `300 ${Math.round(W * 0.033)}px 'IBM Plex Sans'`;
+    ctx.fillText('LOCAL.', P, sy + lh * 3);
+
+    /* Red accent rule before sub */
     ctx.letterSpacing = '0px';
-    ctx.fillStyle = 'rgba(18,18,18,0.62)';
-    ctx.fillText('DC residents are dealing with it right now.', P, Math.round(H * 0.87));
-    /* Bottom bar — carbon on white for this one */
-    const BH = Math.round(H * 0.068);
-    ctx.fillStyle = CA; ctx.fillRect(0, H - BH, W, BH);
-    ctx.font = `400 ${Math.round(H * 0.013)}px 'IBM Plex Mono'`;
-    ctx.letterSpacing = '1px';
-    ctx.fillStyle = 'rgba(249,249,248,0.6)';
-    ctx.textAlign = 'left';
-    ctx.fillText('SPRING FORUM \u00B7 APRIL 14 \u00B7 FREE \u00B7 MLK LIBRARY', P, H - Math.round(BH * 0.28));
+    rule(ctx, P, Math.round(H * 0.80), Math.round(W * 0.10), RE, 3);
+
+    /* Sub */
+    ctx.font = `300 ${Math.round(W * 0.033)}px 'IBM Plex Sans'`;
+    ctx.fillStyle = 'rgba(18,18,18,0.60)';
+    ctx.fillText('DC residents are dealing with it right now.', P, Math.round(H * 0.855));
+
+    bottomBar(ctx, W, H, 'SPRING FORUM \u00B7 APRIL 14 \u00B7 FREE \u00B7 MLK LIBRARY');
   }
 
-  /* S2 — "Work is changing." — 1080×1920 story */
+  /* S2 — "Work is moving. Your next move." — 1080×1920 story */
   function drawS2(ctx, W, H) {
     const P = Math.round(W * 0.074);
     ctx.fillStyle = WH; ctx.fillRect(0, 0, W, H);
-    /* Top field: carbon */
-    const midY = Math.round(H * 0.62);
+
+    /* Top field: carbon — occupies top 58% */
+    const midY = Math.round(H * 0.58);
     ctx.fillStyle = CA; ctx.fillRect(0, 0, W, midY);
     eyebrow(ctx, W, 'HUMAN CAPITAL QUARTERLY');
-    const fs = Math.round(W * 0.2);
+
+    /* Top section headline — no hyphens */
+    const fs = Math.round(W * 0.205);
+    const ls = -Math.round(fs * 0.030);
     ctx.font = `900 ${fs}px 'Overpass'`;
-    ctx.letterSpacing = `${Math.round(-W * 0.004)}px`;
+    ctx.letterSpacing = `${ls}px`;
     ctx.fillStyle = WH; ctx.textAlign = 'left';
-    ctx.fillText('WORK', P, Math.round(H * 0.18));
-    ctx.fillText('IS', P, Math.round(H * 0.18) + fs * 0.9);
-    ctx.fillText('CHANG-', P, Math.round(H * 0.18) + fs * 0.9 * 2);
-    ctx.fillText('ING.', P, Math.round(H * 0.18) + fs * 0.9 * 3);
-    /* Bottom field: white */
-    ctx.fillStyle = RE; ctx.fillRect(P, midY + Math.round(H * 0.04), Math.round(W * 0.1), 3);
+    const lh = Math.round(fs * 0.90);
+    const sy = Math.round(H * 0.18);
+    ctx.fillText('WORK', P, sy);
+    ctx.fillText('IS', P, sy + lh);
+    ctx.fillText('MOVING.', P, sy + lh * 2);
+
+    /* Divider accent */
+    ctx.letterSpacing = '0px';
+    rule(ctx, P, midY + Math.round(H * 0.04), Math.round(W * 0.10), RE, 3);
+
+    /* Bottom section headline — carbon on white */
     ctx.font = `900 ${fs}px 'Overpass'`;
-    ctx.letterSpacing = `${Math.round(-W * 0.004)}px`;
+    ctx.letterSpacing = `${ls}px`;
     ctx.fillStyle = CA; ctx.textAlign = 'left';
-    ctx.fillText('HERE\u2019S', P, midY + Math.round(H * 0.1));
-    ctx.fillText('WHAT', P, midY + Math.round(H * 0.1) + fs * 0.9);
-    ctx.fillText('TO DO.', P, midY + Math.round(H * 0.1) + fs * 0.9 * 2);
-    ctx.font = `600 ${Math.round(W * 0.026)}px 'IBM Plex Mono'`;
-    ctx.letterSpacing = '1px';
+    const by = midY + Math.round(H * 0.10);
+    ctx.fillText('YOUR', P, by);
+    ctx.fillText('NEXT', P, by + lh);
+    ctx.fillText('MOVE.', P, by + lh * 2);
+
+    /* Bottom mono */
+    ctx.letterSpacing = '1.5px';
+    ctx.font = `600 ${Math.round(W * 0.024)}px 'IBM Plex Mono'`;
     ctx.fillStyle = RE;
     ctx.fillText('SPRING FORUM \u00B7 APRIL 14 \u00B7 FREE', P, Math.round(H * 0.962));
   }
 
-  /* S3 — "Human capital isn't a policy term." — 1080×1080 square */
+  /* S3 — "Human capital isn't a policy term." — 1080×1080 */
   function drawS3(ctx, W, H) {
-    const P = Math.round(W * 0.052);
+    const P = Math.round(W * 0.074);
     ctx.fillStyle = WH; ctx.fillRect(0, 0, W, H);
-    eyebrow(ctx, W, 'HUMAN CAPITAL QUARTERLY', 'rgba(18,18,18,0.45)');
-    /* Red rule top */
-    ctx.fillStyle = RE; ctx.fillRect(P, Math.round(H * 0.14), Math.round(W * 0.42), 3);
-    /* Serif italic headline */
-    const fs = Math.round(W * 0.072);
+    eyebrow(ctx, W, 'HUMAN CAPITAL QUARTERLY', 'rgba(18,18,18,0.42)');
+
+    /* Red structural rule — gives it weight on white */
+    rule(ctx, P, Math.round(H * 0.148), Math.round(W * 0.46), RE, 2);
+
+    /* Larger serif italic headline */
+    const fs = Math.round(W * 0.082);
+    const lh = Math.round(fs * 1.18);
     ctx.font = `italic 400 ${fs}px 'Instrument Serif'`;
     ctx.letterSpacing = '0px';
     ctx.fillStyle = CA; ctx.textAlign = 'left';
-    const lineH = fs * 1.2;
-    ctx.fillText('\u201CHuman capital', P, Math.round(H * 0.28));
-    ctx.fillText('isn\u2019t a policy', P, Math.round(H * 0.28) + lineH);
-    ctx.fillText('term.\u201D', P, Math.round(H * 0.28) + lineH * 2);
-    /* Body copy */
-    ctx.font = `300 ${Math.round(W * 0.033)}px 'IBM Plex Sans'`;
-    ctx.letterSpacing = '0px';
-    ctx.fillStyle = 'rgba(18,18,18,0.68)';
+    ctx.fillText('\u201CHuman capital', P, Math.round(H * 0.26));
+    ctx.fillText('isn\u2019t a policy', P, Math.round(H * 0.26) + lh);
+    ctx.fillText('term.\u201D', P, Math.round(H * 0.26) + lh * 2);
+
+    /* Thin red rule above body copy */
+    rule(ctx, P, Math.round(H * 0.60), Math.round(W * 0.08), RE, 2);
+
+    /* Body copy — wrap within margins */
+    ctx.font = `300 ${Math.round(W * 0.034)}px 'IBM Plex Sans'`;
+    ctx.fillStyle = 'rgba(18,18,18,0.65)';
     wrapText(ctx,
-      'It\u2019s your skills, your network, your next move. The Spring Forum is about building it, on purpose, with people who can help.',
-      P, Math.round(H * 0.68), W - P * 2, Math.round(W * 0.048));
-    /* Bottom bar */
-    const BH = Math.round(H * 0.068);
-    ctx.fillStyle = CA; ctx.fillRect(0, H - BH, W, BH);
-    ctx.font = `400 ${Math.round(H * 0.013)}px 'IBM Plex Mono'`;
-    ctx.letterSpacing = '1px';
-    ctx.fillStyle = 'rgba(249,249,248,0.6)';
-    ctx.textAlign = 'left';
-    ctx.fillText('HUMAN CAPITAL QUARTERLY \u00B7 SPRING FORUM \u00B7 APRIL 14', P, H - Math.round(BH * 0.28));
+      'It\u2019s your skills, your network, your next move. The Spring Forum is about building it deliberately, with people who can help.',
+      P, Math.round(H * 0.655), W - P * 2, Math.round(W * 0.050));
+
+    bottomBar(ctx, W, H, 'HCQ SPRING FORUM \u00B7 APRIL 14 \u00B7 FREE');
   }
 
   /* ════════════════════════════════════════════════
-     FLYER  8.5×11 @ ~200 dpi
+     FLYER  8.5×11 @ ~200 dpi  (W=1700, H=2200)
   ════════════════════════════════════════════════ */
   function drawFlyer(ctx, W, H) {
-    /* ATTENTION: carbon top */
-    const ATT_H = Math.round(H * 0.26);
-    ctx.fillStyle = CA; ctx.fillRect(0, 0, W, ATT_H);
-    const P = Math.round(W * 0.047);
-    ctx.font = `900 ${Math.round(ATT_H * 0.62)}px 'Overpass'`;
-    ctx.letterSpacing = `-${Math.round(W * 0.007)}px`;
+    const P = Math.round(W * 0.060);
+
+    /* ── ZONE A: Red header — "FREE." anchor ── */
+    const ZA_H = Math.round(H * 0.20);
+    ctx.fillStyle = RE; ctx.fillRect(0, 0, W, ZA_H);
+    const fsA = Math.round(ZA_H * 0.72);
+    const lsA = -Math.round(fsA * 0.032);
+    ctx.font = `900 ${fsA}px 'Overpass'`;
+    ctx.letterSpacing = `${lsA}px`;
     ctx.fillStyle = WH; ctx.textAlign = 'left';
-    ctx.fillText('FREE.', P, ATT_H - Math.round(ATT_H * 0.28));
-    ctx.font = `900 ${Math.round(ATT_H * 0.175)}px 'Overpass'`;
-    ctx.letterSpacing = '-2px';
-    ctx.fillStyle = RE;
-    ctx.fillText('APRIL 14, 2026', P, ATT_H - Math.round(ATT_H * 0.072));
-    /* INTEREST: white section */
-    const INT_Y = ATT_H, INT_H = Math.round(H * 0.365);
-    ctx.fillStyle = WH; ctx.fillRect(0, INT_Y, W, INT_H);
-    ctx.font = `900 ${Math.round(W * 0.042)}px 'Overpass'`;
-    ctx.letterSpacing = '-2px'; ctx.fillStyle = RE;
-    ctx.fillText('HUMAN CAPITAL QUARTERLY', P, INT_Y + Math.round(INT_H * 0.14));
-    ctx.font = `italic 400 ${Math.round(W * 0.038)}px 'Instrument Serif'`;
-    ctx.letterSpacing = '0px'; ctx.fillStyle = CA;
-    ctx.fillText('Spring Forum', P, INT_Y + Math.round(INT_H * 0.28));
-    ctx.fillStyle = RE; ctx.fillRect(P, INT_Y + Math.round(INT_H * 0.32), W - P * 2, 3);
+    ctx.fillText('FREE.', P, ZA_H - Math.round(ZA_H * 0.22));
+
+    /* ── ZONE B: White — event identity ── */
+    const ZB_Y = ZA_H, ZB_H = Math.round(H * 0.14);
+    ctx.fillStyle = WH; ctx.fillRect(0, ZB_Y, W, ZB_H);
+    const fsB1 = Math.round(W * 0.038);
+    const lsB1 = -Math.round(fsB1 * 0.028);
+    ctx.font = `900 ${fsB1}px 'Overpass'`;
+    ctx.letterSpacing = `${lsB1}px`;
+    ctx.fillStyle = CA;
+    ctx.fillText('HUMAN CAPITAL QUARTERLY', P, ZB_Y + Math.round(ZB_H * 0.40));
+    ctx.font = `italic 400 ${Math.round(W * 0.052)}px 'Instrument Serif'`;
+    ctx.letterSpacing = '0px'; ctx.fillStyle = RE;
+    ctx.fillText('Spring Forum', P, ZB_Y + Math.round(ZB_H * 0.82));
+
+    /* ── ZONE C: Carbon — description + bullets ── */
+    const ZC_Y = ZB_Y + ZB_H, ZC_H = Math.round(H * 0.38);
+    ctx.fillStyle = CA; ctx.fillRect(0, ZC_Y, W, ZC_H);
+    /* Thin red rule top of zone C */
+    rule(ctx, P, ZC_Y + Math.round(ZC_H * 0.06), W - P * 2, RE, 2);
+    /* Description */
     ctx.font = `300 ${Math.round(W * 0.022)}px 'IBM Plex Sans'`;
-    ctx.fillStyle = CA; ctx.letterSpacing = '0px';
+    ctx.letterSpacing = '0px'; ctx.fillStyle = 'rgba(249,249,248,0.75)';
     wrapText(ctx,
-      'A free afternoon connecting D.C. residents with employers, career coaches, skills trainers, and community organizations. All are welcome.',
-      P, INT_Y + Math.round(INT_H * 0.44), W - P * 2, Math.round(W * 0.03));
-    const bullets = ['Career coaching & mentorship','Job & internship opportunities','Skills workshops & certification info','Financial tools & resource navigation','Community organizations & services','Expert workforce practitioners'];
-    ctx.font = `600 ${Math.round(W * 0.011)}px 'IBM Plex Mono'`;
-    ctx.letterSpacing = '2px'; ctx.fillStyle = 'rgba(18,18,18,0.45)';
-    ctx.fillText('WHAT YOU\'LL FIND:', P, INT_Y + Math.round(INT_H * 0.65));
-    const CW = (W - P * 2) / 2;
-    ctx.font = `400 ${Math.round(W * 0.02)}px 'IBM Plex Sans'`;
+      'A free afternoon for D.C. residents. Employers, career coaches, skills trainers, and community organizations — all in one room. All are welcome.',
+      P, ZC_Y + Math.round(ZC_H * 0.16), W - P * 2, Math.round(W * 0.030));
+    /* "What you'll find" label */
+    ctx.font = `600 ${Math.round(W * 0.012)}px 'IBM Plex Mono'`;
+    ctx.letterSpacing = '2.5px'; ctx.fillStyle = RE;
+    ctx.fillText('WHAT YOU\u2019LL FIND', P, ZC_Y + Math.round(ZC_H * 0.42));
+    /* Bullets — 2-col */
+    const bullets = [
+      'Career coaching & mentorship',
+      'Job & internship opportunities',
+      'Skills workshops & certifications',
+      'Financial tools & resource navigation',
+      'Community organizations & services',
+      'Expert workforce practitioners'
+    ];
+    const CW = Math.round((W - P * 2) / 2);
+    const rowH = Math.round(ZC_H * 0.088);
+    ctx.font = `300 ${Math.round(W * 0.020)}px 'IBM Plex Sans'`;
     ctx.letterSpacing = '0px';
     bullets.forEach((b, i) => {
       const bx = P + (i % 2) * CW;
-      const by = INT_Y + Math.round(INT_H * 0.73) + Math.floor(i / 2) * Math.round(W * 0.032);
+      const by = ZC_Y + Math.round(ZC_H * 0.50) + Math.floor(i / 2) * rowH;
       ctx.fillStyle = RE; ctx.fillText('\u2014', bx, by);
-      ctx.fillStyle = CA; ctx.fillText(b, bx + Math.round(W * 0.028), by);
+      ctx.fillStyle = 'rgba(249,249,248,0.82)'; ctx.fillText(b, bx + Math.round(W * 0.028), by);
     });
-    /* ACTION: carbon bottom */
-    const ACT_Y = INT_Y + INT_H;
-    ctx.fillStyle = CA; ctx.fillRect(0, ACT_Y, W, H - ACT_Y);
-    const QS = Math.round(W * 0.2), QP = Math.round(W * 0.012), QX = P, QY = ACT_Y + Math.round((H - ACT_Y) * 0.1);
+
+    /* ── ZONE D: White — QR + logistics ── */
+    const ZD_Y = ZC_Y + ZC_H;
+    ctx.fillStyle = WH; ctx.fillRect(0, ZD_Y, W, H - ZD_Y);
+    /* QR code block */
+    const QS = Math.round(W * 0.185);
+    const QP = Math.round(W * 0.010);
+    const QX = P, QY = ZD_Y + Math.round((H - ZD_Y) * 0.12);
     if (qrCanvas) {
-      ctx.fillStyle = WH; ctx.fillRect(QX - QP, QY - QP, QS + QP * 2, QS + QP * 2);
+      ctx.fillStyle = CA;
+      ctx.fillRect(QX - QP, QY - QP, QS + QP * 2, QS + QP * 2);
       ctx.drawImage(qrCanvas, QX, QY, QS, QS);
     }
+    ctx.font = `600 ${Math.round(W * 0.012)}px 'IBM Plex Mono'`;
+    ctx.letterSpacing = '2px'; ctx.fillStyle = CA;
+    ctx.fillText('SCAN TO REGISTER FREE', QX, QY + QS + Math.round(W * 0.022));
+    /* Logistics column */
+    const DX = QX + QS + Math.round(W * 0.06);
     ctx.font = `600 ${Math.round(W * 0.011)}px 'IBM Plex Mono'`;
-    ctx.letterSpacing = '2px'; ctx.fillStyle = WH;
-    ctx.fillText('SCAN TO REGISTER FREE', QX - QP, QY + QS + QP * 2 + Math.round(W * 0.026));
-    const DX = QX + QS + QP * 2 + Math.round(W * 0.047);
-    ctx.font = `400 ${Math.round(W * 0.01)}px 'IBM Plex Mono'`;
-    ctx.letterSpacing = '2px'; ctx.fillStyle = 'rgba(249,249,248,0.45)';
-    ctx.fillText('WHEN & WHERE', DX, ACT_Y + Math.round((H - ACT_Y) * 0.15));
-    ctx.font = `900 ${Math.round(W * 0.036)}px 'Overpass'`;
-    ctx.letterSpacing = '-2px'; ctx.fillStyle = WH;
-    ctx.fillText('Tuesday', DX, ACT_Y + Math.round((H - ACT_Y) * 0.3));
-    ctx.fillText('April 14, 2026', DX, ACT_Y + Math.round((H - ACT_Y) * 0.45));
-    ctx.font = `300 ${Math.round(W * 0.02)}px 'IBM Plex Sans'`;
-    ctx.letterSpacing = '0px'; ctx.fillStyle = 'rgba(249,249,248,0.82)';
-    ctx.fillText('MLK Jr. Memorial Library', DX, ACT_Y + Math.round((H - ACT_Y) * 0.58));
-    ctx.fillText('901 G St. NW, Washington, DC 20001', DX, ACT_Y + Math.round((H - ACT_Y) * 0.68));
-    ctx.font = `600 ${Math.round(W * 0.017)}px 'IBM Plex Mono'`;
-    ctx.letterSpacing = '1px'; ctx.fillStyle = RE;
-    ctx.fillText('FREE & OPEN TO ALL', DX, ACT_Y + Math.round((H - ACT_Y) * 0.8));
-    ctx.font = `400 ${Math.round(W * 0.012)}px 'IBM Plex Mono'`;
-    ctx.letterSpacing = '1px'; ctx.fillStyle = 'rgba(249,249,248,0.42)';
-    ctx.fillText('humancapital.withlevy.com', DX, ACT_Y + Math.round((H - ACT_Y) * 0.88));
-    ctx.font = `400 ${Math.round(W * 0.034)}px 'Caveat'`;
-    ctx.letterSpacing = '0px'; ctx.fillStyle = BL;
-    ctx.fillText('People are the real capital.', P, H - Math.round(W * 0.02));
+    ctx.letterSpacing = '2px'; ctx.fillStyle = 'rgba(18,18,18,0.45)';
+    ctx.fillText('WHEN & WHERE', DX, ZD_Y + Math.round((H - ZD_Y) * 0.16));
+    const fsD = Math.round(W * 0.034);
+    ctx.font = `900 ${fsD}px 'Overpass'`;
+    ctx.letterSpacing = `${-Math.round(fsD * 0.028)}px`;
+    ctx.fillStyle = CA;
+    ctx.fillText('Tuesday, April 14', DX, ZD_Y + Math.round((H - ZD_Y) * 0.34));
+    ctx.fillText('2026', DX, ZD_Y + Math.round((H - ZD_Y) * 0.34) + Math.round(fsD * 0.98));
+    ctx.letterSpacing = '0px';
+    ctx.font = `300 ${Math.round(W * 0.020)}px 'IBM Plex Sans'`;
+    ctx.fillStyle = 'rgba(18,18,18,0.70)';
+    ctx.fillText('MLK Jr. Memorial Library', DX, ZD_Y + Math.round((H - ZD_Y) * 0.63));
+    ctx.fillText('901 G St. NW, Washington, DC 20001', DX, ZD_Y + Math.round((H - ZD_Y) * 0.74));
+    ctx.font = `600 ${Math.round(W * 0.016)}px 'IBM Plex Mono'`;
+    ctx.letterSpacing = '1.5px'; ctx.fillStyle = RE;
+    ctx.fillText('FREE & OPEN TO ALL', DX, ZD_Y + Math.round((H - ZD_Y) * 0.88));
+    /* Handwritten sign-off */
+    ctx.font = `400 ${Math.round(W * 0.030)}px 'Caveat'`;
+    ctx.letterSpacing = '0px'; ctx.fillStyle = 'rgba(18,18,18,0.30)';
+    ctx.fillText('humancapital.withlevy.com', P, H - Math.round(H * 0.018));
   }
 
   /* ════════════════════════════════════════════════
